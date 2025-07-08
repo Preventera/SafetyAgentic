@@ -1,96 +1,12 @@
-# Créer requirements.txt (version alignée)
-@"
-# SafeGraph - Requirements (aligné sur votre stack actuel)
-
-# LangGraph et LangChain
-langgraph>=0.2.0
-langchain>=0.2.0
-langchain-anthropic>=0.1.0
-langchain-openai>=0.1.0
-langchain-community>=0.2.0
-
-# APIs LLM
+﻿streamlit>=1.28.0
+pandas>=1.5.0
+plotly>=5.15.0
+langchain>=0.1.0
+langchain-community>=0.0.20
+langchain-openai>=0.0.8
+chromadb>=0.4.18
+mem0ai>=0.0.8
 anthropic>=0.25.0
-openai>=1.0.0
-
-# Interface et visualisation
-streamlit>=1.28.0
-plotly>=5.17.0
-pandas>=2.1.0
-numpy>=1.24.0
-
-# Utilitaires
 python-dotenv>=1.0.0
-pydantic>=2.5.0
-typing-extensions>=4.8.0
-PyPDF2>=3.0.0
-openpyxl>=3.1.0
-
-# Tests et développement
-pytest>=7.4.0
-black>=23.9.0
-flake8>=6.1.0
-
-# AJOUTS SPÉCIFIQUES STORM + SAFEGRAPH
-# Base de données pour graphes
-psycopg2-binary>=2.9.0
-neo4j>=5.0.0
-sqlalchemy>=2.0.0
-
-# STORM Research dependencies
-requests>=2.31.0
-beautifulsoup4>=4.12.0
-aiohttp>=3.9.0
-scholarly>=1.7.0
-
-# Configuration avancée
-pyyaml>=6.0.0
-
-# Monitoring et logging
-loguru>=0.7.0
-
-# Traitement données lésions CNESST
-pyarrow>=14.0.0
-
-# Visualisation graphes SafeGraph
-networkx>=3.2.0
-matplotlib>=3.8.0
-seaborn>=0.13.0
-graphviz>=0.20.0
-
-# Interface API (optionnel)
-fastapi>=0.104.0
-uvicorn[standard]>=0.24.0
-"@ | Out-File -FilePath "requirements.txt" -Encoding UTF8
-
-# Créer les autres fichiers
-@"
-# SafeGraph Environment Variables Template
-ANTHROPIC_API_KEY=your_anthropic_api_key_here
-CLAUDE_MODEL=claude-3-sonnet-20240229
-LANGCHAIN_TRACING_V2=false
-SAFEGRAPH_DEBUG=true
-SAFEGRAPH_LOG_LEVEL=INFO
-"@ | Out-File -FilePath ".env.template" -Encoding UTF8
-
-@"
-__pycache__/
-*.py[cod]
-.env
-.env.local
-.vscode/
-logs/
-*.log
-data/raw/*.csv
-data/processed/*.parquet
-*.db
-.DS_Store
-"@ | Out-File -FilePath ".gitignore" -Encoding UTF8
-
-@"
-# SafeGraph - Point d'entrée principal
-print('🚀 SafeGraph - Safety Culture Analytics')
-print('📊 Votre stack: LangGraph 0.2.0 + Anthropic 0.25.0')
-print('✅ Structure de base créée!')
-print('🔧 Prochaine étape: Configuration des agents')
-"@ | Out-File -FilePath "main.py" -Encoding UTF8
+numpy>=1.24.0
+scikit-learn>=1.3.0
