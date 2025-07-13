@@ -20,120 +20,34 @@ import uuid
 from typing import Dict, List, Any, Optional, Tuple
 import random
 import warnings
-import sys
-from pathlib import Path
-
 warnings.filterwarnings('ignore')
 
 # ═══════════════════════════════════════════════════════════════
-# 🔧 CONFIGURATION ET IMPORTS SAFETYGRAPH
+# 🔧 CONFIGURATION SAFETYGRAPH
 # ═══════════════════════════════════════════════════════════════
 
-# Enrichissement CNESST
+# Configuration des modules
 try:
-    from src.enrichments.cnesst_layer import enrich_safetygraph_context, get_cnesst_status
-    CNESST_ENRICHED = True
-    print('✅ Enrichissement CNESST activé')
-except ImportError:
-    CNESST_ENRICHED = False
-    print('⚠️ Mode standard - Enrichissements CNESST non disponibles')
-    def enrich_safetygraph_context(ctx): return ctx
-    def get_cnesst_status(): return {'status': 'disabled', 'message': 'Non disponible'}
-
-# Révolution Culture SST
-try:
-    from safetygraph_integration import (
-        MoteurCultureSST, 
-        afficher_actions_rapides_profil,
-        afficher_dashboard_culture_sst,
-        afficher_conformite_iso45001,
-        afficher_recommandations,
-        ProfilUtilisateur,
-        export_donnees_json,
-        charger_donnees_demo
-    )
+    from src.revolution_culture_sst.culture_sst_engine import MoteurCultureSST
     REVOLUTION_CULTURE_SST_AVAILABLE = True
-    print("🚀 RÉVOLUTION SafetyGraph: Actions ↔ Culture SST ↔ ISO 45001 CHARGÉE!")
-except ImportError as e:
+except ImportError:
     REVOLUTION_CULTURE_SST_AVAILABLE = False
-    print(f"⚠️ Révolution Culture SST non disponible: {e}")
 
-# Interface Normes
 try:
-    from src.interfaces.interface_normes import (
-        render_normes_tab, 
-        init_normes_sidebar,
-        enrichir_behaviorx_normes,
-        render_enrichissement_behaviorx
-    )
-    INTERFACE_NORMES_AVAILABLE = True
-    print("✅ Interface Normes ISO/SCIAN chargée")
-except ImportError as e:
-    INTERFACE_NORMES_AVAILABLE = False
-    print(f"⚠️ Interface Normes non disponible: {e}")
-
-# Workflow sophistiqué
-try:
-    from src.workflow_orchestre_behaviorx import OrchestrateurWorkflowBehaviorX
-    WORKFLOW_SOPHISTIQUE_AVAILABLE = True
-    print("✅ Workflow sophistiqué chargé")
-except ImportError as e:
-    WORKFLOW_SOPHISTIQUE_AVAILABLE = False
-    print(f"⚠️ Workflow sophistiqué non disponible: {e}")
-
-# Orchestrateur unifié
-try:
-    from src.agents.collecte.orchestrateur_behaviorx_unified import BehaviorXOrchestrator
-    ORCHESTRATEUR_UNIFIE_AVAILABLE = True
-    print("✅ Orchestrateur unifié chargé")
-except ImportError as e:
-    ORCHESTRATEUR_UNIFIE_AVAILABLE = False
-    print(f"⚠️ Orchestrateur unifié non disponible: {e}")
-
-# LangGraph cartographie
-try:
-    from src.langgraph.safetygraph_cartography_engine import (
-        SafetyGraphCartographyExecutor,
-        execute_safetygraph_cartography_main
-    )
-    LANGGRAPH_CARTOGRAPHIE_AVAILABLE = True
-    print("✅ LangGraph cartographie chargé")
-except ImportError as e:
-    LANGGRAPH_CARTOGRAPHIE_AVAILABLE = False
-    print(f"⚠️ LangGraph cartographie non disponible: {e}")
-
-# STORM Research
-try:
-    from src.storm_research.storm_launcher import STORMLauncher
-    from src.storm_research.research_topics import ResearchTopicsManager
-    STORM_RESEARCH_AVAILABLE = True
-    print("✅ STORM Research chargé")
-except ImportError as e:
-    STORM_RESEARCH_AVAILABLE = False
-    print(f"⚠️ STORM Research non disponible: {e}")
-
-# Performance Optimizer
-try:
-    from src.optimization.optimization_suite import PerformanceOptimizer
-    OPTIMIZER_AVAILABLE = True
-    print("✅ Optimiseur performance activé")
-except ImportError as e:
-    OPTIMIZER_AVAILABLE = False
-    print(f"⚠️ Optimiseur performance non disponible: {e}")
-
-# Analytics modules
-try:
-    sys.path.append(str(Path(__file__).parent / "src" / "analytics"))
-    from predictive_models import display_predictive_analytics_interface
-    from pattern_recognition import display_pattern_recognition_interface
-    from anomaly_detection import display_anomaly_detection_interface
+    from src.analytics.predictive_models import PredictiveAnalytics
+    from src.analytics.pattern_recognition import PatternRecognition  
+    from src.analytics.anomaly_detection import AnomalyDetector
     ANALYTICS_AVAILABLE = True
-    print("✅ Analytics modules loaded successfully")
-except ImportError as e:
+except ImportError:
     ANALYTICS_AVAILABLE = False
-    print(f"⚠️ Analytics modules non disponibles: {e}")
 
-# Configuration page Streamlit
+try:
+    from src.performance.optimizer import PerformanceOptimizer
+    OPTIMIZER_AVAILABLE = True
+except ImportError:
+    OPTIMIZER_AVAILABLE = False
+
+# Configuration générale
 st.set_page_config(
     page_title="SafetyGraph BehaviorX",
     page_icon="🛡️",
@@ -938,6 +852,10 @@ def performance_optimizer_interface():
     for rec in recommendations:
         st.markdown(f"• {rec}")
 
+# ═══════════════════════════════════════════════════════════════
+# 📋 INTERFACE NORMES & CONFORMITÉ
+# ═══════════════════════════════════════════════════════════════
+
 def display_normes_conformite_interface():
     """Interface Normes & Conformité"""
     
@@ -1000,20 +918,6 @@ def main_interface():
     # Header
     display_header()
     
-    # Initialisation moteur Culture SST
-    if REVOLUTION_CULTURE_SST_AVAILABLE:
-        if "moteur_culture_sst" not in st.session_state:
-            st.session_state.moteur_culture_sst = MoteurCultureSST()
-            print("🚀 Moteur Culture SST initialisé!")
-        
-        if "profil_utilisateur_actuel" not in st.session_state:
-            st.session_state.profil_utilisateur_actuel = ProfilUtilisateur.COSS
-        
-        moteur = st.session_state.moteur_culture_sst
-        st.success(f"🚀 Révolution SafetyGraph ACTIVE! Profil: {st.session_state.profil_utilisateur_actuel.value}")
-    else:
-        st.warning("⚠️ Module révolution Culture SST non disponible")
-    
     # Sidebar
     nom_entreprise, secteur, mode_workflow = display_sidebar()
     
@@ -1022,38 +926,6 @@ def main_interface():
     
     # Métriques Culture SST en temps réel
     display_metriques_culture_sst()
-    
-    st.markdown("---")
-    
-    # Section Actions Rapides supplémentaires
-    st.markdown("### ⚡ Actions Rapides par Écran")
-    
-    col1, col2, col3, col4, col5 = st.columns(5)
-    
-    with col1:
-        if st.button("🚀 Analyse Complète", key="action1"):
-            secteur = st.session_state.get('secteur_activite', 'Construction (236)')
-            mode = st.session_state.get('mode_workflow', 'VCS + ABC structuré')
-            lancer_behaviorx_standard(secteur, mode, st.session_state.behaviorx_memory)
-    
-    with col2:
-        if st.button("📊 Voir Résultats", key="action2"):
-            if st.session_state.get('workflow_results'):
-                afficher_resultats_behaviorx(st.session_state.workflow_results)
-            else:
-                st.warning("⚠️ Aucun résultat disponible. Lancez d'abord une analyse !")
-    
-    with col3:
-        if st.button("📄 Export PDF", key="action3"):
-            st.success("Export généré !")
-    
-    with col4:
-        if st.button("⚙️ Configuration", key="action4"):
-            st.success("Configuration ouverte !")
-    
-    with col5:
-        if st.button("📈 Historique", key="action5"):
-            st.success("Historique affiché !")
     
     st.markdown("---")
     
@@ -1172,11 +1044,7 @@ def main_interface():
     # ONGLET 7: NORMES & CONFORMITÉ
     # ═══════════════════════════════════════════════════════════════
     with main_tabs[6]:
-        if INTERFACE_NORMES_AVAILABLE:
-            display_normes_conformite_interface()
-        else:
-            st.warning("⚠️ Module Normes & Conformité non disponible")
-            st.info("📋 Créez le fichier src/interfaces/interface_normes.py")
+        display_normes_conformite_interface()
 
 # ═══════════════════════════════════════════════════════════════
 # 🚀 POINT D'ENTRÉE PRINCIPAL
