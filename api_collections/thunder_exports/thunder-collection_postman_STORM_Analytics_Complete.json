@@ -1,0 +1,62 @@
+{
+    "info": {
+        "_postman_id": "bffea8de-d53a-4ace-b8eb-9a1da43b79e4",
+        "name": "\"STORM_Analytics_Complete\"",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "\"STORM Research Topics HSE\"",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://api.anthropic.com/v1/messages",
+                    "path": [
+                        "v1",
+                        "messages"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "anthropic",
+                        "com"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "value": "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"
+                    },
+                    {
+                        "key": "anthropic-version",
+                        "value": "2023-06-01"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n    \"model\": \"claude-4-sonnet-20250514\",\r\n    \"max_tokens\": 4000,\r\n    \"system\": \"Tu es un expert STORM Research HSE. Tu effectues des recherches approfondies avec sources académiques et pratiques terrain basées sur les 100 topics SafetyGraph.\",\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"RECHERCHE STORM APPROFONDIE\\n\\nTopic: {{research_topic}}\\nSecteur: {{sector_scian}}\\nProfondeur: {{research_depth}}\\n\\nFournis:\\n1. État de l'art scientifique (3-5 sources)\\n2. Meilleures pratiques sectorielles\\n3. Réglementations CNESST\\n4. Innovations technologiques\\n5. Recommandations d'implémentation\\n6. ROI attendu et métriques\"\r\n        }\r\n    ]\r\n}"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+{
+    "info": {
+        "_postman_id": "59ef7435-5c74-4047-b67e-8fe247023144",
+        "name": "SafetyGraph_API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "BehaviorX_Analyses",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://api.anthropic.com/v1/messages",
+                    "path": [
+                        "v1",
+                        "messages"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "anthropic",
+                        "com"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "value": "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"
+                    },
+                    {
+                        "key": "anthropic-version",
+                        "value": "2023-06-01"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n    \"model\": \"claude-4-sonnet-20250514\",\r\n    \"max_tokens\": 4000,\r\n    \"system\": \"Tu es SafetyAgentic, expert BehaviorX avec 25 ans d'expérience HSE. Tu analyses la culture de sécurité selon les standards CNESST et proposes des recommandations comportementales spécifiques au secteur SCIAN.\",\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"ANALYSE BEHAVIORX - SECTEUR CONSTRUCTION (SCIAN 236)\\n\\nEntreprise: {{enterprise_name}}\\nEmployés: {{employee_count}}\\nTaux incidents: {{incident_rate}}%\\nScore culture: {{culture_score}}/5\\nRégion: Québec\\n\\nFournis une analyse BehaviorX complète avec:\\n1. Diagnostic comportemental vs benchmarks CNESST construction\\n2. Facteurs de risque prioritaires\\n3. Plan d'action comportemental sur 90 jours\\n4. Métriques de suivi recommandées\\n5. Formations spécifiques secteur construction\"\r\n        }\r\n    ]\r\n}"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "info": {
+        "_postman_id": "mines-collection-001",
+        "name": "Mines_Souterraines_SCIAN_212",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": "Collection spécialisée pour l'analyse HSE des mines souterraines selon les standards CNESST"
+    },
+    "item": [
+        {
+            "name": "Mines Souterraines SCIAN-212",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://api.anthropic.com/v1/messages",
+                    "path": [
+                        "v1",
+                        "messages"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"model\": \"claude-sonnet-4-20250514\",\n    \"max_tokens\": 4000,\n    \"system\": \"Tu es SafetyAgentic, expert HSE spécialisé en sécurité minière souterraine selon les standards CNESST. Tu as 25 ans d'expérience dans l'analyse des risques miniers au Québec. Tu intègres les spécificités des mines souterraines : ventilation, espaces confinés, évacuation d'urgence, détection de gaz, et travail en profondeur.\",\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"ANALYSE BEHAVIORX MINES SOUTERRAINES\\n\\nEntreprise: {{enterprise}}\\nType d'extraction: {{extraction_type}}\\nProfondeur maximale: {{depth}}m\\nNombre d'employés: {{employees}}\\nNiveau d'automatisation: {{automation_level}}\\nDerniers incidents: {{recent_incidents}}\\n\\nFournis une analyse comportementale HSE complète pour cette mine souterraine incluant :\\n1. Évaluation culture sécurité spécifique mines souterraines\\n2. Risques comportementaux prioritaires (ventilation, espaces confinés, évacuation)\\n3. Plan d'amélioration 90 jours adapté au contexte minier\\n4. Indicateurs de performance spécialisés\\n5. Protocoles de formation comportementale\\n6. Mesures préventives anti-accidents graves\"\n        }\n    ]\n}"
+                }
+            },
+            "event": [],
+            "variable": [
+                {
+                    "key": "enterprise",
+                    "value": "Nom de l'entreprise minière"
+                },
+                {
+                    "key": "extraction_type",
+                    "value": "Type d'extraction (or, cuivre, zinc, etc.)"
+                },
+                {
+                    "key": "depth",
+                    "value": "Profondeur en mètres"
+                },
+                {
+                    "key": "employees",
+                    "value": "Nombre d'employés"
+                },
+                {
+                    "key": "automation_level",
+                    "value": "Niveau d'automatisation (faible/moyen/élevé)"
+                },
+                {
+                    "key": "recent_incidents",
+                    "value": "Description des incidents récents"
+                }
+            ]
+        }
+    ]
+}

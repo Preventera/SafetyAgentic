@@ -497,20 +497,23 @@ def display_predictive_analytics_interface():
         horizon = st.selectbox(
             "🕐 Horizon Prédiction",
             ["3 mois", "6 mois", "12 mois", "24 mois"],
-            index=1
+            index=1,
+            key="predictive_horizon_selector"
         )
         
         model_type = st.selectbox(
-            "🧠 Type Modèle",
+            "🤖 Type Modèle",
             ["Random Forest", "XGBoost", "Neural Network", "Ensemble"],
-            index=0
+            index=0,
+            key="predictive_model_type_selector"
         )
     
     with col2:
         sector = st.selectbox(
             "🏭 Secteur SCIAN",
             ["Construction (236)", "Manufacturing (311)", "Healthcare (621)", "Transportation (484)"],
-            index=0
+            index=0,
+            key="predictive_sector_scian_selector"
         )
         
         confidence_threshold = st.slider(
@@ -695,3 +698,173 @@ def display_predictive_analytics_interface():
     # Footer
     st.markdown("---")
     st.markdown("**🔮 Analytics Prédictifs SafetyGraph** | Powered by LangGraph & ML Advanced")
+    
+def display_predictive_analytics_interface():
+    """Interface Streamlit pour Analytics Prédictifs SafetyGraph"""
+    import streamlit as st
+    import pandas as pd
+    import numpy as np
+    import plotly.graph_objects as go
+    import plotly.express as px
+    from datetime import datetime, timedelta
+    
+    st.markdown("# 🔮 Analytics Prédictifs SafetyGraph")
+    st.markdown("---")
+    
+    # Header avec métriques temps réel
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric("🎯 Précision Modèle", "92.4%", "+2.1%")
+    
+    with col2:
+        st.metric("📊 Prédictions Actives", "156", "+12")
+    
+    with col3:
+        st.metric("⚡ Temps Traitement", "0.3s", "-0.1s")
+    
+    with col4:
+        st.metric("🔄 Dernière Mise à Jour", "2min", "")
+    
+    st.markdown("---")
+    
+    # Configuration prédiction
+    st.markdown("## ⚙️ Configuration Prédictive")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        horizon = st.selectbox(
+            "🕐 Horizon Prédiction",
+            ["3 mois", "6 mois", "12 mois", "24 mois"],
+            index=1,
+            key="predictive_horizon_main"
+        )
+        
+        model_type = st.selectbox(
+            "🤖 Type Modèle",
+            ["Random Forest", "XGBoost", "Neural Network", "Ensemble"],
+            index=0,
+            key="predictive_model_type_main"
+        )
+    
+    with col2:
+        sector = st.selectbox(
+            "🏭 Secteur SCIAN",
+            ["Construction (236)", "Manufacturing (311)", "Healthcare (621)", "Transportation (484)"],
+            index=0,
+            key="predictive_sector_scian_main"
+        )
+        
+        confidence_threshold = st.slider(
+            "🎯 Seuil Confiance",
+            min_value=0.70,
+            max_value=0.99,
+            value=0.85,
+            step=0.01,
+            key="predictive_confidence_main"
+        )
+    
+    if st.button("🔮 Générer Prédictions", use_container_width=True):
+        with st.spinner("🔄 Génération des prédictions en cours..."):
+            import time
+            time.sleep(2)
+            
+            # Génération données prédictives simulées
+            dates = pd.date_range(start=datetime.now(), periods=12, freq='M')
+            
+            # Prédictions risques par catégorie
+            risk_categories = ["Accidents", "Incidents", "Near Miss", "Compliance"]
+            predictions_data = []
+            
+            for category in risk_categories:
+                base_value = np.random.uniform(0.1, 0.8)
+                trend = np.random.uniform(-0.05, 0.05)
+                for i, date in enumerate(dates):
+                    value = max(0, base_value + trend * i + np.random.normal(0, 0.1))
+                    predictions_data.append({
+                        'Date': date,
+                        'Catégorie': category,
+                        'Risque Prédit': value,
+                        'Confiance': np.random.uniform(0.8, 0.95)
+                    })
+            
+            predictions_df = pd.DataFrame(predictions_data)
+            
+            st.success("✅ Prédictions générées avec succès!")
+            
+            # Graphique prédictions temporelles
+            st.markdown("## 📈 Évolution Prédite des Risques")
+            
+            fig = px.line(predictions_df, 
+                         x='Date', 
+                         y='Risque Prédit', 
+                         color='Catégorie',
+                         title="Prédictions de Risques - 12 Prochains Mois")
+            
+            fig.update_layout(
+                xaxis_title="Date",
+                yaxis_title="Niveau de Risque",
+                hovermode='x unified'
+            )
+            
+            st.plotly_chart(fig, use_container_width=True)
+            
+            # Alertes prédictives
+            st.markdown("## 🚨 Alertes Prédictives")
+            
+            # Simulation alertes
+            alerts = [
+                {
+                    "Type": "Risque Élevé",
+                    "Secteur": "Zone A - Construction",
+                    "Probabilité": "87%",
+                    "Horizon": "15 jours",
+                    "Action": "Renforcement formation équipe"
+                },
+                {
+                    "Type": "Tendance Négative", 
+                    "Secteur": "Zone C - Maintenance",
+                    "Probabilité": "73%",
+                    "Horizon": "1 mois",
+                    "Action": "Audit procédures sécurité"
+                },
+                {
+                    "Type": "Non-Conformité",
+                    "Secteur": "Zone B - Production", 
+                    "Probabilité": "91%",
+                    "Horizon": "3 semaines",
+                    "Action": "Inspection équipements"
+                }
+            ]
+            
+            for alert in alerts:
+                if float(alert["Probabilité"].replace('%', '')) > 85:
+                    st.error(f"🚨 **{alert['Type']}** - {alert['Secteur']} | Probabilité: {alert['Probabilité']} | Action: {alert['Action']}")
+                elif float(alert["Probabilité"].replace('%', '')) > 75:
+                    st.warning(f"⚠️ **{alert['Type']}** - {alert['Secteur']} | Probabilité: {alert['Probabilité']} | Action: {alert['Action']}")
+                else:
+                    st.info(f"ℹ️ **{alert['Type']}** - {alert['Secteur']} | Probabilité: {alert['Probabilité']} | Action: {alert['Action']}")
+            
+            # Recommandations
+            st.markdown("## 💡 Recommandations Intelligentes")
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("### 🎯 Actions Prioritaires")
+                st.markdown("""
+                1. **Formation sécurité renforcée** - Zone A
+                2. **Audit équipements** - Zone C  
+                3. **Mise à jour procédures** - Zone B
+                4. **Campagne sensibilisation** - Général
+                """)
+            
+            with col2:
+                st.markdown("### 📊 Métriques Cibles")
+                st.markdown("""
+                - **Réduction accidents:** -25% (6 mois)
+                - **Amélioration conformité:** +15% (3 mois)
+                - **Satisfaction sécurité:** +20% (6 mois)
+                - **ROI sécurité:** +12% (12 mois)
+                """)    

@@ -1,0 +1,166 @@
+{
+    "info": {
+        "_postman_id": "7a524c04-e038-4bd7-be71-f83ba5cd98ac",
+        "name": "BehaviorX_Analyses_HSE",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": " \"Construction SCIAN-236\"",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://api.anthropic.com/v1/messages",
+                    "path": [
+                        "v1",
+                        "messages"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "anthropic",
+                        "com"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "value": "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"
+                    },
+                    {
+                        "key": "anthropic-version",
+                        "value": "2023-06-01"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n    \"model\": \"claude-4-sonnet-20250514\",\r\n    \"max_tokens\": 4000,\r\n    \"system\": \"Tu es SafetyAgentic expert BehaviorX construction.\",\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\", \r\n            \"content\": \"ANALYSE BEHAVIORX CONSTRUCTION\\nEntreprise: {{enterprise}}\\nTaux incidents: {{rate}}%\\nDiagnostic complet avec plan 90 jours\"\r\n        }\r\n    ]\r\n}"
+                }
+            }
+        },
+        {
+            "name": "REQUÊTE 2 : \"Transport SCIAN-484\"",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://api.anthropic.com/v1/messages",
+                    "path": [
+                        "v1",
+                        "messages"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "anthropic",
+                        "com"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "value": "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"
+                    },
+                    {
+                        "key": "anthropic-version",
+                        "value": "2023-06-01"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n    \"model\": \"claude-4-sonnet-20250514\",\r\n    \"max_tokens\": 4000,\r\n    \"system\": \"Tu es SafetyAgentic expert BehaviorX transport.\",\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"ANALYSE BEHAVIORX TRANSPORT\\nEntreprise: {{enterprise}}\\nFlotte: {{fleet_size}}\\nAnalyse comportements conducteurs\"\r\n        }\r\n    ]\r\n}"
+                }
+            }
+        },
+        {
+            "name": " REQUÊTE 3 : \"Manufacturier SCIAN-311\"",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://api.anthropic.com/v1/messages",
+                    "path": [
+                        "v1",
+                        "messages"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "anthropic",
+                        "com"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "value": "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"
+                    },
+                    {
+                        "key": "anthropic-version",
+                        "value": "2023-06-01"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n    \"model\": \"claude-4-sonnet-20250514\", \r\n    \"max_tokens\": 4000,\r\n    \"system\": \"Tu es SafetyAgentic expert BehaviorX manufacturier.\",\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"ANALYSE BEHAVIORX MANUFACTURIER\\nEntreprise: {{enterprise}}\\nLignes production: {{lines}}\\nÉvaluation culture sécurité\"\r\n        }\r\n    ]\r\n}"
+                }
+            }
+        }
+    ]
+}
