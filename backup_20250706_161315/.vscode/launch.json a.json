@@ -1,0 +1,78 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "SafetyAgentic - Main App",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/main.py",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "ENVIRONMENT": "development"
+            },
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": []
+        },
+        {
+            "name": "SafetyAgentic - Agent A1 (Collecteur)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/agents/collecte/a1_autoevaluations.py",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "ENVIRONMENT": "test"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "SafetyAgentic - Pipeline Données CNESST",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/data/pipeline_cnesst.py",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "DATA_PATH": "${workspaceFolder}/data"
+            },
+            "console": "integratedTerminal",
+            "args": [
+                "--sample-test"
+            ]
+        },
+        {
+            "name": "SafetyAgentic - API Server",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/api/main.py",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "ENVIRONMENT": "development"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "SafetyAgentic - Backup",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/backup_fixed.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "SafetyAgentic - Test Ingestion",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/data/test_ingestion.py",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "DATA_PATH": "${workspaceFolder}/data"
+            },
+            "console": "integratedTerminal",
+            "args": [
+                "--file",
+                "lesions-2023 (1).csv",
+                "--sample",
+                "1000"
+            ]
+        }
+    ]
+}

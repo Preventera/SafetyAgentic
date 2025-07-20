@@ -1,0 +1,118 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "SafetyAgentic: Backup Complet",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "backup_fixed.py"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SafetyAgentic: Test Données CNESST",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-c",
+                "from pathlib import Path; files = list(Path('data').glob('lesions*.csv')); print(f'✅ {len(files)} fichiers CNESST trouvés'); [print(f'  - {f.name} ({round(f.stat().st_size/1024/1024,1)} MB)') for f in files]"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "SafetyAgentic: Créer Environnement Virtuel",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "venv",
+                "venv"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "SafetyAgentic: Installer Dépendances",
+            "type": "shell",
+            "command": "pip",
+            "args": [
+                "install",
+                "-r",
+                "requirements.txt"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "SafetyAgentic: Format Code",
+            "type": "shell",
+            "command": "black",
+            "args": [
+                "src/",
+                "tests/"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "SafetyAgentic: Run Tests",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "pytest",
+                "tests/",
+                "-v"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "SafetyAgentic: Vérifier Structure",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-c",
+                "Write-Host '📁 STRUCTURE SAFETYAGENTIC:' -ForegroundColor Green; Get-ChildItem -Directory | ForEach-Object { Write-Host \"  ✅ $($_.Name)\" -ForegroundColor Cyan }; Write-Host ''; Write-Host '📊 DONNÉES CNESST:' -ForegroundColor Green; Get-ChildItem data\\*.csv | ForEach-Object { $size = [math]::Round($_.Length/1MB,1); Write-Host \"  📄 $($_.Name) - $size MB\" -ForegroundColor Yellow }"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "SafetyAgentic: Statistiques Projet",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-c",
+                "import os; from pathlib import Path; print('📊 STATISTIQUES SAFETYAGENTIC'); print('='*40); py_files = list(Path('.').rglob('*.py')); csv_files = list(Path('data').glob('*.csv')); total_csv_size = sum(f.stat().st_size for f in csv_files); print(f'📁 Fichiers Python: {len(py_files)}'); print(f'📄 Fichiers CNESST: {len(csv_files)}'); print(f'💾 Taille données: {round(total_csv_size/1024/1024,1)} MB'); print(f'🏗️ Structure: {len(list(Path(\"src\").rglob(\"*\")))} éléments dans src/')"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        }
+    ]
+}

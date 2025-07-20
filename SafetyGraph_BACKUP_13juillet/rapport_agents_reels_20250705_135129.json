@@ -1,0 +1,1052 @@
+{
+  "timestamp": "2025-07-05T13:51:29.579309",
+  "validation_type": "agents_reels_authentiques",
+  "objectifs": {
+    "temps_workflow": 0.33,
+    "roi_cible": 1617,
+    "confiance_cible": 82.8
+  },
+  "resultats_reels": {
+    "nombre_cas_traites": 50,
+    "nombre_erreurs": 0,
+    "temps_total": 0.19341700000000003,
+    "temps_moyen": 0.0038683400000000005,
+    "roi_moyen_reel": 1000.0,
+    "confiance_moyenne": 0.75,
+    "resultats_detailles": [
+      {
+        "id_cas": 2,
+        "secteur": "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN",
+        "annee": "2017",
+        "temps_traitement": 0.012771,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 10,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2017",
+        "temps_traitement": 0.003968,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 11,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2017",
+        "temps_traitement": 0.001013,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 13,
+        "secteur": "HEBERGEMENT ET SERVICES DE RESTAURATION",
+        "annee": "2017",
+        "temps_traitement": 0.00124,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 14,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2017",
+        "temps_traitement": 0.00242,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 15,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2017",
+        "temps_traitement": 0.004536,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 24,
+        "secteur": "FABRICATION DE BIENS DURABLES",
+        "annee": "2017",
+        "temps_traitement": 0.005001,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 28,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2017",
+        "temps_traitement": 0.004619,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 34,
+        "secteur": "CONSTRUCTION",
+        "annee": "2017",
+        "temps_traitement": 0.000902,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 38,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2017",
+        "temps_traitement": 0.00612,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 47,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 59,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2017",
+        "temps_traitement": 0.006052,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 71,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2017",
+        "temps_traitement": 0.001316,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 83,
+        "secteur": "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN",
+        "annee": "2017",
+        "temps_traitement": 0.004663,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 94,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2017",
+        "temps_traitement": 0.007094,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 96,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2017",
+        "temps_traitement": 0.003144,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 105,
+        "secteur": "FABRICATION DE BIENS DURABLES",
+        "annee": "2017",
+        "temps_traitement": 0.00151,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 110,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2017",
+        "temps_traitement": 0.004703,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 120,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2017",
+        "temps_traitement": 0.004381,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 122,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2017",
+        "temps_traitement": 0.003542,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 123,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2017",
+        "temps_traitement": 0.003269,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 130,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2017",
+        "temps_traitement": 0.003219,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 137,
+        "secteur": "SERVICES IMMOBILIERS ET SERVICES DE LOCATION ET DE LOCATION A BAIL",
+        "annee": "2017",
+        "temps_traitement": 0.005585,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 144,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2017",
+        "temps_traitement": 0.004277,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 152,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2017",
+        "temps_traitement": 0.004018,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 18,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2018",
+        "temps_traitement": 0.006398,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 47,
+        "secteur": "CONSTRUCTION",
+        "annee": "2018",
+        "temps_traitement": 0.005297,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 52,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2018",
+        "temps_traitement": 0.004129,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 70,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2018",
+        "temps_traitement": 0.00389,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 72,
+        "secteur": "AUTRES SERVICES",
+        "annee": "2018",
+        "temps_traitement": 0.004152,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 96,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2018",
+        "temps_traitement": 0.005737,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 99,
+        "secteur": "CONSTRUCTION",
+        "annee": "2018",
+        "temps_traitement": 0.004949,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 111,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2018",
+        "temps_traitement": 0.004731,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 115,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2018",
+        "temps_traitement": 0.005178,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 122,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2018",
+        "temps_traitement": 0.004222,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 129,
+        "secteur": "CONSTRUCTION",
+        "annee": "2018",
+        "temps_traitement": 0.001762,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 135,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2018",
+        "temps_traitement": 0.004913,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 149,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2018",
+        "temps_traitement": 0.001759,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 152,
+        "secteur": "EXTRACTION MINIERE, EXPLOITATION EN CARRIERE ET EXTRACTION DE PETROLE ET DE GAZ",
+        "annee": "2018",
+        "temps_traitement": 0.007354,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 159,
+        "secteur": "SERVICES PROFESSIONNELS, SCIENTIFIQUES ET TECHNIQUES",
+        "annee": "2018",
+        "temps_traitement": 0.001005,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 162,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2018",
+        "temps_traitement": 0.001058,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 180,
+        "secteur": "AUTRES SERVICES",
+        "annee": "2018",
+        "temps_traitement": 0.003684,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 188,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2018",
+        "temps_traitement": 0.005781,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 190,
+        "secteur": "FABRICATION DE BIENS DURABLES",
+        "annee": "2018",
+        "temps_traitement": 0.002312,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 194,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2018",
+        "temps_traitement": 0.0033,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 199,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2018",
+        "temps_traitement": 0.002444,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 207,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2018",
+        "temps_traitement": 0.003001,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 218,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2018",
+        "temps_traitement": 0.001998,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 220,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2018",
+        "temps_traitement": 0.003001,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      },
+      {
+        "id_cas": 232,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2018",
+        "temps_traitement": 0.001999,
+        "resultats_a1": {},
+        "resultats_a2": {},
+        "resultats_an1": {
+          "error": "Données A1 ou A2 manquantes",
+          "agent_id": "AN1"
+        },
+        "resultats_r1": {
+          "error": "Champ AN1 manquant: summary",
+          "agent_id": "R1"
+        },
+        "roi_reel": 1000,
+        "confiance_score": 0.75,
+        "zones_aveugles_count": 0
+      }
+    ]
+  },
+  "performance_reelle": {
+    "temps_ok": true,
+    "roi_ok": false,
+    "confiance_ok": false,
+    "score_global": 33.33333333333333
+  },
+  "statistiques_secteurs": {
+    "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN": {
+      "count": 2,
+      "roi_total": 2000,
+      "temps_total": 0.017433999999999998
+    },
+    "COMMERCE DE DETAIL": {
+      "count": 4,
+      "roi_total": 4000,
+      "temps_total": 0.016053
+    },
+    "TRANSPORT ET ENTREPOSAGE": {
+      "count": 6,
+      "roi_total": 6000,
+      "temps_total": 0.017039000000000002
+    },
+    "HEBERGEMENT ET SERVICES DE RESTAURATION": {
+      "count": 1,
+      "roi_total": 1000,
+      "temps_total": 0.00124
+    },
+    "SERVICES D'ENSEIGNEMENT": {
+      "count": 7,
+      "roi_total": 7000,
+      "temps_total": 0.025897000000000003
+    },
+    "FABRICATION DE BIENS NON DURABLES": {
+      "count": 5,
+      "roi_total": 5000,
+      "temps_total": 0.023408
+    },
+    "FABRICATION DE BIENS DURABLES": {
+      "count": 3,
+      "roi_total": 3000,
+      "temps_total": 0.008823000000000001
+    },
+    "CONSTRUCTION": {
+      "count": 4,
+      "roi_total": 4000,
+      "temps_total": 0.01291
+    },
+    "SOINS DE SANTE ET ASSISTANCE SOCIALE": {
+      "count": 5,
+      "roi_total": 5000,
+      "temps_total": 0.022237999999999997
+    },
+    "ADMINISTRATIONS PUBLIQUES": {
+      "count": 4,
+      "roi_total": 4000,
+      "temps_total": 0.011592
+    },
+    "SERVICES IMMOBILIERS ET SERVICES DE LOCATION ET DE LOCATION A BAIL": {
+      "count": 1,
+      "roi_total": 1000,
+      "temps_total": 0.005585
+    },
+    "AUTRES SERVICES": {
+      "count": 2,
+      "roi_total": 2000,
+      "temps_total": 0.007836000000000001
+    },
+    "COMMERCE DE GROS": {
+      "count": 4,
+      "roi_total": 4000,
+      "temps_total": 0.015002999999999999
+    },
+    "EXTRACTION MINIERE, EXPLOITATION EN CARRIERE ET EXTRACTION DE PETROLE ET DE GAZ": {
+      "count": 1,
+      "roi_total": 1000,
+      "temps_total": 0.007354
+    },
+    "SERVICES PROFESSIONNELS, SCIENTIFIQUES ET TECHNIQUES": {
+      "count": 1,
+      "roi_total": 1000,
+      "temps_total": 0.001005
+    }
+  }
+}

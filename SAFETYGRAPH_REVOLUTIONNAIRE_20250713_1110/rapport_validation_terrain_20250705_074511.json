@@ -1,0 +1,2321 @@
+{
+  "timestamp": "2025-07-05T07:45:11.329366",
+  "objectifs": {
+    "temps_workflow": 0.33,
+    "roi_cible": 1617,
+    "confiance_cible": 82.8
+  },
+  "resultats": {
+    "nombre_cas": 100,
+    "temps_total": 0.0,
+    "temps_moyen": 0.0,
+    "roi_moyen": 1293.6000000000024,
+    "resultats_detailles": [
+      {
+        "id_cas": 60031,
+        "secteur": "HEBERGEMENT ET SERVICES DE RESTAURATION",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 4193,
+        "secteur": "FINANCE ET ASSURANCES",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 32051,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 25797,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 74623,
+        "secteur": "CONSTRUCTION",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 42544,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 24112,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 55070,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 18995,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 83114,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 61208,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 57971,
+        "secteur": "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 65233,
+        "secteur": "HEBERGEMENT ET SERVICES DE RESTAURATION",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 8774,
+        "secteur": "AGRICULTURE",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 21297,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 78181,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 80461,
+        "secteur": "CONSTRUCTION",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 74528,
+        "secteur": "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 6529,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 58456,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 18473,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 53136,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 23338,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 21069,
+        "secteur": "CONSTRUCTION",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 24753,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 2820,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 20747,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 84687,
+        "secteur": "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 18023,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 60039,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 67026,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 61180,
+        "secteur": "AUTRES SERVICES",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 76951,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 77408,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 35770,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 45031,
+        "secteur": "SERVICES IMMOBILIERS ET SERVICES DE LOCATION ET DE LOCATION A BAIL",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 76385,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 2351,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 16667,
+        "secteur": "CONSTRUCTION",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 60556,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 13738,
+        "secteur": "AUTRES OU NON CODES",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 18607,
+        "secteur": "AUTRES OU NON CODES",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 46807,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 26024,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 7024,
+        "secteur": "INFORMATION, CULTURE ET LOISIRS",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 83390,
+        "secteur": "HEBERGEMENT ET SERVICES DE RESTAURATION",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 26458,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 42558,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 53689,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 36844,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 49998,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 44639,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 74523,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 7220,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 75429,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 16461,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 87248,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 84417,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 31639,
+        "secteur": "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 58295,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 22125,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 60318,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 87496,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 60534,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 50776,
+        "secteur": "AUTRES OU NON CODES",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 54075,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 57253,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 66718,
+        "secteur": "AUTRES SERVICES",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 13821,
+        "secteur": "AUTRES SERVICES",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 67292,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 33393,
+        "secteur": "AUTRES SERVICES",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 40628,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 80179,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 42085,
+        "secteur": "HEBERGEMENT ET SERVICES DE RESTAURATION",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 68427,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 20632,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 36904,
+        "secteur": "CONSTRUCTION",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 55481,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 35922,
+        "secteur": "FABRICATION DE BIENS NON DURABLES",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 58030,
+        "secteur": "AUTRES SERVICES",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 55640,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 61647,
+        "secteur": "AUTRES SERVICES",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 61631,
+        "secteur": "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 1966,
+        "secteur": "SERVICES D'ENSEIGNEMENT",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 87405,
+        "secteur": "AUTRES OU NON CODES",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 79439,
+        "secteur": "ADMINISTRATIONS PUBLIQUES",
+        "annee": "2023",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 47748,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 37166,
+        "secteur": "SERVICES IMMOBILIERS ET SERVICES DE LOCATION ET DE LOCATION A BAIL",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 14304,
+        "secteur": "CONSTRUCTION",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 45713,
+        "secteur": "COMMERCE DE DETAIL",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 63412,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 30053,
+        "secteur": "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 4272,
+        "secteur": "HEBERGEMENT ET SERVICES DE RESTAURATION",
+        "annee": "2017",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 18352,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2018",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 36568,
+        "secteur": "COMMERCE DE GROS",
+        "annee": "2020",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 47623,
+        "secteur": "AUTRES OU NON CODES",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 50930,
+        "secteur": "SERVICES AUX ENTREPRISES, SERVICES RELATIFS AUX BATIMENTS ET AUTRES SERVICES DE SOUTIEN",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 28326,
+        "secteur": "FABRICATION DE BIENS DURABLES",
+        "annee": "2019",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 71795,
+        "secteur": "TRANSPORT ET ENTREPOSAGE",
+        "annee": "2022",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      },
+      {
+        "id_cas": 54126,
+        "secteur": "SOINS DE SANTE ET ASSISTANCE SOCIALE",
+        "annee": "2021",
+        "temps_traitement": 0.0,
+        "score_a1": {
+          "perception_risque": 72,
+          "formation_epi": 68,
+          "engagement": 78
+        },
+        "score_a2": {
+          "conformite_epi": 71,
+          "respect_procedures": 74,
+          "signalisation": 65
+        },
+        "ecart_analyse": 1,
+        "criticite": 0.1,
+        "roi_projete": 1293.6000000000001,
+        "actions_recommandees": [
+          "Maintien standards",
+          "Surveillance continue"
+        ]
+      }
+    ]
+  },
+  "performance": {
+    "temps_ok": true,
+    "roi_ok": false,
+    "score_global": 50.0
+  }
+}

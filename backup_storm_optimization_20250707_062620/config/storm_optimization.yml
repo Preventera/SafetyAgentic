@@ -1,0 +1,45 @@
+﻿# Configuration STORM Optimization v2.0
+claude:
+  api_key: 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
+  model: claude-3-sonnet-20240229
+
+sources:
+  academic:
+    - safety_science
+    - accident_analysis_prevention
+    - applied_ergonomics
+    - journal_safety_research
+  
+  institutional:
+    - inrs
+    - niosh  
+    - hse_uk
+    - cnesst
+    - irsst
+  
+  sectorial:
+    construction_236:
+      - cnesst_construction
+      - osha_construction
+      - cpwr
+    transport_484:
+      - transport_canada
+      - fmcsa
+      - iru_safety
+    healthcare_622:
+      - cdc_healthcare
+      - ahrq
+      - joint_commission
+
+optimization:
+  concurrent_searches: 8
+  quality_threshold: 0.85
+  max_sources_per_topic: 75
+  claude_temperature: 0.1
+  extraction_max_tokens: 1500
+
+performance_targets:
+  agents_enhanced_daily: 15
+  performance_improvement: 0.55
+  roi_target: 4.80
+  processing_time_max: 180
