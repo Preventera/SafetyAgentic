@@ -196,7 +196,7 @@ def display_anomaly_detection_interface():
             title="Répartition Anomalies par Sévérité",
             color_discrete_sequence=colors
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="severity_distribution_chart")
         
         # Alertes automatiques
         total_critiques = severity_data.get('CRITIQUE', 0)

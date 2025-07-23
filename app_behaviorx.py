@@ -2,8 +2,8 @@
 SafetyGraph BehaviorX + Cartographie Culture SST - Interface Complète
 ====================================================================
 Interface Streamlit unifiée : BehaviorX + Cartographie LangGraph
-Safety Agentique - Mario Plourde - 8 juillet 2025
-Version 3.0 - Architecture LangGraph Intégrée
+Safety Agentique - Mario Plourde - 22 juillet 2025
+Version 3.1 - Architecture Industries Unifiées
 """
 
 import streamlit as st
@@ -28,8 +28,6 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-# AJOUTER CES LIGNES AU DÉBUT de app_behaviorx.py (après les imports existants)
-
 # === OPTIMISATION PERFORMANCE ===
 import sys
 import os
@@ -44,7 +42,106 @@ except ImportError:
     OPTIMIZER_AVAILABLE = False
     print("⚠️ Optimiseur non disponible")
 
-# === FIN OPTIMISATION ===
+# ===================================================================
+# ===================================================================
+# CORRECTION PYARROW - GESTION POURCENTAGES DANS DATAFRAMES
+# ===================================================================
+
+def fix_dataframe_for_streamlit(df):
+    """
+    Corrige les DataFrames pour compatibilité PyArrow/Streamlit
+    Résout l'erreur: Could not convert '96%' with type str: tried to convert to double
+    """
+    import pandas as pd
+    
+    df_fixed = df.copy()
+    
+    for col in df_fixed.columns:
+        if df_fixed[col].dtype == 'object':
+            # Détecter les colonnes avec pourcentages
+            percentage_mask = df_fixed[col].astype(str).str.contains('%', na=False)
+            
+            if percentage_mask.any():
+                # Garder la colonne originale pour l'affichage (format string)
+                df_fixed[col] = df_fixed[col].astype(str)
+    
+    return df_fixed
+
+# ===================================================================
+# SUITE DE VOTRE CODE EXISTANT (SECTEURS_SCIAN_COMPLET)
+# ===================================================================
+# DICTIONNAIRE SCIAN COMPLET - MULTI-INDUSTRIES SAFETYGRAPH
+# ===================================================================
+
+SECTEURS_SCIAN_COMPLET = {
+    "🚧 CONSTRUCTION": {
+        "Construction générale (236)": "236",
+        "Construction résidentielle (2361)": "2361", 
+        "Construction non-résidentielle (2362)": "2362",
+        "Génie civil & infrastructure (237)": "237",
+        "Entrepreneurs spécialisés (238)": "238",
+        "Construction lourde & civile": "237-heavy"
+    },
+    "⛏️ MINES & EXTRACTION": {
+        "Mines souterraines (212)": "212",
+        "Mines métalliques (2122)": "2122",
+        "Mines non-métalliques (2123)": "2123", 
+        "Extraction pétrole & gaz (211)": "211",
+        "Activités soutien mines (213)": "213",
+        "Carrières & sablières (2123)": "2123-carriere"
+    },
+    "🏭 MANUFACTURING": {
+        "Fabrication alimentaire (311)": "311",
+        "Fabrication boissons & tabac (312)": "312",
+        "Fabrication bois (321)": "321", 
+        "Fabrication papier (322)": "322",
+        "Fabrication chimique (325)": "325",
+        "Fabrication plastique & caoutchouc (326)": "326",
+        "Fabrication métallique primaire (331)": "331",
+        "Fabrication machinerie (333)": "333",
+        "Fabrication équipement transport (336)": "336",
+        "Fabrication meubles (337)": "337"
+    },
+    "🏥 SOINS DE SANTÉ": {
+        "Soins ambulatoires (621)": "621",
+        "Hôpitaux (622)": "622", 
+        "Établissements soins infirmiers (623)": "623",
+        "Assistance sociale (624)": "624",
+        "Services sociaux communautaires": "624-social"
+    },
+    "🔧 SERVICES PROFESSIONNELS": {
+        "Services professionnels techniques (541)": "541",
+        "Gestion d'entreprises (551)": "551",
+        "Services administratifs & soutien (561)": "561",
+        "Services éducatifs (611)": "611",
+        "Services publics (utilities)": "221"
+    },
+    "🚚 TRANSPORT & LOGISTIQUE": {
+        "Transport terrestre (484)": "484",
+        "Transport aérien (481)": "481", 
+        "Transport maritime (483)": "483",
+        "Entreposage (493)": "493",
+        "Services postaux & courrier (492)": "492"
+    }
+}
+
+# Fonction utilitaire pour obtenir tous les secteurs
+def get_all_secteurs_list():
+    """Retourne la liste complète de tous les secteurs disponibles"""
+    secteurs_list = []
+    for industrie, secteurs in SECTEURS_SCIAN_COMPLET.items():
+        for nom_secteur, code in secteurs.items():
+            secteurs_list.append(f"{nom_secteur}")
+    return secteurs_list
+
+def get_secteur_code(secteur_nom):
+    """Retourne le code SCIAN d'un secteur donné"""
+    for industrie, secteurs in SECTEURS_SCIAN_COMPLET.items():
+        for nom, code in secteurs.items():
+            if nom == secteur_nom:
+                return code
+    return "236"  # Default fallback
+
 # ===================================================================
 # INTEGRATION ANALYTICS AVANCÉS SAFETYGRAPH
 # ===================================================================
@@ -60,11 +157,20 @@ try:
 except ImportError as e:
     print(f"⚠️ Analytics modules not available: {e}")
     ANALYTICS_AVAILABLE = False
+    
+# Import module mines souterraines
+try:
+    from src.modules.mines_souterraines import mines_souterraines_secteur
+    MINES_AVAILABLE = True
+    print("✅ Module mines souterraines chargé")
+except ImportError:
+    MINES_AVAILABLE = False
+    print("⚠️ Module mines souterraines non disponible")
 
 # Configuration page Streamlit
 st.set_page_config(
-    page_title="SafetyGraph BehaviorX + Cartographie SST",
-    page_icon="🗺️",
+    page_title="SafetyGraph BehaviorX + Industries SST",
+    page_icon="🏭",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -108,7 +214,7 @@ def display_header():
     <div style="background: linear-gradient(90deg, #1f2937 0%, #374151 100%); 
                 padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
         <h1 style="color: white; text-align: center; margin: 0;">
-            🗺️ SafetyGraph BehaviorX + Cartographie Culture SST
+            🏭 SafetyGraph Industries + Culture SST
         </h1>
         <p style="color: #d1d5db; text-align: center; margin: 0.5rem 0 0 0;">
             🏢 <strong>Powered by Safety Agentique</strong> | 
@@ -120,11 +226,11 @@ def display_header():
     """, unsafe_allow_html=True)
 
 # ===================================================================
-# 3. SIDEBAR CONFIGURATION
+# 3. SIDEBAR CONFIGURATION MULTI-INDUSTRIES
 # ===================================================================
 
 def setup_sidebar():
-    """Configuration sidebar enrichie"""
+    """Configuration sidebar enrichie multi-industries"""
     
     with st.sidebar:
         st.markdown("## ⚙️ Configuration SafetyGraph")
@@ -133,23 +239,39 @@ def setup_sidebar():
         st.markdown("### 🏢 Informations Entreprise")
         nom_entreprise = st.text_input("Nom entreprise", value="Entreprise ABC", key="enterprise_name")
         
-        # Sélection secteur SCIAN enrichie
-        st.markdown("### 📊 Secteur d'Activité (SCIAN)")
-        secteurs_scian = {
-            "Construction (236)": "236",
-            "Soins de santé (622)": "622", 
-            "Fabrication alimentaire (311)": "311",
-            "Fabrication du bois (321)": "321",
-            "Services professionnels (541)": "541",
-            "Secteur général": "000"
-        }
+        # ===================================================================
+        # SECTION SECTEUR D'ACTIVITÉ - MULTI-INDUSTRIES
+        # ===================================================================
+        st.markdown("## 📊 Secteur d'Activité (SCIAN)")
         
-        secteur_selectionne = st.selectbox(
-            "Choisir secteur",
-            options=list(secteurs_scian.keys()),
-            key="sector_selection"
+        # Sélection industrie principale
+        industrie_principale = st.selectbox(
+            "🏭 Industrie Principale", 
+            list(SECTEURS_SCIAN_COMPLET.keys()),
+            key="industrie_principale",
+            index=0  # Construction par défaut
         )
-        secteur_code = secteurs_scian[secteur_selectionne]
+        
+        # Secteur spécifique selon industrie choisie
+        secteurs_disponibles = list(SECTEURS_SCIAN_COMPLET[industrie_principale].keys())
+        secteur_selectionne = st.selectbox(
+            "🎯 Secteur Spécifique",
+            secteurs_disponibles,
+            key="secteur_specifique"
+        )
+        
+        # Code SCIAN pour compatibilité avec le reste du code
+        secteur_code = SECTEURS_SCIAN_COMPLET[industrie_principale][secteur_selectionne]
+        
+        # Affichage informations
+        st.info(f"📋 Code SCIAN: **{secteur_code}**")
+        
+        # Métriques industrie
+        col_a, col_b = st.columns(2)
+        with col_a:
+            st.metric("🏭 Industries", len(SECTEURS_SCIAN_COMPLET))
+        with col_b:
+            st.metric("📊 Secteurs", len(secteurs_disponibles))
         
         # Mode workflow enrichi
         st.markdown("### 🎯 Mode Workflow")
@@ -168,15 +290,17 @@ def setup_sidebar():
         st.markdown("### 📊 Statut Modules")
         st.success(f"🧠 BehaviorX: {'✅ Disponible' if BEHAVIORX_AVAILABLE else '❌ Indisponible'}")
         st.success(f"🗺️ Cartographie: {'✅ Disponible' if CARTOGRAPHY_AVAILABLE else '❌ Indisponible'}")
+        st.success(f"⛏️ Mines: {'✅ Disponible' if MINES_AVAILABLE else '❌ Indisponible'}")
+        st.success(f"📊 Analytics: {'✅ Disponible' if ANALYTICS_AVAILABLE else '❌ Indisponible'}")
         
         # À propos
         st.markdown("### ℹ️ À Propos")
-        st.info("""
-        **SafetyGraph BehaviorX v3.0**
+        st.info(f"""
+        **SafetyGraph Industries v3.1**
         
-        🏢 **Safety Agentique** - Plateforme IA pour culture SST
+        🏭 **{len(SECTEURS_SCIAN_COMPLET)} Industries** - Multi-secteurs SCIAN
         
-        🗺️ **Cartographie 7D** - Leadership, Communication, Participation, etc.
+        📊 **{sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())} Secteurs** - Couverture complète
         
         🤖 **100+ Agents** - A1-A10, AN1-AN10, R1-R10, S1-S10, SC1-SC50
         
@@ -187,6 +311,7 @@ def setup_sidebar():
         
         return {
             'enterprise_name': nom_entreprise,
+            'industrie_principale': industrie_principale,
             'sector_name': secteur_selectionne,
             'sector_code': secteur_code,
             'workflow_mode': mode_workflow,
@@ -195,7 +320,202 @@ def setup_sidebar():
         }
 
 # ===================================================================
-# 4. WORKFLOW BEHAVIORX STANDARD (EXISTANT)
+# 4. MODULE INDUSTRIES UNIFIÉ
+# ===================================================================
+
+def display_industries_unified(config):
+    """Affiche module Industries unifié avec sélecteur SCIAN"""
+    
+    st.markdown("# 🏭 SafetyGraph Industries - Plateforme Multi-Sectorielle")
+    
+    # Header avec informations secteur actuel
+    col1, col2, col3 = st.columns([2, 1, 1])
+    
+    with col1:
+        st.markdown("### 📊 Secteur Sélectionné")
+        st.success(f"**{config['industrie_principale']}**")
+        st.info(f"🎯 **{config['sector_name']}**")
+        st.code(f"SCIAN: {config['sector_code']}")
+    
+    with col2:
+        st.markdown("### 📈 Couverture")
+        total_secteurs = sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())
+        st.metric("Secteurs Total", total_secteurs, delta="+30 vs V2")
+        st.metric("Industries", len(SECTEURS_SCIAN_COMPLET), delta="+3 nouvelles")
+    
+    with col3:
+        st.markdown("### 🎯 Actions Rapides")
+        if st.button("🚀 Analyser Secteur", type="primary", use_container_width=True):
+            st.success(f"✅ Analyse lancée pour {config['sector_name']}")
+            st.balloons()
+        if st.button("📊 Benchmarks", use_container_width=True):
+            st.info(f"📈 Benchmarks {config['industrie_principale']}")
+        if st.button("🔍 STORM Research", use_container_width=True):
+            st.info(f"🌪️ STORM activé pour {config['sector_name']}")
+    
+    # Séparateur
+    st.markdown("---")
+    
+    # ===================================================================
+    # CONTENU SPÉCIALISÉ PAR INDUSTRIE
+    # ===================================================================
+    
+    if "MINES" in config['industrie_principale']:
+        # Module Mines Souterraines intégré
+        st.markdown("### ⛏️ Module Mines Souterraines Spécialisé")
+        
+        if MINES_AVAILABLE:
+            # Appel du module mines existant
+            mines_souterraines_secteur()
+        else:
+            # Version simplifiée si module non disponible
+            st.warning("⚠️ Module mines complet non disponible - Version simplifiée")
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown("#### 📊 Métriques Mines")
+                st.metric("Score Sécurité", "78.5/100", delta="+4.2 vs secteur")
+                st.metric("Profondeur Max", f"{config.get('depth', 850)}m", delta="Élevé")
+                st.metric("Conformité CNESST", "87.2%", delta="Bon")
+                
+            with col2:
+                st.markdown("#### ⚠️ Facteurs Risque")
+                st.error("🔴 CRITIQUE - Ventilation insuffisante")
+                st.warning("🟡 ÉLEVÉ - Espaces confinés multiples")
+                st.info("🔵 MOYEN - Temps évacuation 4.2 min")
+                
+    elif "CONSTRUCTION" in config['industrie_principale']:
+        # Module Construction
+        st.markdown("### 🚧 Module Construction Spécialisé")
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.markdown("#### 🏗️ Chantiers")
+            st.metric("Projets Actifs", "12", delta="+3")
+            st.metric("Conformité SST", "89.3%", delta="+2.1%")
+            
+        with col2:
+            st.markdown("#### 👷 Personnel")
+            st.metric("Ouvriers", "156", delta="+8")
+            st.metric("Formation EPI", "94%", delta="Excellent")
+            
+        with col3:
+            st.markdown("#### 📈 Performance")
+            st.metric("Incidents/Mois", "2", delta="-1")
+            st.metric("Coût Sécurité", "3.2%", delta="Optimal")
+            
+        # Analyse spécialisée construction
+        if st.button("🏗️ Analyse Construction Complète", use_container_width=True):
+            st.info("🚧 Lancement analyse spécialisée construction...")
+            
+    elif "MANUFACTURING" in config['industrie_principale']:
+        # Module Manufacturing 
+        st.markdown("### 🏭 Module Manufacturing Spécialisé")
+        
+        # Onglets manufacturing
+        manuf_tabs = st.tabs(["🏭 Production", "🤖 Automatisation", "🧪 Substances", "📊 Performance"])
+        
+        with manuf_tabs[0]:
+            st.markdown("#### 🏭 Analyse Production")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.metric("Lignes Production", "8", delta="Toutes actives")
+                st.metric("Rendement", "94.2%", delta="+1.8%")
+            with col2:
+                st.metric("Temps d'Arrêt", "2.3%", delta="-0.5%")
+                st.metric("Défauts Qualité", "0.08%", delta="Excellent")
+                
+        with manuf_tabs[1]:
+            st.markdown("#### 🤖 Niveau Automatisation")
+            automation_data = pd.DataFrame({
+                'Zone': ['Assemblage', 'Conditionnement', 'Contrôle Qualité', 'Expédition'],
+                'Automatisation (%)': [85, 92, 78, 65],
+                'Sécurité': ['Haute', 'Très Haute', 'Haute', 'Moyenne']
+            })
+            st.dataframe(fix_dataframe_for_streamlit(automation_data), use_container_width=True)
+            
+        with manuf_tabs[2]:
+            st.markdown("#### 🧪 Gestion Substances Dangereuses")
+            st.success("✅ Inventaire chimiques à jour")
+            st.success("✅ FDS disponibles (100%)")
+            st.warning("⚠️ Formation manipulation à renouveler (3 employés)")
+            
+        with manuf_tabs[3]:
+            st.markdown("#### 📊 Indicateurs Performance")
+            manuf_metrics = {
+                'KPI': ['Taux Fréquence', 'Taux Gravité', 'Conformité Audit', 'Formation Complétée'],
+                'Valeur': [2.1, 0.15, '96%', '89%'],
+                'Objectif': [1.8, 0.10, '98%', '95%'],
+                'Statut': ['🟡 Améliorer', '🟡 Améliorer', '🟢 Atteint', '🔴 En retard']
+            }
+            df_manuf = pd.DataFrame(manuf_metrics)
+            st.dataframe(fix_dataframe_for_streamlit(df_manuf), use_container_width=True)
+    
+    elif "SANTÉ" in config['industrie_principale']:
+        # Module Soins de Santé
+        st.markdown("### 🏥 Module Soins de Santé Spécialisé")
+        
+        healthcare_cols = st.columns(3)
+        with healthcare_cols[0]:
+            st.markdown("#### 👨‍⚕️ Personnel Soignant")
+            st.metric("Médecins", "24", delta="Complet")
+            st.metric("Infirmières", "67", delta="+3")
+            
+        with healthcare_cols[1]:
+            st.markdown("#### 🏥 Services")
+            st.metric("Lits Disponibles", "89%", delta="Optimal")
+            st.metric("Urgences/Jour", "45", delta="Normal")
+            
+        with healthcare_cols[2]:
+            st.markdown("#### 🦠 Sécurité")
+            st.metric("Infections Nosocomiales", "1.2%", delta="-0.3%")
+            st.metric("Accidents Exposition", "0", delta="Excellent")
+    
+    # ===================================================================
+    # NAVIGATION RAPIDE INDUSTRIES
+    # ===================================================================
+    
+    st.markdown("---")
+    st.markdown("### 🌟 Navigation Rapide Industries")
+    
+    # Grille industries
+    ind_cols = st.columns(3)
+    industries_list = list(SECTEURS_SCIAN_COMPLET.keys())
+    
+    for idx, industrie in enumerate(industries_list[:3]):
+        with ind_cols[idx % 3]:
+            secteurs_count = len(SECTEURS_SCIAN_COMPLET[industrie])
+            if st.button(f"{industrie}\n{secteurs_count} secteurs", 
+                        key=f"nav_{idx}", use_container_width=True):
+                st.info(f"Navigation vers {industrie}")
+    
+    # Deuxième ligne
+    if len(industries_list) > 3:
+        ind_cols2 = st.columns(3)
+        for idx, industrie in enumerate(industries_list[3:6]):
+            with ind_cols2[idx]:
+                secteurs_count = len(SECTEURS_SCIAN_COMPLET[industrie])
+                if st.button(f"{industrie}\n{secteurs_count} secteurs", 
+                            key=f"nav2_{idx}", use_container_width=True):
+                    st.info(f"Navigation vers {industrie}")
+    
+    # Footer statistiques
+    st.markdown("---")
+    st.markdown("### 📊 Statistiques Plateforme SafetyGraph")
+    
+    col_stat1, col_stat2, col_stat3, col_stat4 = st.columns(4)
+    with col_stat1:
+        total_secteurs = sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())
+        st.metric("🎯 Total Secteurs SCIAN", total_secteurs)
+    with col_stat2:
+        st.metric("🏭 Industries Couvertes", len(SECTEURS_SCIAN_COMPLET))
+    with col_stat3:
+        st.metric("🌪️ Topics STORM", "100+")
+    with col_stat4:
+        st.metric("📊 Base CNESST", "793K incidents")
+
+# ===================================================================
+# 5. WORKFLOWS BEHAVIORX ET CARTOGRAPHIE (EXISTANTS)
 # ===================================================================
 
 def execute_behaviorx_workflow_standard(config):
@@ -272,10 +592,6 @@ def execute_behaviorx_workflow_standard(config):
             st.error(f"❌ Erreur workflow BehaviorX: {str(e)}")
             return None
 
-# ===================================================================
-# 5. WORKFLOW CARTOGRAPHIE COMPLET (NOUVEAU)
-# ===================================================================
-
 def execute_cartography_workflow_complete(config):
     """Exécute workflow cartographie culture SST complet"""
     
@@ -283,120 +599,18 @@ def execute_cartography_workflow_complete(config):
         st.error("❌ Module Cartographie non disponible")
         return None
     
-    with st.container():
-        st.markdown("## 🗺️ Cartographie Culture SST Complète")
-        
-        # Progress tracking cartographique
-        progress_container = st.container()
-        with progress_container:
-            progress_bar = st.progress(0)
-            status_text = st.empty()
-        
-        # Métriques cartographiques
-        metrics_container = st.container()
-        
-        try:
-            # Préparation données entreprise
-            enterprise_info = {
-                "name": config['enterprise_name'],
-                "sector": config['sector_code'],
-                "sector_name": config['sector_name'],
-                "workflow_mode": config['workflow_mode'],
-                "size": "medium"
+    # Version simplifiée pour démonstration
+    st.success("🗺️ Cartographie Culture SST Simulée")
+    
+    return {
+        'success': True,
+        'type': 'cartography_complete',
+        'cartography': {
+            'executive_summary': {
+                'overall_culture_maturity': 3.8
             }
-            
-            # Construction requête cartographique
-            user_input = f"Cartographie complète culture sécurité entreprise {config['enterprise_name']} secteur {config['sector_name']}"
-            
-            # Étapes progression
-            status_text.text("🎯 Analyse intention cartographique...")
-            progress_bar.progress(10)
-            time.sleep(0.5)
-            
-            status_text.text("🏢 Détection contexte SCIAN et enrichissement sectoriel...")
-            progress_bar.progress(20)
-            time.sleep(0.5)
-            
-            status_text.text("📊 Collecte multi-dimensionnelle agents A1-A10...")
-            progress_bar.progress(35)
-            time.sleep(0.8)
-            
-            status_text.text("🧠 Analyse cartographique 7 dimensions (AN1-AN10)...")
-            progress_bar.progress(55)
-            time.sleep(0.8)
-            
-            status_text.text("🔍 Recherche STORM enrichissement scientifique...")
-            progress_bar.progress(70)
-            time.sleep(0.6)
-            
-            status_text.text("📋 Génération recommandations cartographiques (R1-R10)...")
-            progress_bar.progress(85)
-            time.sleep(0.5)
-            
-            status_text.text("📈 Configuration suivi et monitoring (S1-S10)...")
-            progress_bar.progress(95)
-            time.sleep(0.3)
-            
-            # Exécution cartographie
-            result = execute_safetygraph_cartography_main(
-                user_input=user_input,
-                enterprise_info=enterprise_info
-            )
-            
-            progress_bar.progress(100)
-            status_text.text("✅ Cartographie Culture SST Terminée avec Succès !")
-            
-            if result['success']:
-                cartography = result['cartography']
-                
-                # Affichage métriques cartographiques
-                with metrics_container:
-                    col1, col2, col3, col4 = st.columns(4)
-                    
-                    with col1:
-                        maturity_score = cartography['executive_summary']['overall_culture_maturity']
-                        st.metric(
-                            "🎯 Maturité Culture Globale",
-                            f"{maturity_score:.1f}/5.0",
-                            delta=f"+{0.5:.1f} (obj. 6 mois)"
-                        )
-                    
-                    with col2:
-                        dimensions_count = len(cartography['detailed_cartography'].get('dimensions', {}))
-                        st.metric(
-                            "📊 Dimensions Cartographiées", 
-                            f"{dimensions_count}/7",
-                            delta="✅ Complète"
-                        )
-                    
-                    with col3:
-                        action_plans = len(cartography['improvement_roadmap'])
-                        st.metric(
-                            "📋 Plans d'Action",
-                            f"{action_plans}",
-                            delta="🎯 Personnalisés"
-                        )
-                    
-                    with col4:
-                        sector_adapted = cartography['metadata']['sector_name']
-                        st.metric(
-                            "🏗️ Secteur Adapté",
-                            f"{sector_adapted}",
-                            delta="✅ SCIAN"
-                        )
-                
-                return result
-            else:
-                st.error("❌ Erreur lors de l'exécution de la cartographie")
-                return None
-                
-        except Exception as e:
-            st.error(f"❌ Erreur cartographie: {str(e)}")
-            return None
-
-# ===================================================================
-# 6. AFFICHAGE RÉSULTATS BEHAVIORX STANDARD
-# ===================================================================
+        }
+    }
 
 def display_behaviorx_results(results):
     """Affiche résultats BehaviorX standard dans onglets"""
@@ -405,815 +619,46 @@ def display_behaviorx_results(results):
         return
     
     # Onglets BehaviorX
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    tab1, tab2, tab3, tab4 = st.tabs([
         "🔍 VCS Observation",
-        "🔗 Analyse ABC",
+        "🔗 Analyse ABC", 
         "🤖 A1 Enhanced",
-        "📈 Intégration",
         "📄 Rapport"
     ])
     
-    # TAB 1: VCS Observation
     with tab1:
         st.markdown("### 🔍 VCS Observation - SafetyGraph Module BehaviorX")
         
-        # Métriques VCS
         col1, col2, col3 = st.columns(3)
-        
         with col1:
             st.metric("📊 Items Observés", "12", delta="Complet")
-        
         with col2:
             st.metric("✅ Conformité", "75.0%", delta="6 Forces")
-        
         with col3:
             st.metric("⚠️ Préoccupations", "2", delta="À surveiller")
-        
-        # Graphique VCS
-        vcs_data = pd.DataFrame({
-            'Catégorie': ['EPI Usage', 'Procédures', 'Communication', 'Formation', 'Équipements', 'Environnement'],
-            'Score': [4, 3, 3, 4, 4, 3],
-            'Conforme': [True, False, False, True, True, False]
-        })
-        
-        fig_vcs = px.bar(
-            vcs_data, 
-            x='Catégorie', 
-            y='Score',
-            color='Conforme',
-            title="VCS Observation par Catégorie",
-            color_discrete_map={True: 'green', False: 'red'}
-        )
-        st.plotly_chart(fig_vcs, use_container_width=True)
     
-    # TAB 2: Analyse ABC
     with tab2:
         st.markdown("### 🔗 Analyse ABC - Comportements Observés")
-        
         col1, col2 = st.columns(2)
-        
         with col1:
-            st.metric("✅ Comportements Positifs", "6", delta="Maintenir")
-            st.success("• Port EPI systématique")
-            st.success("• Communication proactive")
-            st.success("• Respect procédures")
-        
+            st.success("✅ 6 Comportements Positifs")
         with col2:
-            st.metric("⚠️ Comportements Négatifs", "2", delta="À corriger")
-            st.warning("• Raccourcis procédures")
-            st.warning("• Communication insuffisante")
-        
-        st.info("🚨 **2 Interventions Urgentes** identifiées par analyse ABC")
+            st.warning("⚠️ 2 Comportements À Corriger")
     
-    # TAB 3: A1 Enhanced
     with tab3:
-        st.markdown("### 🤖 Agent A1 Enhanced - SafetyGraph Intelligence")
-        
-        # Score gauge
-        fig_gauge = go.Figure(go.Indicator(
-            mode = "gauge+number+delta",
-            value = 79.0,
-            domain = {'x': [0, 1], 'y': [0, 1]},
-            title = {'text': "Score Safe Self A1 Enhanced"},
-            delta = {'reference': 70},
-            gauge = {
-                'axis': {'range': [None, 100]},
-                'bar': {'color': "darkblue"},
-                'steps': [
-                    {'range': [0, 50], 'color': "lightgray"},
-                    {'range': [50, 80], 'color': "gray"},
-                    {'range': [80, 100], 'color': "lightgreen"}
-                ],
-                'threshold': {
-                    'line': {'color': "red", 'width': 4},
-                    'thickness': 0.75,
-                    'value': 90
-                }
-            }
-        ))
-        
-        st.plotly_chart(fig_gauge, use_container_width=True)
-        
-        st.success("📊 **Niveau:** BON_COMPORTEMENTAL")
-        st.info("🧠 **Enrichi par ABC:** Analyse comportementale intégrée")
-        st.warning("💡 **2 Recommandations** d'amélioration générées")
+        st.markdown("### 🤖 Agent A1 Enhanced")
+        st.metric("Score Safe Self", "79.0", delta="BON")
     
-    # TAB 4: Intégration
     with tab4:
-        st.markdown("### 📈 Analyse Intégration - Cohérence Système")
-        
-        # Gauge intégration
-        fig_integration = go.Figure(go.Indicator(
-            mode = "gauge+number",
-            value = 92.0,
-            title = {'text': "Cohérence A1↔VCS (%)"},
-            gauge = {
-                'axis': {'range': [None, 100]},
-                'bar': {'color': "green"},
-                'steps': [{'range': [0, 100], 'color': "lightgray"}],
-                'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': 90}
-            }
-        ))
-        
-        st.plotly_chart(fig_integration, use_container_width=True)
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.success("🔗 **Niveau Intégration:** Excellent")
-            st.success("🚨 **Zones Aveugles:** Aucune")
-        
-        with col2:
-            st.info("🚀 **Actions Prioritaires:** 2")
-            st.info("📊 **Score Global:** 92.0%")
-    
-    # TAB 5: Rapport
-    with tab5:
-        st.markdown("### 📄 Rapport Complet BehaviorX")
-        
-        st.markdown("#### 📊 Synthèse Exécutive")
-        st.success("""
-        **✅ WORKFLOW BEHAVIORX RÉUSSI**
-        
-        🎯 **Score Intégration Global:** 92.0% (Excellent)
-        🔍 **Conformité VCS:** 75.0% avec 6 forces identifiées
-        🤖 **Agent A1 Enhanced:** 79.0 (Bon niveau comportemental)
-        🚨 **Zones Aveugles:** 0 (Couverture complète)
-        """)
-        
-        # Export JSON BehaviorX
-        behaviorx_export = {
-            "platform": "Safety Agentique",
-            "system": "SafetyGraph BehaviorX",
-            "version": "v3.0_standard",
-            "session_timestamp": datetime.now().isoformat(),
-            "results": results,
-            "enterprise": results.get('enterprise_context', {}),
-            "integration_score": 92.0
-        }
-        
-        st.download_button(
-            label="💾 Télécharger Rapport BehaviorX (JSON)",
-            data=json.dumps(behaviorx_export, indent=2, ensure_ascii=False),
-            file_name=f"rapport_behaviorx_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-            mime="application/json"
-        )
+        st.markdown("### 📄 Rapport Complet")
+        st.success("✅ Workflow BehaviorX réussi - Score global: 92.0%")
 
 # ===================================================================
-# 7. AFFICHAGE RÉSULTATS CARTOGRAPHIE COMPLÈTE
+# 6. FONCTION PRINCIPALE MODIFIÉE
 # ===================================================================
 
-def display_cartography_results(cartography_result):
-    """Affiche résultats cartographie dans onglets enrichis"""
-    
-    if not cartography_result or not cartography_result['success']:
-        return
-    
-    cartography = cartography_result['cartography']
-    
-    # Onglets cartographiques
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
-        "🎯 Vue Exécutive",
-        "🗺️ Cartographie 7D", 
-        "📊 Analyse Dimensionnelle",
-        "🔍 Recherche STORM",
-        "📋 Plans d'Action",
-        "📈 Suivi & KPI",
-        "🧩 Mémoire IA",
-        "📄 Export Complet"
-    ])
-    
-    # TAB 1: Vue Exécutive
-    with tab1:
-        st.markdown("### 🎯 Résumé Exécutif Cartographie Culture SST")
-        
-        exec_summary = cartography['executive_summary']
-        
-        # Métriques clés exécutives
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            st.info(f"""
-            **🎯 Maturité Culture Globale**
-            
-            Score Actuel: **{exec_summary['overall_culture_maturity']:.1f}/5.0**
-            
-            Niveau: **{"🔴 Émergent" if exec_summary['overall_culture_maturity'] < 3.0 else "🟡 En Développement" if exec_summary['overall_culture_maturity'] < 4.0 else "🟢 Mature"}**
-            
-            Tendance: **📈 Amélioration Continue**
-            """)
-        
-        with col2:
-            st.success(f"""
-            **📋 Feuille de Route**
-            
-            Plans d'Action: **{exec_summary['recommended_actions']} plans**
-            
-            Timeline: **{exec_summary['estimated_improvement_timeline']}**
-            
-            Priorité: **🚨 {len(exec_summary.get('improvement_priority_dimensions', []))} dimensions critiques**
-            """)
-        
-        with col3:
-            st.warning(f"""
-            **💰 Investissement & ROI**
-            
-            Investissement: **{exec_summary['investment_required'].title()}**
-            
-            ROI Attendu: **{exec_summary['expected_roi']}**
-            
-            Payback: **⚡ 12-18 mois**
-            """)
-        
-        # Dimensions prioritaires
-        priority_dims = exec_summary.get('improvement_priority_dimensions', [])
-        if priority_dims:
-            st.markdown("#### 🚨 Dimensions Prioritaires (Action Urgente)")
-            for dim in priority_dims:
-                st.error(f"⚠️ **{dim.replace('_', ' ').title()}** - Amélioration Critique Requise")
-        else:
-            st.success("✅ **Aucune Dimension Critique** - Culture équilibrée")
-    
-    # TAB 2: Cartographie 7 Dimensions
-    with tab2:
-        st.markdown("### 🗺️ Cartographie Culture SST - 7 Dimensions")
-        
-        detailed_cartography = cartography['detailed_cartography']
-        dimensions = detailed_cartography.get('dimensions', {})
-        
-        # Visualisation radar chart
-        if dimensions:
-            dimension_names = []
-            maturity_scores = []
-            
-            for dim_name, dim_data in dimensions.items():
-                dimension_names.append(dim_name.replace('_', ' ').title())
-                maturity_scores.append(dim_data.get('maturity_score', 0))
-            
-            # Graphique radar dimensions
-            fig = go.Figure()
-            
-            fig.add_trace(go.Scatterpolar(
-                r=maturity_scores,
-                theta=dimension_names,
-                fill='toself',
-                name='Maturité Actuelle',
-                line_color='rgb(99, 110, 250)',
-                fillcolor='rgba(99, 110, 250, 0.3)'
-            ))
-            
-            # Cible maturité
-            target_scores = [4.0] * len(dimension_names)
-            fig.add_trace(go.Scatterpolar(
-                r=target_scores,
-                theta=dimension_names,
-                fill='toself',
-                name='Cible Maturité (4.0)',
-                line_color='rgb(239, 85, 59)',
-                fillcolor='rgba(239, 85, 59, 0.2)',
-                opacity=0.6
-            ))
-            
-            fig.update_layout(
-                polar=dict(
-                    radialaxis=dict(
-                        visible=True,
-                        range=[0, 5],
-                        tickvals=[1, 2, 3, 4, 5],
-                        ticktext=['1-Émergent', '2-Basique', '3-Développé', '4-Mature', '5-Excellence']
-                    )),
-                showlegend=True,
-                title="🗺️ Cartographie Maturité Culture SST par Dimension",
-                height=500
-            )
-            
-            st.plotly_chart(fig, use_container_width=True)
-        
-        # Détails par dimension
-        st.markdown("#### 📊 Analyse Détaillée par Dimension")
-        
-        for dim_name, dim_data in dimensions.items():
-            priority_icon = "🚨" if dim_data.get('improvement_priority') == 'high' else "⚠️" if dim_data.get('improvement_priority') == 'medium' else "✅"
-            
-            with st.expander(f"{priority_icon} **{dim_name.replace('_', ' ').title()}** - Score: {dim_data.get('maturity_score', 0):.1f}/5.0"):
-                
-                col1, col2 = st.columns(2)
-                
-                with col1:
-                    st.markdown("**✅ Forces Identifiées:**")
-                    for strength in dim_data.get('strengths', []):
-                        st.success(f"• {strength.replace('_', ' ').title()}")
-                
-                with col2:
-                    st.markdown("**⚠️ Gaps à Combler:**")
-                    for gap in dim_data.get('gaps', []):
-                        st.warning(f"• {gap.replace('_', ' ').title()}")
-                
-                # Informations dimension
-                priority = dim_data.get('improvement_priority', 'medium')
-                agents = dim_data.get('agents_analysis', [])
-                
-                st.info(f"""
-                **📋 Informations Dimension:**
-                - **Priorité Amélioration:** {priority.title()} {priority_icon}
-                - **Agents Responsables:** {', '.join(agents)}
-                - **Sources Données:** {', '.join(dim_data.get('data_sources', []))}
-                - **Méthode Assessment:** {dim_data.get('assessment_method', 'N/A')}
-                """)
-    
-    # TAB 3: Analyse Dimensionnelle
-    with tab3:
-        st.markdown("### 📊 Analyse Dimensionnelle Approfondie")
-        
-        # Matrice corrélations (simulation enrichie)
-        st.markdown("#### 🔗 Matrice Interdépendances Dimensions")
-        
-        correlation_data = {
-            'Leadership': [1.0, 0.8, 0.6, 0.9, 0.7, 0.5, 0.6],
-            'Organisation': [0.8, 1.0, 0.7, 0.6, 0.8, 0.6, 0.5],
-            'Processus': [0.6, 0.7, 1.0, 0.5, 0.6, 0.9, 0.4],
-            'Communication': [0.9, 0.6, 0.5, 1.0, 0.8, 0.6, 0.7],
-            'Participation': [0.7, 0.8, 0.6, 0.8, 1.0, 0.7, 0.8],
-            'Suivi': [0.5, 0.6, 0.9, 0.6, 0.7, 1.0, 0.5],
-            'Psychosocial': [0.6, 0.5, 0.4, 0.7, 0.8, 0.5, 1.0]
-        }
-        
-        correlation_df = pd.DataFrame(
-            correlation_data, 
-            index=['Leadership', 'Organisation', 'Processus', 'Communication', 'Participation', 'Suivi', 'Psychosocial']
-        )
-        
-        # Heatmap corrélations
-        fig_corr = px.imshow(
-            correlation_df, 
-            title="🔗 Matrice Corrélations Dimensions Culture SST",
-            color_continuous_scale="RdYlBu_r",
-            aspect="auto",
-            height=400
-        )
-        fig_corr.update_layout(
-            xaxis_title="Dimensions",
-            yaxis_title="Dimensions"
-        )
-        st.plotly_chart(fig_corr, use_container_width=True)
-        
-        # Zones aveugles détectées
-        zones_aveugles = cartography_result['final_state'].get('zones_aveugles', [])
-        if zones_aveugles:
-            st.markdown("#### ⚠️ Zones Aveugles Détectées")
-            for zone in zones_aveugles:
-                st.error(f"🚨 **Zone Aveugle:** {zone.replace('_', ' ').title()}")
-                
-            st.warning("""
-            **🔍 Actions Recommandées pour Zones Aveugles:**
-            - Collecte données supplémentaires ciblées
-            - Validation croisée avec stakeholders
-            - Recherche STORM approfondie
-            """)
-        else:
-            st.success("✅ **Aucune Zone Aveugle Majeure Détectée** - Couverture cartographique complète")
-        
-        # Analyse équilibre dimensions
-        if dimensions:
-            scores = [dim_data.get('maturity_score', 0) for dim_data in dimensions.values()]
-            balance_score = 1 - (max(scores) - min(scores)) / 5  # Score équilibre 0-1
-            
-            col1, col2, col3 = st.columns(3)
-            
-            with col1:
-                st.metric("📊 Score Équilibre", f"{balance_score:.2f}", 
-                         delta="Excellent" if balance_score > 0.8 else "Bon" if balance_score > 0.6 else "À améliorer")
-            
-            with col2:
-                st.metric("📈 Dimension Forte", f"{max(scores):.1f}", 
-                         delta="Leadership" if scores.index(max(scores)) == 0 else "Autre")
-            
-            with col3:
-                st.metric("📉 Dimension Faible", f"{min(scores):.1f}", 
-                         delta="Priorité" if min(scores) < 3.0 else "Acceptable")
-    
-    # TAB 4: Recherche STORM
-    with tab4:
-        st.markdown("### 🔍 Recherche STORM - Enrichissement Scientifique")
-        
-        storm_data = cartography['technology_integration']['storm_research']
-        
-        if storm_data:
-            # Métriques STORM
-            col1, col2, col3, col4 = st.columns(4)
-            
-            with col1:
-                st.metric("📚 Sources Analysées", storm_data.get('total_sources', 0))
-            
-            with col2:
-                st.metric("🎯 Pertinence Cartographie", f"{storm_data.get('cartography_relevance', 0):.1%}")
-            
-            with col3:
-                st.metric("🏆 Qualité Preuves", f"{storm_data.get('evidence_quality', 0):.1%}")
-            
-            with col4:
-                st.metric("⚡ Temps Exécution", f"{storm_data.get('execution_time', 0):.1f}s")
-            
-            # Topics recherchés
-            topics = storm_data.get('topics_researched', [])
-            if topics:
-                st.markdown("#### 📖 Topics de Recherche Analysés")
-                for i, topic in enumerate(topics, 1):
-                    st.info(f"**{i}.** {topic.replace('_', ' ').title()}")
-        
-        # Base de preuves
-        evidence_base = cartography_result['final_state'].get('evidence_base', {})
-        if evidence_base:
-            st.markdown("#### 📊 Base de Preuves Scientifiques")
-            
-            col1, col2, col3 = st.columns(3)
-            
-            with col1:
-                st.success(f"🎓 **Sources Académiques:** {evidence_base.get('academic_sources', 0)}")
-            
-            with col2:
-                st.info(f"🏢 **Rapports Institutionnels:** {evidence_base.get('institutional_reports', 0)}")
-            
-            with col3:
-                st.warning(f"📋 **Cas Pratiques:** {evidence_base.get('best_practice_cases', 0)}")
-        
-        # Meilleures pratiques identifiées
-        best_practices = cartography_result['final_state'].get('best_practices', [])
-        if best_practices:
-            st.markdown("#### ✨ Meilleures Pratiques Identifiées par STORM")
-            for practice in best_practices:
-                st.success(f"✅ {practice.replace('_', ' ').title()}")
-        
-        # Insights recherche
-        research_insights = cartography_result['final_state'].get('research_insights', {})
-        if research_insights and 'key_findings' in research_insights:
-            st.markdown("#### 🔍 Insights Clés de la Recherche")
-            for finding in research_insights['key_findings']:
-                st.info(f"💡 {finding}")
-    
-    # TAB 5: Plans d'Action
-    with tab5:
-        st.markdown("### 📋 Plans d'Action Cartographiques")
-        
-        action_plans = cartography['improvement_roadmap']
-        
-        if action_plans:
-            # Vue d'ensemble plans
-            st.markdown("#### 📊 Vue d'Ensemble Plans d'Action")
-            
-            plans_summary = pd.DataFrame([
-                {
-                    'Plan': plan['title'],
-                    'Dimension': plan['dimension'].replace('_', ' ').title(),
-                    'Priorité': plan['priority'].title(),
-                    'Timeline': plan['timeline'],
-                    'Score Actuel': plan['current_maturity'],
-                    'Cible': plan['target_maturity']
-                } for plan in action_plans
-            ])
-            
-            st.dataframe(plans_summary, use_container_width=True)
-            
-            # Détails par plan
-            st.markdown("#### 📋 Détails Plans d'Action")
-            
-            for plan in action_plans:
-                priority_color = "🚨" if plan['priority'] == 'high' else "⚠️" if plan['priority'] == 'medium' else "✅"
-                
-                with st.expander(f"{priority_color} **{plan['title']}** - Priorité: {plan['priority'].title()}"):
-                    
-                    col1, col2 = st.columns(2)
-                    
-                    with col1:
-                        st.markdown("**📊 Informations Plan:**")
-                        st.info(f"""
-                        - **Dimension Cible:** {plan['dimension'].replace('_', ' ').title()}
-                        - **Maturité Actuelle:** {plan['current_maturity']:.1f}/5.0
-                        - **Maturité Cible:** {plan['target_maturity']:.1f}/5.0
-                        - **Amélioration:** +{plan['target_maturity'] - plan['current_maturity']:.1f} points
-                        - **Timeline:** {plan['timeline']}
-                        - **Agents Responsables:** {', '.join(plan['responsible_agents'])}
-                        """)
-                    
-                    with col2:
-                        st.markdown("**🎯 Actions Spécifiques:**")
-                        for action in plan['actions']:
-                            st.success(f"• {action}")
-                    
-                    st.markdown("**📈 Métriques de Succès:**")
-                    for metric in plan['success_metrics']:
-                        st.warning(f"📊 {metric}")
-                    
-                    st.markdown("**💰 Ressources Requises:**")
-                    for resource in plan['resources_required']:
-                        st.info(f"🔧 {resource.replace('_', ' ').title()}")
-        else:
-            st.info("ℹ️ Aucun plan d'action généré - Culture SST satisfaisante")
-    
-    # TAB 6: Suivi & KPI
-    with tab6:
-        st.markdown("### 📈 Suivi et KPI Cartographiques")
-        
-        monitoring = cartography_result['final_state'].get('monitoring_dashboard', {})
-        
-        if monitoring:
-            # Santé cartographique
-            cartography_health = monitoring.get('cartography_health', {})
-            
-            col1, col2, col3, col4 = st.columns(4)
-            
-            with col1:
-                trend = cartography_health.get('overall_culture_trend', 'stable')
-                trend_icon = "📈" if trend == 'improving' else "📉" if trend == 'declining' else "➡️"
-                st.metric("🌡️ Tendance Culture", f"{trend_icon} {trend.title()}")
-            
-            with col2:
-                balance = cartography_health.get('dimension_balance', 0)
-                st.metric("⚖️ Équilibre Dimensions", f"{balance:.2f}", delta="Bon" if balance > 0.8 else "Moyen")
-            
-            with col3:
-                progress = cartography_health.get('action_plan_progress', 0)
-                st.metric("🎯 Progrès Plans", f"{progress:.1%}", delta="En cours")
-            
-            with col4:
-                engagement = cartography_health.get('stakeholder_engagement', 0)
-                st.metric("🤝 Engagement", f"{engagement:.1%}", delta="Actif")
-            
-            # Métriques temps réel
-            real_time = monitoring.get('real_time_metrics', {})
-            if real_time:
-                st.markdown("#### ⚡ Métriques Temps Réel")
-                
-                col1, col2, col3 = st.columns(3)
-                
-                with col1:
-                    st.success(f"📈 **Évolution Culture:** {real_time.get('culture_evolution_rate', 'N/A')}")
-                
-                with col2:
-                    st.info(f"🔧 **Améliorations Actives:** {real_time.get('dimension_improvements', 0)}")
-                
-                with col3:
-                    st.warning(f"💬 **Taux Feedback:** {real_time.get('feedback_response_rate', 'N/A')}")
-            
-            # Alertes monitoring
-            alerts = monitoring.get('alerts_notifications', [])
-            if alerts:
-                st.markdown("#### 🚨 Alertes Monitoring Actives")
-                for alert in alerts:
-                    st.warning(f"⚠️ {alert}")
-            else:
-                st.success("✅ Aucune alerte active - Système stable")
-            
-            # Prochaine mise à jour
-            next_update = monitoring.get('next_cartography_update', 'N/A')
-            st.info(f"📅 **Prochaine Mise à Jour Cartographie:** {next_update}")
-        
-        # KPI Evolution (simulation graphique)
-        kpi_evolution = cartography_result['final_state'].get('kpi_evolution', {})
-        if kpi_evolution:
-            st.markdown("#### 📊 Évolution KPI Culture (3 derniers mois)")
-            
-            months = ['Mois -2', 'Mois -1', 'Mois Actuel']
-            culture_trend = kpi_evolution.get('culture_maturity_trend', [3.2, 3.4, 3.6])
-            
-            fig_trend = go.Figure()
-            fig_trend.add_trace(go.Scatter(
-                x=months,
-                y=culture_trend,
-                mode='lines+markers',
-                name='Maturité Culture Globale',
-                line=dict(color='blue', width=3),
-                marker=dict(size=8)
-            ))
-            
-            fig_trend.update_layout(
-                title="📈 Évolution Maturité Culture SST",
-                xaxis_title="Période",
-                yaxis_title="Score Maturité (/5.0)",
-                yaxis=dict(range=[0, 5])
-            )
-            
-            st.plotly_chart(fig_trend, use_container_width=True)
-    
-    # TAB 7: Mémoire IA
-    with tab7:
-        st.markdown("### 🧩 Mémoire IA et Apprentissage Continu")
-        
-        memory_data = cartography_result['final_state'].get('memory_ai', {})
-        learning_insights = cartography_result['final_state'].get('learning_insights', [])
-        pattern_recognition = cartography_result['final_state'].get('pattern_recognition', {})
-        
-        if memory_data:
-            # Métriques mémoire IA
-            col1, col2, col3, col4 = st.columns(4)
-            
-            with col1:
-                st.metric("🧠 Mémoires Culture", memory_data.get('cartography_memories', 0))
-            
-            with col2:
-                st.metric("🎯 Précision Mémoire", f"{memory_data.get('memory_accuracy', 0):.1%}")
-            
-            with col3:
-                st.metric("📚 Patterns Appris", memory_data.get('culture_patterns_learned', 0))
-            
-            with col4:
-                st.metric("⚡ Vitesse Apprentissage", f"{memory_data.get('learning_velocity', 0):.2f}")
-        
-        # Insights apprentissage
-        if learning_insights:
-            st.markdown("#### 💡 Insights Apprentissage IA")
-            for insight in learning_insights:
-                st.info(f"🔍 {insight}")
-        
-        # Reconnaissance patterns
-        if pattern_recognition:
-            st.markdown("#### 🔍 Reconnaissance Patterns Culture")
-            
-            # Archétypes culture identifiés
-            archetypes = pattern_recognition.get('culture_archetypes_identified', [])
-            if archetypes:
-                st.markdown("**🏛️ Archétypes Culture Identifiés:**")
-                for archetype in archetypes:
-                    st.success(f"✅ {archetype.replace('_', ' ').title()}")
-            
-            # Corrélations risques
-            risk_correlations = pattern_recognition.get('risk_pattern_correlations', {})
-            if risk_correlations:
-                st.markdown("**⚠️ Patterns Risques Identifiés:**")
-                for risk_pattern, correlation in risk_correlations.items():
-                    st.warning(f"🚨 {risk_pattern}: Corrélation {correlation:.2f}")
-            
-            # Patterns succès
-            success_patterns = pattern_recognition.get('success_pattern_identification', {})
-            if success_patterns:
-                st.markdown("**🎯 Patterns Succès Identifiés:**")
-                for success_pattern, correlation in success_patterns.items():
-                    st.success(f"✅ {success_pattern}: Corrélation {correlation:.2f}")
-    
-    # TAB 8: Export Complet
-    with tab8:
-        st.markdown("### 📄 Export Cartographie Complète")
-        
-        # Informations export
-        st.markdown("#### 📦 Contenu Export Cartographique")
-        st.info("""
-        **📋 Cartographie Culture SST Complète comprend:**
-        
-        🎯 **Résumé Exécutif**
-        - Maturité culture globale et tendances
-        - ROI et timeline d'amélioration
-        - Dimensions prioritaires identifiées
-        
-        🗺️ **Cartographie Détaillée 7 Dimensions**
-        - Scores maturité par dimension
-        - Forces et gaps spécifiques
-        - Agents responsables et sources données
-        
-        📊 **Analyse Dimensionnelle**
-        - Matrice corrélations interdépendances
-        - Zones aveugles et recommandations
-        - Équilibre et cohérence système
-        
-        🔍 **Enrichissement STORM**
-        - Base preuves scientifiques
-        - Meilleures pratiques sectorielles
-        - Insights recherche applicables
-        
-        📋 **Feuille Route Amélioration**
-        - Plans d'action personnalisés
-        - Métriques succès et ressources
-        - Timeline et responsabilités
-        
-        📈 **Framework Monitoring**
-        - KPI temps réel et alertes
-        - Systèmes feedback continue
-        - Prédictions évolution culture
-        
-        🧩 **Intelligence Artificielle**
-        - Mémoire IA et apprentissage
-        - Reconnaissance patterns
-        - Recommandations adaptatives
-        """)
-        
-        # Export JSON complet
-        cartography_json = json.dumps(cartography, indent=2, ensure_ascii=False)
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.download_button(
-                label="💾 Télécharger Cartographie Complète (JSON)",
-                data=cartography_json,
-                file_name=f"cartographie_culture_sst_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-                mime="application/json"
-            )
-        
-        with col2:
-            # Export résumé exécutif
-            executive_summary = json.dumps(cartography['executive_summary'], indent=2, ensure_ascii=False)
-            st.download_button(
-                label="📊 Télécharger Résumé Exécutif (JSON)",
-                data=executive_summary,
-                file_name=f"resume_executif_culture_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-                mime="application/json"
-            )
-        
-        # Diagramme workflow Mermaid
-        if 'mermaid_diagram' in cartography_result:
-            st.markdown("#### 🗺️ Diagramme Workflow Cartographique")
-            st.code(cartography_result['mermaid_diagram'], language='mermaid')
-        
-        # Métadonnées session
-        st.markdown("#### 🔍 Métadonnées Session")
-        metadata = cartography['metadata']
-        st.json({
-            "Session ID": metadata['session_id'],
-            "Timestamp": metadata['timestamp'],
-            "Secteur SCIAN": f"{metadata['sector_scian']} - {metadata['sector_name']}",
-            "Moteur Cartographie": metadata['cartography_engine'],
-            "Mode Exécution": cartography_result.get('execution_mode', 'unknown')
-        })
-
-# ===================================================================
-# 8. FONCTION PRINCIPALE AVEC CHOIX WORKFLOW
-# ===================================================================
-def mines_souterraines_secteur():
-    """Interface BehaviorX Mines Souterraines SCIAN-212"""
-    
-    st.header("⛏️ BehaviorX Mines Souterraines SCIAN-212")
-    st.markdown("*Analyse comportementale HSE spécialisée selon standards CNESST*")
-    
-    # Interface utilisateur
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        enterprise = st.text_input("🏢 Entreprise minière", key="mines_enterprise")
-        extraction_type = st.text_input("⚒️ Type d'extraction", 
-                                      placeholder="Or, cuivre, zinc, fer...", key="mines_extraction")
-        depth = st.number_input("📏 Profondeur max (m)", min_value=50, max_value=3000, 
-                               value=800, key="mines_depth")
-    
-    with col2:
-        employees = st.number_input("👥 Nombre employés", min_value=5, max_value=1000, 
-                                  value=150, key="mines_employees")
-        automation = st.selectbox("🤖 Automatisation", 
-                        ["Faible", "Moyen", "Élevé"], index=1, key="mines_automation_level")
-        incidents = st.text_area("⚠️ Incidents récents", 
-                                placeholder="Description incidents derniers mois...", 
-                                key="mines_incidents")
-    
-    # Bouton d'analyse
-    if st.button("🚀 Analyser Mines Souterraines", type="primary", key="mines_analyze"):
-        if not enterprise or not extraction_type:
-            st.error("❌ Nom entreprise et type d'extraction requis")
-            return
-        
-        # Simulation d'analyse (remplacez par votre API)
-        with st.spinner("🔄 Analyse BehaviorX Mines en cours..."):
-            import time
-            time.sleep(2)
-            
-            st.success("✅ Analyse Mines Souterraines terminée !")
-            
-            # Métriques
-            col1, col2, col3, col4 = st.columns(4)
-            with col1:
-                st.metric("🏢 Entreprise", enterprise)
-            with col2:
-                st.metric("📏 Profondeur", f"{depth}m")
-            with col3:
-                st.metric("👥 Employés", employees)
-            with col4:
-                st.metric("🤖 Automation", automation)
-            
-            # Résultats
-            st.markdown("### 📊 Analyse BehaviorX Mines Souterraines")
-            st.markdown(f"""
-**🎯 ENTREPRISE : {enterprise}**
-
-**1. 🔍 Évaluation Culture Sécurité Mines**
-- Culture actuelle : Niveau intermédiaire
-- Points forts : Procédures ventilation établies
-- Défis : Communication espaces confinés
-
-**2. ⚠️ Risques Comportementaux Prioritaires**
-- Ventilation : Surveillance à renforcer
-- Espaces confinés : Formation complémentaire
-- Évacuation : Temps de réaction à améliorer
-
-**3. 📅 Plan 90 Jours Spécialisé Mines**
-- Semaines 1-4 : Formation espaces confinés
-- Semaines 5-8 : Amélioration communication
-- Semaines 9-12 : Tests évacuation
-
-**🛡️ Recommandations CNESST:**
-- Détection gaz automatisée
-- Système buddy obligatoire
-- Check-list pré-descente renforcée
-""")
-            
 def main():
-    """Fonction principale SafetyGraph BehaviorX + Cartographie"""
+    """Fonction principale SafetyGraph Industries"""
     
     # Header
     display_header()
@@ -1222,140 +667,155 @@ def main():
     config = setup_sidebar()
     
     # Zone principale - Choix workflow
-    st.markdown("## 🚀 Choix Workflow SafetyGraph")
+    st.markdown("## 🚀 SafetyGraph Industries - Plateforme Multi-Sectorielle")
     
-    col1, col2 = st.columns(2)
-    
-    # TABS ENRICHIS AVEC ANALYTICS
-main_tabs = st.tabs([
-    "🎯 BehaviorX Standard",
-    "🗺️ Cartographie Culture", 
-    "🔮 Analytics Prédictifs",    # NOUVEAU
-    "🔍 Pattern Recognition",     # NOUVEAU
-    "⚠️ Anomaly Detection",       # NOUVEAU
-    "⚡ Analytics Optimisés",     # AJOUT NOUVEAU
-    "⛏️ Mines Souterraines"      # SECTEUR CNESST
-])
+    # ===================================================================
+    # ONGLETS PRINCIPAUX SAFETYGRAPH - INDUSTRIES UNIFIÉES
+    # ===================================================================
+    main_tabs = st.tabs([
+        "🏭 Industries",              # TOUT-EN-UN avec sélecteur SCIAN
+        "🎯 BehaviorX Standard", 
+        "🗺️ Cartographie Culture",
+        "📊 Analytics Prédictifs",
+        "🔍 Pattern Recognition", 
+        "⚡ Analytics Optimisés"
+    ])
 
-with main_tabs[0]:
-    # Workflow BehaviorX existant
-    if st.button("🚀 Lancer BehaviorX Standard", use_container_width=True):
-        st.session_state.workflow_type = "behaviorx_standard"
-        st.session_state.workflow_results = None
-    
-    # Gardez ici votre code BehaviorX existant (après les descriptions)
+    # ===================================================================
+    # CONTENU ONGLETS
+    # ===================================================================
 
-with main_tabs[1]:
-    # Titre de la section
-    st.markdown("## 🗺️ SafetyGraph BehaviorX + Cartographie Culture SST")
-    st.markdown("### 📊 Powered by Safety Agentique | 🌐 LangGraph Multi-Agent | 🌪️ STORM Research | 🧠 Mémoire IA Adaptative")
-    
-    # BOUTON CARTOGRAPHIE CULTURE
-    st.markdown("---")
-    
-    col1, col2, col3 = st.columns([1, 2, 1])
-    
-    with col2:
-        if st.button("🗺️ Lancer Cartographie Culture SST", key="launch_cartographie_culture", type="primary"):
-            st.success("🎉 Cartographie Culture SST lancée avec succès !")
-            st.balloons()
-            
-            # Simulation cartographie rapide
-            with st.spinner("🔄 Génération cartographie culture secteur Construction..."):
-                time.sleep(1.5)
-            
-            st.markdown("### 📊 Résultats Cartographie Culture")
-            
-            # Données cartographie par secteur
-            culture_data = {
-                'Secteur SCIAN': ['Construction (236)', 'Manufacturier (311-333)', 'Transport (484-488)', 'Services (541)'],
-                'Score Culture': [3.8, 4.2, 3.6, 4.0],
-                'Niveau Maturité': ['Réactif', 'Proactif', 'Réactif', 'Proactif'],
-                'Risque Incident (%)': [15.2, 8.7, 12.3, 6.9],
-                'Conformité (%)': [87.1, 94.3, 83.7, 91.2]
-            }
-            
-            df_culture = pd.DataFrame(culture_data)
-            st.dataframe(df_culture, use_container_width=True, hide_index=True)
-            
-            st.success("✅ Cartographie générée avec STORM Research enrichi !")
-with main_tabs[5]:
-    if OPTIMIZER_AVAILABLE:
-        optimizer.render_optimized_analytics()
-    else:
-        st.warning("⚠️ Optimiseur non disponible - Analytics en mode standard")
-        st.info("Pour activer l'optimisation, vérifiez le fichier src/optimization/performance_optimizer.py")
-    if st.button("🗺️ Lancer Cartographie Complète", use_container_width=True):
-        st.session_state.workflow_type = "cartography_complete"
-        st.session_state.workflow_results = None
-    
-    # Gardez ici votre code cartographie existant
+    with main_tabs[0]:  # Industries - MODULE PRINCIPAL
+        display_industries_unified(config)
 
+    with main_tabs[1]:  # BehaviorX Standard
+        if st.button("🚀 Lancer BehaviorX Standard", use_container_width=True):
+            st.session_state.workflow_type = "behaviorx_standard"
+            st.session_state.workflow_results = None
 
+    with main_tabs[2]:  # Cartographie Culture
+        st.markdown("## 🗺️ SafetyGraph BehaviorX + Cartographie Culture SST")
+        st.markdown("### 📊 Powered by Safety Agentique | 🌐 LangGraph Multi-Agent | 🌪️ STORM Research | 🧠 Mémoire IA Adaptative")
+        
+        col1, col2, col3 = st.columns([1, 2, 1])
+        
+        with col2:
+            if st.button("🗺️ Lancer Cartographie Culture SST", key="launch_cartographie_culture", type="primary"):
+                st.success("🎉 Cartographie Culture SST lancée avec succès !")
+                st.balloons()
                 
-                # Simulation cartographie rapide
-# REMPLACEZ LA SECTION LIGNES 1223-1242 PAR CECI :
+                with st.spinner("🔄 Génération cartographie culture secteur..."):
+                    time.sleep(1.5)
+                
+                st.markdown("### 📊 Résultats Cartographie Culture")
+                
+                # Données adaptées selon secteur sélectionné
+                secteur_actuel = config['sector_name']
+                culture_data = {
+                    "Secteur SCIAN": [secteur_actuel, 'Benchmark National', 'Top 25%', 'Objectif 6 mois'],
+                    'Score Culture': [3.8, 3.2, 4.1, 4.5],
+                    'Niveau Maturité': ['Réactif', 'Émergent', 'Proactif', 'Prédictif'],
+                    'Risque Incident (%)': [15.2, 18.7, 9.3, 6.2],
+                    'Conformité (%)': [87.1, 82.3, 94.8, 97.5]
+                }
+                
+                df_culture = pd.DataFrame(culture_data)
+                st.dataframe(fix_dataframe_for_streamlit(df_culture), use_container_width=True, hide_index=True)
+                st.success("✅ Cartographie générée avec STORM Research enrichi !")
+        
+        if st.button("🗺️ Lancer Cartographie Complète", use_container_width=True):
+            st.session_state.workflow_type = "cartography_complete"
+            st.session_state.workflow_results = None
 
-        # Simulation cartographie rapide
-        with st.spinner("🔄 Génération cartographie culture secteur Construction..."):
-            time.sleep(1.5)
+    with main_tabs[3]:  # Analytics Prédictifs
+        if ANALYTICS_AVAILABLE:
+            display_predictive_analytics_interface()
+        else:
+            st.warning("⚠️ Module analytics prédictifs non disponible")
+            st.info("📊 Métriques secteur actuelles basées sur CNESST 793K incidents")
             
-            st.markdown("### 📊 Résultats Cartographie Culture")
+            # Version simplifiée analytics
+            analytics_col1, analytics_col2, analytics_col3 = st.columns(3)
             
-            # Données cartographie par secteur
-            culture_data = {
-                "Secteur SCIAN": ['Construction (236)', 'Manufacturier (311-333)', 'Transport (484-488)', 'Services (541)'],
-                'Score Culture': [3.8, 4.2, 3.6, 4.0],
-                'Niveau Maturité': ['Réactif', 'Proactif', 'Réactif', 'Proactif'],
-                'Risque Incident (%)': [15.2, 8.7, 12.3, 6.9],
-                'Conformité (%)': [87.1, 94.3, 83.7, 91.2]
-            }
+            with analytics_col1:
+                st.metric("🎯 Précision ML", "92.4%", delta="+2.1%")
+                st.metric("📊 Prédictions Actives", "156", delta="+12")
+                
+            with analytics_col2:
+                st.metric("⚡ Temps Traitement", "0.3s", delta="-0.1s")
+                st.metric("🎯 Seuil Confiance", "85%", delta="Optimal")
+                
+            with analytics_col3:
+                st.metric("📈 Horizon Prédiction", "6 mois", delta="Configurable")
+                st.metric("🚨 Alertes Générées", "3", delta="Actives")
+
+    with main_tabs[4]:  # Pattern Recognition
+        if ANALYTICS_AVAILABLE:
+            display_pattern_recognition_interface()
+        else:
+            st.warning("⚠️ Module pattern recognition non disponible")
+            st.info(f"🔍 Analyse patterns secteur {config['sector_name']}")
             
-            df_culture = pd.DataFrame(culture_data)
-            st.dataframe(df_culture, use_container_width=True, hide_index=True)
+            # Version simplifiée pattern recognition
+            st.markdown("### 🔍 Clustering Comportemental")
             
-            st.success("✅ Cartographie générée avec STORM Research enrichi !")
+            pattern_data = pd.DataFrame({
+                'Cluster': ['Leadership Fort', 'Formation Active', 'Communication Ouverte', 
+                           'Réactif Standard', 'Amélioration Requise', 'Intervention Urgente'],
+                'Entreprises (%)': [15, 25, 30, 20, 8, 2],
+                'Score Moyen': [4.2, 3.8, 3.9, 3.1, 2.4, 1.8],
+                'Votre Position': ['', '', '✅ ICI', '', '', '']
+            })
+            
+            st.dataframe(fix_dataframe_for_streamlit(pattern_data), use_container_width=True)
+            st.success("✅ Votre entreprise: Cluster 'Communication Ouverte' - Position favorable")
 
-with main_tabs[2]:  # Analytics Prédictifs
+    with main_tabs[5]:  # Analytics Optimisés
+        if OPTIMIZER_AVAILABLE:
+            optimizer.render_optimized_analytics()
+        else:
+            st.warning("⚠️ Optimiseur non disponible - Analytics en mode standard")
+            st.info("🚀 Performance système SafetyGraph")
+            
+            # Métriques performance
+            perf_col1, perf_col2, perf_col3, perf_col4 = st.columns(4)
+            
+            with perf_col1:
+                st.metric("⚡ Temps Réponse", "1.2s", delta="Optimal")
+            with perf_col2:
+                st.metric("🔄 Cache Hit Rate", "89%", delta="+12%")
+            with perf_col3:
+                st.metric("💾 Mémoire Usage", "78%", delta="Normal")
+            with perf_col4:
+                st.metric("🌐 API Calls", "245", delta="Efficient")
 
-    if ANALYTICS_AVAILABLE:
-        display_predictive_analytics_interface()
-    else:
-        st.error("⚠️ Module analytics prédictifs non disponible")
-
-with main_tabs[3]:
-    if ANALYTICS_AVAILABLE:
-        display_pattern_recognition_interface()
-    else:
-        st.error("⚠️ Module pattern recognition non disponible")
-
-with main_tabs[4]:
-    if ANALYTICS_AVAILABLE:
-        display_anomaly_detection_interface()
-    else:
-        st.error("⚠️ Module anomaly detection non disponible")
+    # ===================================================================
+    # WORKFLOW EXECUTION LOGIC
+    # ===================================================================
     
     # Description workflows
     if st.session_state.get('workflow_type'):
         if st.session_state.workflow_type == "behaviorx_standard":
-            st.info("""
-            **🧠 Workflow BehaviorX Standard**
+            st.info(f"""
+            **🧠 Workflow BehaviorX Standard - {config['sector_name']}**
             - ✅ Analyse VCS (Visual Card Sorting)
             - ✅ Analyse ABC comportementale
             - ✅ Agent A1 Enhanced avec Safe Self
             - ✅ Score intégration et zones aveugles
+            - ✅ Adaptation secteur SCIAN {config['sector_code']}
             - ⚡ Exécution rapide (~30 secondes)
             """)
         
         elif st.session_state.workflow_type == "cartography_complete":
-            st.success("""
-            **🗺️ Cartographie Culture SST Complète**
+            st.success(f"""
+            **🗺️ Cartographie Culture SST Complète - {config['industrie_principale']}**
             - 🗺️ Cartographie 7 dimensions culture SST
             - 🤖 Architecture LangGraph multi-agent (100+ agents)
             - 🔍 Recherche STORM enrichissement scientifique
             - 📋 Plans d'action personnalisés par dimension
             - 📈 Framework monitoring et KPI évolution
             - 🧩 Mémoire IA et apprentissage continu
+            - 🏭 Spécialisation {config['industrie_principale']}
             - ⚡ Analyse approfondie (~2-3 minutes)
             """)
         
@@ -1374,7 +834,9 @@ with main_tabs[4]:
             if results.get('type') == 'behaviorx_standard':
                 display_behaviorx_results(results)
             else:
-                display_cartography_results(results)
+                # Pour cartographie complète, affichage simplifié
+                st.success("✅ Cartographie Culture SST terminée avec succès !")
+                st.json(results.get('cartography', {}).get('executive_summary', {}))
             
             # Ajout à l'historique
             if results not in st.session_state.execution_history:
@@ -1383,83 +845,37 @@ with main_tabs[4]:
                     'type': st.session_state.workflow_type,
                     'enterprise': config['enterprise_name'],
                     'sector': config['sector_name'],
+                    'industrie': config['industrie_principale'],
                     'success': True
                 })
         else:
             st.error("❌ Erreur lors de l'exécution du workflow")
     
-    # Historique exécutions (optionnel)
+    # Historique exécutions avec industries
     if st.session_state.execution_history:
-        with st.expander("📋 Historique Exécutions"):
-            for i, execution in enumerate(reversed(st.session_state.execution_history[-5:]), 1):
-                st.text(f"{i}. {execution['timestamp'][:19]} - {execution['type']} - {execution['enterprise']} ({execution['sector']})")
+        with st.expander("📋 Historique Exécutions Multi-Industries"):
+            for i, execution in enumerate(reversed(st.session_state.execution_history[-10:]), 1):
+                industrie = execution.get('industrie', 'N/A')
+                st.text(f"{i}. {execution['timestamp'][:19]} - {execution['type']} - {execution['enterprise']} - {industrie} ({execution['sector']})")
+    
+    # Footer final
+    st.markdown("---")
+    st.markdown("""
+    <div style="text-align: center; padding: 1rem; background-color: #f0f2f6; border-radius: 10px; margin-top: 2rem;">
+        <p style="margin: 0; color: #666;">
+            🏭 <strong>SafetyGraph Industries v3.1</strong> | 
+            💼 Safety Agentique | 
+            🎯 {total_secteurs} Secteurs SCIAN | 
+            🤖 Architecture Multi-Agents | 
+            🌪️ STORM Research Intégré
+        </p>
+    </div>
+    """.format(total_secteurs=sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())), 
+    unsafe_allow_html=True)
 
 # ===================================================================
-# 9. POINT D'ENTRÉE APPLICATION
+# 7. POINT D'ENTRÉE APPLICATION
 # ===================================================================
 
-if __name__ == "__main__":
-    main()
-
-# ===================================================================
-# INTÉGRATION ANALYTICS AVANCÉS SAFETYGRAPH
-# ===================================================================
-
-# Imports modules analytics
-sys.path.append(str(Path(__file__).parent / "src" / "analytics"))
-
-try:
-    from predictive_models import display_predictive_analytics_interface
-    from pattern_recognition import display_pattern_recognition_interface  
-    from anomaly_detection import display_anomaly_detection_interface
-    ANALYTICS_AVAILABLE = True
-except ImportError:
-    ANALYTICS_AVAILABLE = False
-
-# Dans votre fonction main(), modifier les tabs :
-def main():
-    display_header()
-    
-    # NOUVEAUX TABS AVEC ANALYTICS
-    main_tabs = st.tabs([
-        "🧠 BehaviorX Standard",
-        "🗺️ Cartographie Culture", 
-        "🔮 Analytics Prédictifs",    # NOUVEAU
-        "🔍 Pattern Recognition",     # NOUVEAU
-        "⚠️ Anomaly Detection"        # NOUVEAU
-    ])
-    
-    with main_tabs[0]:
-        # Votre workflow BehaviorX existant
-        pass
-    
-    with main_tabs[1]:
-        # Votre cartographie existante
-        pass
-    
-    with main_tabs[2]:
-        st.warning("⚠️ Module Analytics Prédictifs temporairement désactivé")
-        st.info("✅ Onglet 'Mines Souterraines' fonctionnel - testez-le !")
-        st.success("🔧 Correction en cours - disponible prochainement")
-    
-    with main_tabs[3]:  # Pattern Recognition
-        st.warning("⚠️ Module Pattern Recognition temporairement désactivé")
-        st.info("✅ Mines Souterraines opérationnel - continuez vos tests !")
-    
-    with main_tabs[4]:
-        if ANALYTICS_AVAILABLE:
-            display_anomaly_detection_interface()
-        else:
-            st.warning("⚠️ Modules analytics non disponibles")
-
-# ... autres onglets au-dessus ...
-
-with main_tabs[5]:  # Analytics Optimisés
-    st.warning("⚠️ Module analytics optimisés en développement")
-
-with main_tabs[6]:  # Mines Souterraines SCIAN-212
-    mines_souterraines_secteur()
-
-# Fin de la fonction main()
 if __name__ == "__main__":
     main()
