@@ -148,8 +148,8 @@ def get_secteur_code(secteur_nom):
 
 # Imports modules analytics
 try:
-    sys.path.append(str(Path(__file__).parent / "modules"))
-    from analytics_predictifs import display_analytics_predictifs_interface as display_predictive_analytics_interface
+    sys.path.append(str(Path(__file__).parent / "src" / "analytics"))
+    from predictive_models import display_predictive_analytics_interface
     from pattern_recognition import display_pattern_recognition_interface  
     from anomaly_detection import display_anomaly_detection_interface
     ANALYTICS_AVAILABLE = True
