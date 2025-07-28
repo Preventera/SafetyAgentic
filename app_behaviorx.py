@@ -152,11 +152,19 @@ try:
     from analytics_predictifs import display_analytics_predictifs_interface as display_predictive_analytics_interface
     from pattern_recognition import display_pattern_recognition_interface  
     from anomaly_detection import display_anomaly_detection_interface
+    
+
+    
     ANALYTICS_AVAILABLE = True
     print("✅ Analytics modules loaded successfully")
 except ImportError as e:
     print(f"⚠️ Analytics modules not available: {e}")
     ANALYTICS_AVAILABLE = False
+    
+ # Import dashboards
+from src.dashboards.hse_manager_dashboard import display_hse_manager_dashboard
+from src.dashboards.safety_coordinator_dashboard import display_safety_coordinator_dashboard
+from src.dashboards.supervisor_dashboard import display_supervisor_dashboard
     
 # Import module mines souterraines
 try:
@@ -166,6 +174,18 @@ try:
 except ImportError:
     MINES_AVAILABLE = False
     print("⚠️ Module mines souterraines non disponible")
+except ImportError:
+    MINES_AVAILABLE = False
+    print("⚠️ Module mines souterraines non disponible")
+
+# Import module C-Suite Dashboard
+try:
+    from src.dashboards.c_suite_dashboard import display_c_suite_dashboard as c_suite_exec_dashboard
+    CSUITE_AVAILABLE = True
+    print("✅ Module C-Suite Dashboard chargé")
+except ImportError:
+    CSUITE_AVAILABLE = False
+    print("⚠️ Module C-Suite Dashboard non disponible")
 
 # Configuration page Streamlit
 st.set_page_config(
@@ -332,6 +352,22 @@ def display_industries_unified(config):
     # Synchronisation session state (correction du problème identifié)
     st.session_state['user_profile'] = current_profile
     
+    def display_c_suite_dashboard(config):
+        """Dashboard C-Suite Executive - Module spécialisé"""
+        
+        if CSUITE_AVAILABLE:
+            try:
+                c_suite_exec_dashboard(config)
+            except Exception as e:
+                st.error(f"❌ Erreur dashboard C-Suite : {e}")
+            # Interface de secours
+            st.markdown("# 💼 C-Suite Executive Dashboard")
+            st.info("🚧 Dashboard C-Suite - Interface de secours")
+        else:
+        # Fallback si module non disponible
+            st.markdown("# 💼 C-Suite Executive Dashboard") 
+            st.info("🚧 Dashboard C-Suite business - En développement")
+            st.warning("⚠️ Module C-Suite non chargé - Vérifiez src/dashboards/")
     # === ROUTING DASHBOARD ADAPTATIF PAR PROFIL UTILISATEUR ===
     
     if current_profile == 'hse_manager':
@@ -343,16 +379,12 @@ def display_industries_unified(config):
         display_safety_coordinator_dashboard(config)
     
     elif current_profile == 'supervisor':
-        # Dashboard Supervisor Terrain (à développer)
-        st.info("🏗️ Dashboard Supervisor en développement")
-        st.markdown("### 👷 Supervisor Dashboard - Mode Terrain")
-        st.success("Interface terrain optimisée à venir !")
+        # Dashboard Supervisor Terrain BBS-ISO complet
+        display_supervisor_dashboard(config)
     
     elif current_profile == 'c_suite':
-        # Dashboard C-Suite Executive (à développer)
-        st.info("🏢 Dashboard C-Suite en développement")
-        st.markdown("### 👔 C-Suite Dashboard - Vue Exécutive")
-        st.success("Métriques exécutives à venir !")
+        # Dashboard C-Suite Executive - Module complet
+        display_c_suite_dashboard(config)
     
     elif current_profile == 'chercheur':
         # Dashboard Chercheur Analytics (à développer)
@@ -739,6 +771,8 @@ except ImportError as e:
     
     def display_hse_manager_dashboard(config):
         st.error("❌ Dashboard HSE Manager non disponible")
+    
+  
 def main():
     """Fonction principale SafetyGraph Industries"""
     
