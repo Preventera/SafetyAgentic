@@ -2,8 +2,8 @@
 SafetyGraph BehaviorX + Cartographie Culture SST - Interface Complète
 ====================================================================
 Interface Streamlit unifiée : BehaviorX + Cartographie LangGraph
-Safety Agentique - Mario Plourde - 22 juillet 2025
-Version 3.1 - Architecture Industries Unifiées
+Safety Agentique - Mario Plourde - 28 juillet 2025
+Version 3.1 - Architecture Industries Unifiées + Expansion Sectorielle
 """
 
 import streamlit as st
@@ -43,7 +43,6 @@ except ImportError:
     print("⚠️ Optimiseur non disponible")
 
 # ===================================================================
-# ===================================================================
 # CORRECTION PYARROW - GESTION POURCENTAGES DANS DATAFRAMES
 # ===================================================================
 
@@ -68,8 +67,6 @@ def fix_dataframe_for_streamlit(df):
     return df_fixed
 
 # ===================================================================
-# SUITE DE VOTRE CODE EXISTANT (SECTEURS_SCIAN_COMPLET)
-# ===================================================================
 # DICTIONNAIRE SCIAN COMPLET - MULTI-INDUSTRIES SAFETYGRAPH
 # ===================================================================
 
@@ -90,34 +87,43 @@ SECTEURS_SCIAN_COMPLET = {
         "Activités soutien mines (213)": "213",
         "Carrières & sablières (2123)": "2123-carriere"
     },
-    "🏭 MANUFACTURING": {
+    "🏭 MANUFACTURING AVANCÉ": {
         "Fabrication alimentaire (311)": "311",
+        "Pharmaceutique (3254) 🆕": "3254",
+        "Agro-alimentaire (3111) 🆕": "3111",
+        "Chimique & Pétrochimique (3251) 🆕": "3251",
+        "Métallurgie (3311) 🆕": "3311",
         "Fabrication boissons & tabac (312)": "312",
         "Fabrication bois (321)": "321", 
         "Fabrication papier (322)": "322",
-        "Fabrication chimique (325)": "325",
         "Fabrication plastique & caoutchouc (326)": "326",
         "Fabrication métallique primaire (331)": "331",
         "Fabrication machinerie (333)": "333",
         "Fabrication équipement transport (336)": "336",
         "Fabrication meubles (337)": "337"
     },
-    "🏥 SOINS DE SANTÉ": {
+    "🏥 SOINS DE SANTÉ SPÉCIALISÉS": {
         "Soins ambulatoires (621)": "621",
+        "Hôpitaux aigus (6221) 🆕": "6221",
+        "Laboratoires médicaux (6215) 🆕": "6215",
         "Hôpitaux (622)": "622", 
         "Établissements soins infirmiers (623)": "623",
         "Assistance sociale (624)": "624",
         "Services sociaux communautaires": "624-social"
     },
-    "🔧 SERVICES PROFESSIONNELS": {
+    "🔧 SERVICES CRITIQUES": {
         "Services professionnels techniques (541)": "541",
+        "Télécommunications (5174) 🆕": "5174",
+        "Services énergétiques (2211) 🆕": "2211",
         "Gestion d'entreprises (551)": "551",
         "Services administratifs & soutien (561)": "561",
         "Services éducatifs (611)": "611",
         "Services publics (utilities)": "221"
     },
-    "🚚 TRANSPORT & LOGISTIQUE": {
+    "🚚 TRANSPORT AVANCÉ": {
         "Transport terrestre (484)": "484",
+        "Transport maritime (4831) 🆕": "4831",
+        "Aviation commerciale (4811) 🆕": "4811",
         "Transport aérien (481)": "481", 
         "Transport maritime (483)": "483",
         "Entreposage (493)": "493",
@@ -152,28 +158,17 @@ try:
     from analytics_predictifs import display_analytics_predictifs_interface as display_predictive_analytics_interface
     from pattern_recognition import display_pattern_recognition_interface  
     from anomaly_detection import display_anomaly_detection_interface
-    
-
-    
     ANALYTICS_AVAILABLE = True
     print("✅ Analytics modules loaded successfully")
 except ImportError as e:
     print(f"⚠️ Analytics modules not available: {e}")
     ANALYTICS_AVAILABLE = False
-    
- # Import dashboards
-from src.dashboards.hse_manager_dashboard import display_hse_manager_dashboard
-from src.dashboards.safety_coordinator_dashboard import display_safety_coordinator_dashboard
-from src.dashboards.supervisor_dashboard import display_supervisor_dashboard
-    
+
 # Import module mines souterraines
 try:
     from src.modules.mines_souterraines import mines_souterraines_secteur
     MINES_AVAILABLE = True
     print("✅ Module mines souterraines chargé")
-except ImportError:
-    MINES_AVAILABLE = False
-    print("⚠️ Module mines souterraines non disponible")
 except ImportError:
     MINES_AVAILABLE = False
     print("⚠️ Module mines souterraines non disponible")
@@ -203,16 +198,18 @@ try:
 except ImportError:
     CARTOGRAPHY_AVAILABLE = False
 
-# Imports agents BehaviorX existants
+# Imports agents BehaviorX existants + ORCHESTRATEUR
 try:
     sys.path.append(str(Path(__file__).parent / "src" / "agents" / "collecte"))
     from orchestrateur_behaviorx_unified import BehaviorXSafetyOrchestrator
     BEHAVIORX_AVAILABLE = True
+    print("✅ Orchestrateur BehaviorX chargé avec succès")
 except ImportError:
     BEHAVIORX_AVAILABLE = False
+    print("⚠️ Orchestrateur BehaviorX non disponible")
 
 # ===================================================================
-# 1. CONFIGURATION ET ÉTAT SESSION
+# INITIALISATION SESSION STATE
 # ===================================================================
 
 # Initialisation état session
@@ -224,7 +221,7 @@ if 'execution_history' not in st.session_state:
     st.session_state.execution_history = []
 
 # ===================================================================
-# 2. HEADER ET BRANDING
+# HEADER ET BRANDING
 # ===================================================================
 
 def display_header():
@@ -246,7 +243,105 @@ def display_header():
     """, unsafe_allow_html=True)
 
 # ===================================================================
-# 3. SIDEBAR CONFIGURATION MULTI-INDUSTRIES
+# RÉVOLUTION UX/UI - SÉLECTEUR PROFIL UTILISATEUR
+# ===================================================================
+
+def init_user_profile():
+    """Initialisation du profil utilisateur pour UX adaptatif"""
+    if 'user_profile' not in st.session_state:
+        st.session_state.user_profile = 'hse_manager'
+    
+    profiles = {
+        'hse_manager': {
+            'name': '👨‍💼 HSE Manager',
+            'description': 'Stratégie, conformité, ROI',
+            'color': '#1f77b4',
+            'dashboard_type': 'executive'
+        },
+        'safety_coordinator': {
+            'name': '⚡ Safety Coordinator', 
+            'description': 'Opérations, incidents, équipes',
+            'color': '#ff7f0e',
+            'dashboard_type': 'operations'
+        },
+        'supervisor': {
+            'name': '👷 Supervisor',
+            'description': 'Terrain, actions rapides',
+            'color': '#2ca02c',
+            'dashboard_type': 'field'
+        },
+        'c_suite': {
+            'name': '💼 C-Suite Executive',
+            'description': 'Vision, benchmark, impact business',
+            'color': '#9467bd',
+            'dashboard_type': 'boardroom'
+        },
+        'chercheur': {
+            'name': '🔬 Chercheur SST',
+            'description': 'Analyse, données, innovation',
+            'color': '#17becf',
+            'dashboard_type': 'research'
+        }
+    }
+    
+    return profiles
+
+def display_profile_selector():
+    """Affiche sélecteur profil révolutionnaire avec métadonnées"""
+    
+    profiles = init_user_profile()
+    
+    with st.sidebar:
+        st.markdown("### 👤 Profil Utilisateur")
+        
+        # Sélecteur profil
+        profile_options = list(profiles.keys())
+        profile_labels = [profiles[key]['name'] for key in profile_options]
+        
+        selected_index = st.selectbox(
+            "Sélectionnez votre profil",
+            range(len(profile_options)),
+            format_func=lambda x: profile_labels[x],
+            index=profile_options.index(st.session_state.get('user_profile', 'hse_manager')),
+            key='profile_selector'
+        )
+        
+        selected_profile = profile_options[selected_index]
+        st.session_state.user_profile = selected_profile
+        
+        # Affichage métadonnées profil
+        profile_data = profiles[selected_profile]
+        
+        st.markdown(f"""
+        **Badge Profil Actuel :** {profile_data['name']}
+        
+        **Focus :** {profile_data['description']}
+        
+        **Mode Interface :** {profile_data['dashboard_type'].title()}
+        """)
+        
+        return profile_data
+
+def display_adaptive_header(profile_data):
+    """Header adaptatif selon profil utilisateur"""
+    
+    color = profile_data['color']
+    name = profile_data['name']
+    
+    st.markdown(f"""
+    <div style="background: linear-gradient(90deg, {color} 0%, #374151 100%); 
+                padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+        <h2 style="color: white; text-align: center; margin: 0;">
+            {name} - SafetyGraph Industries
+        </h2>
+        <p style="color: #d1d5db; text-align: center; margin: 0.5rem 0 0 0;">
+            🏭 Interface Adaptative Multi-Sectorielle
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ===================================================================
+# SIDEBAR CONFIGURATION MULTI-INDUSTRIES
 # ===================================================================
 
 def setup_sidebar():
@@ -260,7 +355,7 @@ def setup_sidebar():
         nom_entreprise = st.text_input("Nom entreprise", value="Entreprise ABC", key="enterprise_name")
         
         # ===================================================================
-        # SECTION SECTEUR D'ACTIVITÉ - MULTI-INDUSTRIES
+        # SECTION SECTEUR D'ACTIVITÉ - MULTI-INDUSTRIES AVEC EXPANSION
         # ===================================================================
         st.markdown("## 📊 Secteur d'Activité (SCIAN)")
         
@@ -285,6 +380,8 @@ def setup_sidebar():
         
         # Affichage informations
         st.info(f"📋 Code SCIAN: **{secteur_code}**")
+        if "🆕" in secteur_selectionne:
+            st.success("🆕 **NOUVEAU SECTEUR** - Expansion Prioritaire SafetyGraph!")
         
         # Métriques industrie
         col_a, col_b = st.columns(2)
@@ -306,6 +403,10 @@ def setup_sidebar():
         memoire_ia = st.checkbox("✅ Mémoire IA Mem0", value=True, key="memory_enabled")
         mode_debug = st.checkbox("🐛 Mode Debug", value=False, key="debug_mode")
         
+        # Orchestrateur BehaviorX
+        if BEHAVIORX_AVAILABLE:
+            orchestrateur_actif = st.checkbox("🎼 Orchestrateur BehaviorX", value=True, key="orchestrator_enabled")
+        
         # Statut modules
         st.markdown("### 📊 Statut Modules")
         st.success(f"🧠 BehaviorX: {'✅ Disponible' if BEHAVIORX_AVAILABLE else '❌ Indisponible'}")
@@ -315,18 +416,21 @@ def setup_sidebar():
         
         # À propos
         st.markdown("### ℹ️ À Propos")
+        total_secteurs = sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())
         st.info(f"""
         **SafetyGraph Industries v3.1**
         
         🏭 **{len(SECTEURS_SCIAN_COMPLET)} Industries** - Multi-secteurs SCIAN
         
-        📊 **{sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())} Secteurs** - Couverture complète
+        📊 **{total_secteurs} Secteurs** - Couverture complète + Expansion
         
         🤖 **100+ Agents** - A1-A10, AN1-AN10, R1-R10, S1-S10, SC1-SC50
         
         🔍 **STORM Research** - Enrichissement scientifique temps réel
         
         🧠 **LangGraph** - Orchestration multi-agent avancée
+        
+        🎼 **Orchestrateur BehaviorX** - Workflow VCS→ABC→A1→Intégration
         """)
         
         return {
@@ -336,38 +440,53 @@ def setup_sidebar():
             'sector_code': secteur_code,
             'workflow_mode': mode_workflow,
             'memory_enabled': memoire_ia,
-            'debug_mode': mode_debug
+            'debug_mode': mode_debug,
+            'orchestrator_enabled': st.session_state.get('orchestrator_enabled', True) if BEHAVIORX_AVAILABLE else False
         }
 
 # ===================================================================
-# 4. MODULE INDUSTRIES UNIFIÉ
+# IMPORTS MODULES UX/UI MODULAIRES - ARCHITECTURE PROFESSIONNELLE
+# ===================================================================
+
+try:
+    # Import des dashboards spécialisés
+    from src.dashboards.hse_manager_dashboard import display_hse_manager_dashboard
+    from src.dashboards.safety_coordinator_dashboard import display_safety_coordinator_dashboard
+    from src.dashboards.supervisor_dashboard import display_supervisor_dashboard
+    UX_MODULES_AVAILABLE = True
+    print("✅ Modules UX/UI modulaires chargés avec succès")
+except ImportError as e:
+    print(f"⚠️ Modules UX/UI modulaires non disponibles: {e}")
+    UX_MODULES_AVAILABLE = False
+    
+    # Fonctions fallback si modules non disponibles
+    def display_hse_manager_dashboard(config):
+        st.error("❌ Dashboard HSE Manager non disponible")
+        st.info("🔧 Vérifiez que le fichier src/dashboards/hse_manager_dashboard.py existe et est correct")
+    
+    def display_safety_coordinator_dashboard(config):
+        st.error("❌ Dashboard Safety Coordinator non disponible")
+    
+    def display_supervisor_dashboard(config):
+        st.error("❌ Dashboard Supervisor non disponible")
+
+# ===================================================================
+# MODULE INDUSTRIES UNIFIÉ AVEC PROFILS ADAPTATIFS
 # ===================================================================
 
 def display_industries_unified(config):
     """Module Industries unifié adaptatif par profil utilisateur"""
     
+    # Vérification modules UX/UI
+    if not UX_MODULES_AVAILABLE:
+        st.error("❌ Modules UX/UI non disponibles - Vérifiez structure src/dashboards/ et src/ux/")
+        st.info("🔧 Action requise : Créez les dossiers et fichiers selon architecture modulaire")
+        display_industries_fallback(config)
+        return
+    
     # Récupération profil utilisateur actuel (source unique de vérité)
-    current_profile = st.session_state.get('profile_selector', 'hse_manager')
+    current_profile = st.session_state.get('user_profile', 'hse_manager')
     
-    # Synchronisation session state (correction du problème identifié)
-    st.session_state['user_profile'] = current_profile
-    
-    def display_c_suite_dashboard(config):
-        """Dashboard C-Suite Executive - Module spécialisé"""
-        
-        if CSUITE_AVAILABLE:
-            try:
-                c_suite_exec_dashboard(config)
-            except Exception as e:
-                st.error(f"❌ Erreur dashboard C-Suite : {e}")
-            # Interface de secours
-            st.markdown("# 💼 C-Suite Executive Dashboard")
-            st.info("🚧 Dashboard C-Suite - Interface de secours")
-        else:
-        # Fallback si module non disponible
-            st.markdown("# 💼 C-Suite Executive Dashboard") 
-            st.info("🚧 Dashboard C-Suite business - En développement")
-            st.warning("⚠️ Module C-Suite non chargé - Vérifiez src/dashboards/")
     # === ROUTING DASHBOARD ADAPTATIF PAR PROFIL UTILISATEUR ===
     
     if current_profile == 'hse_manager':
@@ -375,7 +494,7 @@ def display_industries_unified(config):
         display_hse_manager_dashboard(config)
     
     elif current_profile == 'safety_coordinator':
-        # Dashboard Safety Coordinator Operations complet avec Actions Rapides isolées
+        # Dashboard Safety Coordinator Operations complet
         display_safety_coordinator_dashboard(config)
     
     elif current_profile == 'supervisor':
@@ -384,24 +503,38 @@ def display_industries_unified(config):
     
     elif current_profile == 'c_suite':
         # Dashboard C-Suite Executive - Module complet
-        display_c_suite_dashboard(config)
+        if CSUITE_AVAILABLE:
+            try:
+                c_suite_exec_dashboard(config)
+            except Exception as e:
+                st.error(f"❌ Erreur dashboard C-Suite : {e}")
+                display_industries_fallback(config)
+        else:
+            # Fallback si module non disponible
+            st.markdown("# 💼 C-Suite Executive Dashboard") 
+            st.info("🚧 Dashboard C-Suite business - En développement")
+            st.warning("⚠️ Module C-Suite non chargé - Vérifiez src/dashboards/")
+            display_industries_fallback(config)
     
     elif current_profile == 'chercheur':
         # Dashboard Chercheur Analytics (à développer)
+        st.markdown("# 🔬 Dashboard Chercheur SST")
         st.info("🔬 Dashboard Chercheur en développement")
         st.markdown("### 🧪 Recherche Dashboard - Analytics Avancés")
         st.success("Outils de recherche à venir !")
+        display_industries_fallback(config)
     
     else:
         # Profil non reconnu - fallback vers HSE Manager
         st.warning(f"Profil '{current_profile}' non reconnu, redirection vers HSE Manager")
         display_hse_manager_dashboard(config)
+
 def display_industries_fallback(config):
     """Interface Industries temporaire pour profils non encore développés"""
     st.markdown("### 🏭 Interface Industries Temporaire")
     st.markdown("*En attendant le développement du dashboard spécialisé pour ce profil*")
     
-    # Informations secteur
+    # Informations secteur avec expansion
     col1, col2, col3 = st.columns([2, 1, 1])
     
     with col1:
@@ -409,17 +542,24 @@ def display_industries_fallback(config):
         st.success(f"**{config.get('industrie_principale', 'N/A')}**")
         st.info(f"🎯 **{config.get('sector_name', 'N/A')}**")
         st.code(f"SCIAN: {config.get('sector_code', 'N/A')}")
+        
+        # Indicateur secteur nouveau
+        if "🆕" in config.get('sector_name', ''):
+            st.success("🆕 **SECTEUR EXPANSION PRIORITAIRE** - SafetyGraph Advanced!")
     
     with col2:
         st.markdown("#### 📈 Couverture")
-        st.metric("Industries", "6", delta="Multi-secteurs")
-        st.metric("Secteurs SCIAN", "37", delta="+30 vs V2")
+        st.metric("Industries", len(SECTEURS_SCIAN_COMPLET), delta="Multi-secteurs")
+        total_secteurs = sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())
+        st.metric("Secteurs SCIAN", total_secteurs, delta=f"+{12} nouveaux")
         
     with col3:
         st.markdown("#### 🎯 Actions")
         if st.button("🚀 Analyser Secteur", type="primary", use_container_width=True):
             st.success(f"✅ Analyse lancée pour {config.get('sector_name', 'secteur')}")
-            st.balloons()
+            if "🆕" in config.get('sector_name', ''):
+                st.balloons()
+                st.success("🆕 Analyse secteur expansion prioritaire!")
     
     # Métriques génériques temporaires
     st.markdown("---")
@@ -435,181 +575,20 @@ def display_industries_fallback(config):
         st.metric("Incidents/Mois", "3", delta="-2")
     with metric_col4:
         st.metric("Formation", "92%", delta="+5%")
-    
-    # Séparateur
-    st.markdown("---")
-    
-    # ===================================================================
-    # CONTENU SPÉCIALISÉ PAR INDUSTRIE
-    # ===================================================================
-    
-    if "MINES" in config['industrie_principale']:
-        # Module Mines Souterraines intégré
-        st.markdown("### ⛏️ Module Mines Souterraines Spécialisé")
-        
-        if MINES_AVAILABLE:
-            # Appel du module mines existant
-            mines_souterraines_secteur()
-        else:
-            # Version simplifiée si module non disponible
-            st.warning("⚠️ Module mines complet non disponible - Version simplifiée")
-            
-            col1, col2 = st.columns(2)
-            with col1:
-                st.markdown("#### 📊 Métriques Mines")
-                st.metric("Score Sécurité", "78.5/100", delta="+4.2 vs secteur")
-                st.metric("Profondeur Max", f"{config.get('depth', 850)}m", delta="Élevé")
-                st.metric("Conformité CNESST", "87.2%", delta="Bon")
-                
-            with col2:
-                st.markdown("#### ⚠️ Facteurs Risque")
-                st.error("🔴 CRITIQUE - Ventilation insuffisante")
-                st.warning("🟡 ÉLEVÉ - Espaces confinés multiples")
-                st.info("🔵 MOYEN - Temps évacuation 4.2 min")
-                
-    elif "CONSTRUCTION" in config['industrie_principale']:
-        # Module Construction
-        st.markdown("### 🚧 Module Construction Spécialisé")
-        
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.markdown("#### 🏗️ Chantiers")
-            st.metric("Projets Actifs", "12", delta="+3")
-            st.metric("Conformité SST", "89.3%", delta="+2.1%")
-            
-        with col2:
-            st.markdown("#### 👷 Personnel")
-            st.metric("Ouvriers", "156", delta="+8")
-            st.metric("Formation EPI", "94%", delta="Excellent")
-            
-        with col3:
-            st.markdown("#### 📈 Performance")
-            st.metric("Incidents/Mois", "2", delta="-1")
-            st.metric("Coût Sécurité", "3.2%", delta="Optimal")
-            
-        # Analyse spécialisée construction
-        if st.button("🏗️ Analyse Construction Complète", use_container_width=True):
-            st.info("🚧 Lancement analyse spécialisée construction...")
-            
-    elif "MANUFACTURING" in config['industrie_principale']:
-        # Module Manufacturing 
-        st.markdown("### 🏭 Module Manufacturing Spécialisé")
-        
-        # Onglets manufacturing
-        manuf_tabs = st.tabs(["🏭 Production", "🤖 Automatisation", "🧪 Substances", "📊 Performance"])
-        
-        with manuf_tabs[0]:
-            st.markdown("#### 🏭 Analyse Production")
-            col1, col2 = st.columns(2)
-            with col1:
-                st.metric("Lignes Production", "8", delta="Toutes actives")
-                st.metric("Rendement", "94.2%", delta="+1.8%")
-            with col2:
-                st.metric("Temps d'Arrêt", "2.3%", delta="-0.5%")
-                st.metric("Défauts Qualité", "0.08%", delta="Excellent")
-                
-        with manuf_tabs[1]:
-            st.markdown("#### 🤖 Niveau Automatisation")
-            automation_data = pd.DataFrame({
-                'Zone': ['Assemblage', 'Conditionnement', 'Contrôle Qualité', 'Expédition'],
-                'Automatisation (%)': [85, 92, 78, 65],
-                'Sécurité': ['Haute', 'Très Haute', 'Haute', 'Moyenne']
-            })
-            st.dataframe(fix_dataframe_for_streamlit(automation_data), use_container_width=True)
-            
-        with manuf_tabs[2]:
-            st.markdown("#### 🧪 Gestion Substances Dangereuses")
-            st.success("✅ Inventaire chimiques à jour")
-            st.success("✅ FDS disponibles (100%)")
-            st.warning("⚠️ Formation manipulation à renouveler (3 employés)")
-            
-        with manuf_tabs[3]:
-            st.markdown("#### 📊 Indicateurs Performance")
-            manuf_metrics = {
-                'KPI': ['Taux Fréquence', 'Taux Gravité', 'Conformité Audit', 'Formation Complétée'],
-                'Valeur': [2.1, 0.15, '96%', '89%'],
-                'Objectif': [1.8, 0.10, '98%', '95%'],
-                'Statut': ['🟡 Améliorer', '🟡 Améliorer', '🟢 Atteint', '🔴 En retard']
-            }
-            df_manuf = pd.DataFrame(manuf_metrics)
-            st.dataframe(fix_dataframe_for_streamlit(df_manuf), use_container_width=True)
-    
-    elif "SANTÉ" in config['industrie_principale']:
-        # Module Soins de Santé
-        st.markdown("### 🏥 Module Soins de Santé Spécialisé")
-        
-        healthcare_cols = st.columns(3)
-        with healthcare_cols[0]:
-            st.markdown("#### 👨‍⚕️ Personnel Soignant")
-            st.metric("Médecins", "24", delta="Complet")
-            st.metric("Infirmières", "67", delta="+3")
-            
-        with healthcare_cols[1]:
-            st.markdown("#### 🏥 Services")
-            st.metric("Lits Disponibles", "89%", delta="Optimal")
-            st.metric("Urgences/Jour", "45", delta="Normal")
-            
-        with healthcare_cols[2]:
-            st.markdown("#### 🦠 Sécurité")
-            st.metric("Infections Nosocomiales", "1.2%", delta="-0.3%")
-            st.metric("Accidents Exposition", "0", delta="Excellent")
-    
-    # ===================================================================
-    # NAVIGATION RAPIDE INDUSTRIES
-    # ===================================================================
-    
-    st.markdown("---")
-    st.markdown("### 🌟 Navigation Rapide Industries")
-    
-    # Grille industries
-    ind_cols = st.columns(3)
-    industries_list = list(SECTEURS_SCIAN_COMPLET.keys())
-    
-    for idx, industrie in enumerate(industries_list[:3]):
-        with ind_cols[idx % 3]:
-            secteurs_count = len(SECTEURS_SCIAN_COMPLET[industrie])
-            if st.button(f"{industrie}\n{secteurs_count} secteurs", 
-                        key=f"nav_{idx}", use_container_width=True):
-                st.info(f"Navigation vers {industrie}")
-    
-    # Deuxième ligne
-    if len(industries_list) > 3:
-        ind_cols2 = st.columns(3)
-        for idx, industrie in enumerate(industries_list[3:6]):
-            with ind_cols2[idx]:
-                secteurs_count = len(SECTEURS_SCIAN_COMPLET[industrie])
-                if st.button(f"{industrie}\n{secteurs_count} secteurs", 
-                            key=f"nav2_{idx}", use_container_width=True):
-                    st.info(f"Navigation vers {industrie}")
-    
-    # Footer statistiques
-    st.markdown("---")
-    st.markdown("### 📊 Statistiques Plateforme SafetyGraph")
-    
-    col_stat1, col_stat2, col_stat3, col_stat4 = st.columns(4)
-    with col_stat1:
-        total_secteurs = sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())
-        st.metric("🎯 Total Secteurs SCIAN", total_secteurs)
-    with col_stat2:
-        st.metric("🏭 Industries Couvertes", len(SECTEURS_SCIAN_COMPLET))
-    with col_stat3:
-        st.metric("🌪️ Topics STORM", "100+")
-    with col_stat4:
-        st.metric("📊 Base CNESST", "793K incidents")
 
 # ===================================================================
-# 5. WORKFLOWS BEHAVIORX ET CARTOGRAPHIE (EXISTANTS)
+# WORKFLOWS BEHAVIORX AVEC ORCHESTRATEUR INTÉGRÉ
 # ===================================================================
 
-def execute_behaviorx_workflow_standard(config):
-    """Exécute workflow BehaviorX standard (version existante)"""
+def execute_behaviorx_workflow_orchestrated(config):
+    """Exécute workflow BehaviorX avec orchestrateur unifié"""
     
     if not BEHAVIORX_AVAILABLE:
-        st.error("❌ Module BehaviorX non disponible")
+        st.error("❌ Orchestrateur BehaviorX non disponible")
         return None
     
     with st.container():
-        st.markdown("## 🧠 Workflow BehaviorX Standard")
+        st.markdown("## 🎼 Workflow BehaviorX Orchestré - VCS→ABC→A1→Intégration")
         
         # Progress tracking
         progress_container = st.container()
@@ -622,7 +601,7 @@ def execute_behaviorx_workflow_standard(config):
         
         try:
             # Initialisation
-            status_text.text("🎼 Initialisation Orchestrateur BehaviorX...")
+            status_text.text("🎼 Initialisation Orchestrateur BehaviorX Unifié...")
             progress_bar.progress(10)
             
             orchestrator = BehaviorXSafetyOrchestrator({
@@ -631,8 +610,27 @@ def execute_behaviorx_workflow_standard(config):
             })
             
             # Exécution workflow
-            status_text.text("🚀 Exécution Workflow VCS → ABC → A1 Enhanced...")
+            status_text.text("🚀 Exécution Workflow Orchestré VCS → ABC → A1 Enhanced → Intégration...")
+            progress_bar.progress(30)
+            
+            # Étape VCS
+            status_text.text("🔍 Étape 1/4: VCS Observation...")
             progress_bar.progress(50)
+            time.sleep(0.5)
+            
+            # Étape ABC
+            status_text.text("🔗 Étape 2/4: Analyse ABC...")
+            progress_bar.progress(70)
+            time.sleep(0.5)
+            
+            # Étape A1 Enhanced
+            status_text.text("🤖 Étape 3/4: Agent A1 Enhanced...")
+            progress_bar.progress(85)
+            time.sleep(0.5)
+            
+            # Étape Intégration
+            status_text.text("📊 Étape 4/4: Intégration & Zones Aveugles...")
+            progress_bar.progress(95)
             
             results = orchestrator.execute_full_workflow(
                 enterprise_id=config['enterprise_name'],
@@ -641,38 +639,63 @@ def execute_behaviorx_workflow_standard(config):
             )
             
             progress_bar.progress(100)
-            status_text.text("✅ Workflow BehaviorX Terminé !")
+            status_text.text("✅ Workflow BehaviorX Orchestré Terminé !")
             
-            # Affichage métriques
+            # Affichage métriques sophistiquées
             with metrics_container:
+                st.markdown("### 📊 Résultats Orchestrateur BehaviorX")
+                
                 col1, col2, col3, col4 = st.columns(4)
                 
                 with col1:
-                    st.metric("🎯 Score Intégration", "92.0%", delta="Excellent")
+                    integration_score = results.get('integration_score', 92.0)
+                    st.metric(
+                        "🎯 Score Intégration", 
+                        f"{integration_score:.1f}%", 
+                        delta=f"+{integration_score-70:.1f}%" if integration_score > 70 else None
+                    )
                 
                 with col2:
-                    st.metric("🔍 Conformité VCS", "75.0%", delta="6 Forces")
+                    vcs_score = results.get('vcs_results', {}).get('conformity_rate', 75.0)
+                    st.metric(
+                        "🔍 Conformité VCS", 
+                        f"{vcs_score:.1f}%",
+                        delta="6 Forces" if vcs_score > 70 else "À améliorer"
+                    )
                 
                 with col3:
-                    st.metric("🤖 Score A1 Enhanced", "79.0", delta="BON")
+                    a1_score = results.get('a1_enhanced_results', {}).get('safe_self_score', 79.0)
+                    st.metric(
+                        "🤖 Score A1 Enhanced",
+                        f"{a1_score:.1f}",
+                        delta="BON" if a1_score > 75 else "Améliorer"
+                    )
                 
                 with col4:
-                    st.metric("🚨 Zones Aveugles", "0", delta="Aucune")
+                    blind_spots = results.get('blind_spots', [])
+                    blind_spots_count = len(blind_spots) if blind_spots else 0
+                    st.metric(
+                        "🚨 Zones Aveugles",
+                        blind_spots_count,
+                        delta="🔍 Détectées" if blind_spots_count > 0 else "✅ Aucune"
+                    )
             
             return {
                 'success': True,
-                'type': 'behaviorx_standard',
+                'type': 'behaviorx_orchestrated',
                 'results': results,
                 'metrics': {
-                    'integration_score': 92.0,
-                    'vcs_conformity': 75.0,
-                    'a1_score': 79.0,
-                    'blind_spots': 0
+                    'integration_score': integration_score,
+                    'vcs_conformity': vcs_score,
+                    'a1_score': a1_score,
+                    'blind_spots': blind_spots_count
                 }
             }
             
         except Exception as e:
-            st.error(f"❌ Erreur workflow BehaviorX: {str(e)}")
+            st.error(f"❌ Erreur workflow BehaviorX Orchestré: {str(e)}")
+            if config.get('debug_mode'):
+                st.exception(e)
             return None
 
 def execute_cartography_workflow_complete(config):
@@ -682,123 +705,204 @@ def execute_cartography_workflow_complete(config):
         st.error("❌ Module Cartographie non disponible")
         return None
     
-    # Version simplifiée pour démonstration
-    st.success("🗺️ Cartographie Culture SST Simulée")
+    # Version simulée enrichie pour démonstration
+    with st.spinner("🗺️ Génération cartographie culture SST complète..."):
+        time.sleep(2)
+    
+    st.success("🗺️ Cartographie Culture SST Simulée - Version Enrichie")
     
     return {
         'success': True,
         'type': 'cartography_complete',
         'cartography': {
             'executive_summary': {
-                'overall_culture_maturity': 3.8
+                'overall_culture_maturity': 3.8,
+                'sector_benchmark': 3.2,
+                'top_25_percent': 4.1,
+                'sector_name': config['sector_name']
             }
         }
     }
 
-def display_behaviorx_results(results):
-    """Affiche résultats BehaviorX standard dans onglets"""
+def display_behaviorx_orchestrated_results(results):
+    """Affiche résultats BehaviorX orchestré dans onglets détaillés"""
     
     if not results or not results['success']:
         return
     
-    # Onglets BehaviorX
-    tab1, tab2, tab3, tab4 = st.tabs([
+    # Onglets BehaviorX Orchestré
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "🔍 VCS Observation",
         "🔗 Analyse ABC", 
         "🤖 A1 Enhanced",
-        "📄 Rapport"
+        "📊 Intégration",
+        "📄 Rapport Complet"
     ])
     
     with tab1:
-        st.markdown("### 🔍 VCS Observation - SafetyGraph Module BehaviorX")
+        st.markdown("### 🔍 VCS Observation - SafetyGraph Module BehaviorX Orchestré")
         
         col1, col2, col3 = st.columns(3)
         with col1:
             st.metric("📊 Items Observés", "12", delta="Complet")
         with col2:
-            st.metric("✅ Conformité", "75.0%", delta="6 Forces")
+            vcs_score = results['metrics']['vcs_conformity']
+            st.metric("✅ Conformité", f"{vcs_score:.1f}%", delta="6 Forces")
         with col3:
             st.metric("⚠️ Préoccupations", "2", delta="À surveiller")
+        
+        # Détails VCS si disponibles
+        vcs_results = results['results'].get('vcs_results', {})
+        if vcs_results:
+            st.markdown("#### 📋 Détails VCS")
+            st.json(vcs_results)
     
     with tab2:
         st.markdown("### 🔗 Analyse ABC - Comportements Observés")
+        
         col1, col2 = st.columns(2)
         with col1:
             st.success("✅ 6 Comportements Positifs")
+            st.markdown("""
+            - Port EPI systématique
+            - Communication sécurité active
+            - Respect procédures
+            - Signalement proactif
+            - Formation continue
+            - Leadership sécurité
+            """)
         with col2:
             st.warning("⚠️ 2 Comportements À Corriger")
+            st.markdown("""
+            - Raccourcis procéduraux occasionnels
+            - Négligence contrôles routine
+            """)
+        
+        # Analyse ABC si disponible
+        abc_analysis = results['results'].get('abc_analysis', {})
+        if abc_analysis:
+            st.markdown("#### 🔗 Analyse ABC Détaillée")
+            st.json(abc_analysis)
     
     with tab3:
-        st.markdown("### 🤖 Agent A1 Enhanced")
-        st.metric("Score Safe Self", "79.0", delta="BON")
+        st.markdown("### 🤖 Agent A1 Enhanced - Safe Self Orchestré")
+        
+        a1_score = results['metrics']['a1_score']
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.metric("Score Safe Self", f"{a1_score:.1f}", delta="BON")
+            st.metric("Cohérence Réponses", "94.2%", delta="Excellent")
+        
+        with col2:
+            st.metric("Temps Réponse", "1.8s", delta="Rapide")
+            st.metric("Confiance IA", "87%", delta="Élevée")
+        
+        # Résultats A1 Enhanced si disponibles
+        a1_results = results['results'].get('a1_enhanced_results', {})
+        if a1_results:
+            st.markdown("#### 🤖 Détails A1 Enhanced")
+            st.json(a1_results)
     
     with tab4:
-        st.markdown("### 📄 Rapport Complet")
-        st.success("✅ Workflow BehaviorX réussi - Score global: 92.0%")
+        st.markdown("### 📊 Analyse Intégration & Zones Aveugles")
+        
+        integration_score = results['metrics']['integration_score']
+        blind_spots_count = results['metrics']['blind_spots']
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.metric("🎯 Score Intégration Global", f"{integration_score:.1f}%", delta="Excellent")
+            
+            # Breakdown intégration
+            st.markdown("#### 📊 Breakdown Intégration")
+            breakdown_data = {
+                'Composant': ['VCS', 'ABC', 'A1 Enhanced', 'Cohérence'],
+                'Score (%)': [results['metrics']['vcs_conformity'], 85.0, results['metrics']['a1_score'], 92.0],
+                'Statut': ['✅ Bon', '✅ Très Bon', '✅ Bon', '✅ Excellent']
+            }
+            df_breakdown = pd.DataFrame(breakdown_data)
+            st.dataframe(fix_dataframe_for_streamlit(df_breakdown), use_container_width=True)
+        
+        with col2:
+            st.metric("🚨 Zones Aveugles Détectées", blind_spots_count, 
+                     delta="🔍 Identifiées" if blind_spots_count > 0 else "✅ Aucune")
+            
+            # Zones aveugles détails
+            blind_spots = results['results'].get('blind_spots', [])
+            if blind_spots:
+                st.markdown("#### 🚨 Détails Zones Aveugles")
+                for i, blind_spot in enumerate(blind_spots, 1):
+                    st.warning(f"{i}. {blind_spot}")
+            else:
+                st.success("✅ Aucune zone aveugle détectée - Couverture complète!")
+            
+            # Actions prioritaires
+            priority_actions = results['results'].get('priority_actions', [])
+            if priority_actions:
+                st.markdown("#### 📈 Actions Prioritaires")
+                for action in priority_actions:
+                    priority_color = "🔴" if action.get('priority') == 'high' else "🟡"
+                    st.info(f"{priority_color} {action.get('action', 'Action non définie')}")
+    
+    with tab5:
+        st.markdown("### 📄 Rapport Complet BehaviorX Orchestré")
+        
+        # Résumé exécutif
+        st.markdown("#### 📋 Résumé Exécutif")
+        st.success(f"""
+        **✅ Workflow BehaviorX Orchestré réussi**
+        
+        - **Score Global Intégration:** {integration_score:.1f}%
+        - **Conformité VCS:** {results['metrics']['vcs_conformity']:.1f}%
+        - **Performance A1 Enhanced:** {results['metrics']['a1_score']:.1f}/100
+        - **Zones Aveugles:** {blind_spots_count} détectée(s)
+        - **Recommandation:** Maintenir excellence opérationnelle
+        """)
+        
+        # Données complètes
+        st.markdown("#### 📊 Données Complètes")
+        if st.button("📥 Télécharger Rapport JSON"):
+            st.download_button(
+                label="📥 Télécharger",
+                data=json.dumps(results['results'], indent=2),
+                file_name=f"rapport_behaviorx_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                mime="application/json"
+            )
+        
+        # Affichage JSON
+        with st.expander("🔍 Voir Données JSON Complètes"):
+            st.json(results['results'])
 
 # ===================================================================
-# 6. FONCTION PRINCIPALE MODIFIÉE
-# ===================================================================
-# ===================================================================
-# RÉVOLUTION UX/UI - SÉLECTEUR PROFIL UTILISATEUR
+# FONCTION PRINCIPALE MODIFIÉE AVEC ORCHESTRATEUR
 # ===================================================================
 
-# ===================================================================
-# IMPORTS MODULES UX/UI MODULAIRES - ARCHITECTURE PROFESSIONNELLE
-# ===================================================================
-
-try:
-    from src.ux.profile_selector import (
-        init_user_profile, 
-        display_profile_selector, 
-        display_adaptive_header
-    )
-    from src.dashboards.hse_manager_dashboard import display_hse_manager_dashboard
-    from src.dashboards.safety_coordinator_dashboard import display_safety_coordinator_dashboard
-    UX_MODULES_AVAILABLE = True
-    print("✅ Modules UX/UI modulaires chargés avec succès")
-except ImportError as e:
-    print(f"⚠️ Modules UX/UI modulaires non disponibles: {e}")
-    UX_MODULES_AVAILABLE = False
-    
-    # Fonctions fallback si modules non disponibles
-    def display_profile_selector():
-        st.sidebar.error("❌ Module profil non disponible")
-        return {'name': 'Erreur', 'color': '#ff0000'}
-    
-    def display_adaptive_header(profile_data):
-        st.error("❌ Modules UX/UI non chargés - Vérifiez structure src/")
-    
-    def display_hse_manager_dashboard(config):
-        st.error("❌ Dashboard HSE Manager non disponible")
-    
-  
 def main():
-    """Fonction principale SafetyGraph Industries"""
+    """Fonction principale SafetyGraph Industries avec Orchestrateur BehaviorX"""
     
     # RÉVOLUTION UX/UI - Profils adaptatifs
     current_profile = display_profile_selector()
     display_adaptive_header(current_profile)
-# FORCER L'INITIALISATION DU PROFIL HSE MANAGER
-    init_user_profile()
-    st.session_state.user_profile = 'hse_manager'
     
-    # DEBUG - Vérifier le profil
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("### 🔧 DEBUG PROFIL")
-    st.sidebar.code(f"Profil actuel: {st.session_state.get('user_profile', 'NON DÉFINI')}")
+    # FORCER L'INITIALISATION DU PROFIL HSE MANAGER (Debug)
+    init_user_profile()
+    if 'user_profile' not in st.session_state:
+        st.session_state.user_profile = 'hse_manager'
+    
     # Configuration sidebar
     config = setup_sidebar()
     
     # Zone principale - Choix workflow
-    st.markdown("## 🚀 SafetyGraph Industries - Plateforme Multi-Sectorielle")
+    st.markdown("## 🚀 SafetyGraph Industries - Plateforme Multi-Sectorielle avec Orchestrateur")
     
     # ===================================================================
-    # ONGLETS PRINCIPAUX SAFETYGRAPH - INDUSTRIES UNIFIÉES
+    # ONGLETS PRINCIPAUX SAFETYGRAPH - INDUSTRIES UNIFIÉES + ORCHESTRATEUR
     # ===================================================================
     main_tabs = st.tabs([
         "🏭 Industries",              # TOUT-EN-UN avec sélecteur SCIAN
-        "🎯 BehaviorX Standard", 
+        "🎼 BehaviorX Orchestré",     # NOUVEAU - Avec Orchestrateur
         "🗺️ Cartographie Culture",
         "📊 Analytics Prédictifs",
         "🔍 Pattern Recognition", 
@@ -806,16 +910,44 @@ def main():
     ])
 
     # ===================================================================
-    # CONTENU ONGLETS
+    # CONTENU ONGLETS AVEC ORCHESTRATEUR INTÉGRÉ
     # ===================================================================
 
     with main_tabs[0]:  # Industries - MODULE PRINCIPAL
         display_industries_unified(config)
 
-    with main_tabs[1]:  # BehaviorX Standard
-        if st.button("🚀 Lancer BehaviorX Standard", use_container_width=True):
-            st.session_state.workflow_type = "behaviorx_standard"
-            st.session_state.workflow_results = None
+    with main_tabs[1]:  # BehaviorX Orchestré - NOUVEAU
+        st.markdown("## 🎼 SafetyGraph BehaviorX Orchestré")
+        st.markdown("### 🚀 Workflow Intelligent VCS→ABC→A1→Intégration avec Mémoire IA")
+        
+        if not BEHAVIORX_AVAILABLE:
+            st.error("❌ Orchestrateur BehaviorX non disponible")
+            st.info("🔧 Vérifiez que le fichier src/agents/collecte/orchestrateur_behaviorx_unified.py existe")
+        else:
+            # Configuration orchestrateur
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                st.markdown("#### 🏢 Entreprise")
+                st.info(f"**{config['enterprise_name']}**")
+                st.code(f"Secteur: {config['sector_code']}")
+            
+            with col2:
+                st.markdown("#### 🎯 Configuration")
+                st.success(f"Mode: {config['workflow_mode']}")
+                st.success(f"Mémoire IA: {'✅' if config['memory_enabled'] else '❌'}")
+            
+            with col3:
+                st.markdown("#### 🎼 Orchestrateur")
+                st.success("✅ BehaviorX Unifié")
+                st.success("✅ Workflow VCS→ABC→A1")
+            
+            # Bouton lancement orchestrateur
+            col_center = st.columns([1, 2, 1])[1]
+            with col_center:
+                if st.button("🚀 Lancer Orchestrateur BehaviorX", type="primary", use_container_width=True):
+                    st.session_state.workflow_type = "behaviorx_orchestrated"
+                    st.session_state.workflow_results = None
 
     with main_tabs[2]:  # Cartographie Culture
         st.markdown("## 🗺️ SafetyGraph BehaviorX + Cartographie Culture SST")
@@ -858,7 +990,7 @@ def main():
             st.warning("⚠️ Module analytics prédictifs non disponible")
             st.info("📊 Métriques secteur actuelles basées sur CNESST 793K incidents")
             
-            # Version simplifiée analytics
+            # Version simplifiée analytics avec expansion sectorielle
             analytics_col1, analytics_col2, analytics_col3 = st.columns(3)
             
             with analytics_col1:
@@ -872,6 +1004,10 @@ def main():
             with analytics_col3:
                 st.metric("📈 Horizon Prédiction", "6 mois", delta="Configurable")
                 st.metric("🚨 Alertes Générées", "3", delta="Actives")
+            
+            # Spécialisation secteurs expansion
+            if "🆕" in config.get('sector_name', ''):
+                st.success("🆕 **ANALYTICS SECTEUR EXPANSION** - Métriques spécialisées disponibles!")
 
     with main_tabs[4]:  # Pattern Recognition
         if ANALYTICS_AVAILABLE:
@@ -914,20 +1050,28 @@ def main():
                 st.metric("🌐 API Calls", "245", delta="Efficient")
 
     # ===================================================================
-    # WORKFLOW EXECUTION LOGIC
+    # WORKFLOW EXECUTION LOGIC AVEC ORCHESTRATEUR
     # ===================================================================
     
-    # Description workflows
+    # Description workflows avec orchestrateur
     if st.session_state.get('workflow_type'):
-        if st.session_state.workflow_type == "behaviorx_standard":
+        if st.session_state.workflow_type == "behaviorx_orchestrated":
             st.info(f"""
-            **🧠 Workflow BehaviorX Standard - {config['sector_name']}**
-            - ✅ Analyse VCS (Visual Card Sorting)
-            - ✅ Analyse ABC comportementale
-            - ✅ Agent A1 Enhanced avec Safe Self
-            - ✅ Score intégration et zones aveugles
-            - ✅ Adaptation secteur SCIAN {config['sector_code']}
-            - ⚡ Exécution rapide (~30 secondes)
+            **🎼 Workflow BehaviorX Orchestré - {config['sector_name']}**
+            
+            🔄 **Orchestration Intelligente:**
+            - ✅ Étape 1: VCS Observation avec analyse contextuelle
+            - ✅ Étape 2: Analyse ABC comportementale enrichie
+            - ✅ Étape 3: Agent A1 Enhanced avec mémoire IA
+            - ✅ Étape 4: Intégration + détection zones aveugles
+            - ✅ Étape 5: Recommandations prioritaires
+            
+            🎯 **Spécialisations Secteur SCIAN {config['sector_code']}**
+            - 📊 Métriques adaptées au secteur
+            - 🧠 Mémoire IA contextualisée
+            - 🔍 Benchmarks industrie
+            
+            ⚡ **Performance:** Exécution optimisée (~45 secondes)
             """)
         
         elif st.session_state.workflow_type == "cartography_complete":
@@ -945,8 +1089,8 @@ def main():
         
         # Bouton exécution
         if st.button("▶️ Lancer Workflow Sélectionné", type="primary", use_container_width=True):
-            if st.session_state.workflow_type == "behaviorx_standard":
-                st.session_state.workflow_results = execute_behaviorx_workflow_standard(config)
+            if st.session_state.workflow_type == "behaviorx_orchestrated":
+                st.session_state.workflow_results = execute_behaviorx_workflow_orchestrated(config)
             elif st.session_state.workflow_type == "cartography_complete":
                 st.session_state.workflow_results = execute_cartography_workflow_complete(config)
     
@@ -955,14 +1099,26 @@ def main():
         results = st.session_state.workflow_results
         
         if results['success']:
-            if results.get('type') == 'behaviorx_standard':
-                display_behaviorx_results(results)
+            if results.get('type') == 'behaviorx_orchestrated':
+                display_behaviorx_orchestrated_results(results)
             else:
-                # Pour cartographie complète, affichage simplifié
+                # Pour cartographie complète, affichage enrichi
                 st.success("✅ Cartographie Culture SST terminée avec succès !")
-                st.json(results.get('cartography', {}).get('executive_summary', {}))
+                
+                # Métriques cartographie
+                cartography_data = results.get('cartography', {}).get('executive_summary', {})
+                if cartography_data:
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("🎯 Maturité Culture", f"{cartography_data.get('overall_culture_maturity', 3.8):.1f}/5")
+                    with col2:
+                        st.metric("📊 Benchmark Secteur", f"{cartography_data.get('sector_benchmark', 3.2):.1f}/5")
+                    with col3:
+                        st.metric("🏆 Top 25%", f"{cartography_data.get('top_25_percent', 4.1):.1f}/5")
+                
+                st.json(cartography_data)
             
-            # Ajout à l'historique
+            # Ajout à l'historique avec secteur
             if results not in st.session_state.execution_history:
                 st.session_state.execution_history.append({
                     'timestamp': datetime.now().isoformat(),
@@ -970,35 +1126,44 @@ def main():
                     'enterprise': config['enterprise_name'],
                     'sector': config['sector_name'],
                     'industrie': config['industrie_principale'],
+                    'sector_code': config['sector_code'],
+                    'orchestrated': st.session_state.workflow_type == "behaviorx_orchestrated",
                     'success': True
                 })
         else:
             st.error("❌ Erreur lors de l'exécution du workflow")
     
-    # Historique exécutions avec industries
+    # Historique exécutions avec industries et orchestrateur
     if st.session_state.execution_history:
-        with st.expander("📋 Historique Exécutions Multi-Industries"):
+        with st.expander("📋 Historique Exécutions Multi-Industries + Orchestrateur"):
             for i, execution in enumerate(reversed(st.session_state.execution_history[-10:]), 1):
                 industrie = execution.get('industrie', 'N/A')
-                st.text(f"{i}. {execution['timestamp'][:19]} - {execution['type']} - {execution['enterprise']} - {industrie} ({execution['sector']})")
+                sector_code = execution.get('sector_code', 'N/A')
+                orchestrated = execution.get('orchestrated', False)
+                orchestrator_badge = "🎼" if orchestrated else "📋"
+                
+                st.text(f"{i}. {execution['timestamp'][:19]} - {orchestrator_badge} {execution['type']} - {execution['enterprise']} - {industrie} ({sector_code})")
     
-    # Footer final
+    # Footer final avec expansion sectorielle
     st.markdown("---")
-    st.markdown("""
+    total_secteurs = sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())
+    nouveaux_secteurs = sum(1 for secteurs in SECTEURS_SCIAN_COMPLET.values() for secteur in secteurs.keys() if "🆕" in secteur)
+    
+    st.markdown(f"""
     <div style="text-align: center; padding: 1rem; background-color: #f0f2f6; border-radius: 10px; margin-top: 2rem;">
         <p style="margin: 0; color: #666;">
             🏭 <strong>SafetyGraph Industries v3.1</strong> | 
             💼 Safety Agentique | 
-            🎯 {total_secteurs} Secteurs SCIAN | 
+            🎯 {total_secteurs} Secteurs SCIAN (+{nouveaux_secteurs} nouveaux) | 
+            🎼 Orchestrateur BehaviorX Intégré |
             🤖 Architecture Multi-Agents | 
             🌪️ STORM Research Intégré
         </p>
     </div>
-    """.format(total_secteurs=sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())), 
-    unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 # ===================================================================
-# 7. POINT D'ENTRÉE APPLICATION
+# POINT D'ENTRÉE APPLICATION
 # ===================================================================
 
 if __name__ == "__main__":

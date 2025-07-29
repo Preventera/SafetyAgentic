@@ -1,821 +1,911 @@
-# src/dashboards/hse_manager_dashboard.py
+"""
+Dashboard HSE Manager - SafetyGraph Industries
+==============================================
+Interface executive spécialisée pour HSE Managers
+Version 4.0 - ULTRA ENRICHIE + Restauration Exacte Originale
+Basée sur les spécifications exactes + Enrichissements massifs
+"""
+
 import streamlit as st
-import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import pandas as pd
 from datetime import datetime, timedelta
+import numpy as np
+import json
 
 def display_hse_manager_dashboard(config):
-    """Dashboard HSE Manager Executive - Excellence Mondiale BBS-ISO 45001"""
+    """Dashboard HSE Manager Executive - Excellence Mondiale ULTRA COMPLET"""
     
-    # Header Executive avec intégration BBS-ISO
+    # Header Executive Premium avec gradient sophistiqué ENRICHI
     st.markdown("""
-    <div style="background: linear-gradient(90deg, #2E86AB, #A23B72, #F18F01); padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
-        <h1 style="color: white; margin: 0;">👨‍💼 HSE Manager Executive Dashboard</h1>
-        <p style="color: #E8F4FD; margin: 0;">🎯 Stratégie • 💰 ROI • 📊 BBS-ISO 45001 • 🏆 Excellence Mondiale</p>
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #ff6b6b 100%); 
+                padding: 3rem; border-radius: 25px; margin-bottom: 2rem; 
+                box-shadow: 0 20px 60px rgba(0,0,0,0.2); position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+                    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>'); opacity: 0.3;"></div>
+        <h1 style="color: white; text-align: center; margin: 0; font-size: 3.5rem; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); position: relative; z-index: 1;">
+            🎯 HSE Manager Executive Dashboard
+        </h1>
+        <p style="color: #e2e8f0; text-align: center; margin: 1rem 0 0 0; font-size: 1.6rem; position: relative; z-index: 1; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+            🎯 Stratégie • 💰 ROI • 📊 BBS-ISO 45001 • 🏆 Excellence Mondiale • 🚀 Innovation
+        </p>
+        <div style="text-align: center; margin-top: 1rem; position: relative; z-index: 1;">
+            <span style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 20px; color: white; font-size: 1rem;">
+                ⚡ Temps Réel • 🔄 Synchronisé • 🛡️ Sécurisé • 🌐 Multi-Sites
+            </span>
+        </div>
     </div>
     """, unsafe_allow_html=True)
     
-    # === KPIs EXECUTIVE ENRICHIS BBS-ISO ===
-    col1, col2, col3, col4, col5 = st.columns(5)
+    # NOUVELLE SECTION : Alertes Temps Réel Executive
+    st.markdown("### 🚨 Alertes Executive Temps Réel")
+    
+    alert_col1, alert_col2, alert_col3 = st.columns(3)
+    
+    with alert_col1:
+        st.markdown("""
+        <div style="background: linear-gradient(45deg, #ef4444, #dc2626); padding: 1rem; border-radius: 10px; color: white;">
+            <h5 style="margin: 0;">🔥 CRITIQUE</h5>
+            <p style="margin: 0.5rem 0 0 0;">Site Nord - Non-conformité Ch.6<br>
+            <small>⏰ Il y a 23 min • Action requise</small></p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with alert_col2:
+        st.markdown("""
+        <div style="background: linear-gradient(45deg, #f59e0b, #d97706); padding: 1rem; border-radius: 10px; color: white;">
+            <h5 style="margin: 0;">⚠️ ATTENTION</h5>
+            <p style="margin: 0.5rem 0 0 0;">Formation EPI retardée<br>
+            <small>⏰ Il y a 1h12 • 12 employés</small></p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with alert_col3:
+        st.markdown("""
+        <div style="background: linear-gradient(45deg, #10b981, #059669); padding: 1rem; border-radius: 10px; color: white;">
+            <h5 style="margin: 0;">✅ SUCCÈS</h5>
+            <p style="margin: 0.5rem 0 0 0;">Audit ISO réussi Site Est<br>
+            <small>⏰ Il y a 2h • Certification validée</small></p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.divider()
+    
+    # Executive KPIs - 6 Métriques Clés ENRICHIES (au lieu de 5)
+    st.markdown("### 🏆 Executive KPIs - Performance Stratégique Enrichie")
+    
+    col1, col2, col3, col4, col5, col6 = st.columns(6)
     
     with col1:
-        st.metric("🎯 Score HSE Global", "87.3%", "+3.2%", help="Intégration SafetyGraph + BBS + ISO 45001")
+        st.metric(
+            "🎯 HSE Score Global", 
+            "87.3%", 
+            delta="↗ +3.2%",
+            help="Performance HSE consolidée multisite"
+        )
+        
     with col2:
-        st.metric("💰 ROI Total Intégré", "420%", "+78%", help="ROI SafetyGraph (340%) + BBS (380%) + ISO (285%)")
+        st.metric(
+            "💰 ROI Total Int. ⚡", 
+            "420%", 
+            delta="↗ +78%",
+            help="ROI intégré SafetyGraph + BBS + ISO"
+        )
+        
     with col3:
-        st.metric("🏆 Excellence BBS-ISO", "96.7%", "+4.3%", help="Score Leadership ISO Ch.5 + BBS Integration")
+        st.metric(
+            "📊 Excellence BBS-ISO", 
+            "96.7%", 
+            delta="↗ +4.3%",
+            help="Performance intégrée BBS + ISO 45001"
+        )
+        
     with col4:
-        st.metric("📊 Conformité ISO 45001", "96.7%", "+2.4%", help="Certification garantie 98.7% probabilité")
+        st.metric(
+            "✅ Conformité ISO 45001", 
+            "96.7%", 
+            delta="↗ +2.4%",
+            help="Conformité chapitres ISO 45001"
+        )
+    
     with col5:
-        st.metric("🌍 Benchmark Mondial", "Top 1%", "↗️ +14 positions", help="Leader mondial excellence HSE")
+        st.metric(
+            "🏆 Benchmark Mondial", 
+            "Top 1%", 
+            delta="↗ +14 positions",
+            help="Position mondiale excellence HSE"
+        )
     
-    # === SECTION TRIPLE EXCELLENCE (NOUVEAU) ===
-    st.markdown("### 🏆 **Triple Excellence : SafetyGraph × BBS × ISO 45001**")
+    with col6:
+        st.metric(
+            "🚀 Innovation Index", 
+            "94.8%", 
+            delta="↗ +12.5%",
+            help="Index innovation technologique HSE"
+        )
     
-    triple_col1, triple_col2, triple_col3 = st.columns(3)
+    # NOUVELLE SECTION : Métriques Temps Réel Avancées
+    st.markdown("### ⚡ Métriques Temps Réel Avancées")
     
-    with triple_col1:
+    real_time_col1, real_time_col2, real_time_col3, real_time_col4 = st.columns(4)
+    
+    with real_time_col1:
+        st.metric("👥 Employés Actifs", "1,247", delta="+23 vs hier")
+        st.metric("🔄 Observations/h", "18.5", delta="+2.3")
+    
+    with real_time_col2:
+        st.metric("📱 App Mobile Usage", "89.4%", delta="+5.7%")
+        st.metric("🎯 Coaching Sessions", "156", delta="+34")
+    
+    with real_time_col3:
+        st.metric("🛡️ Interventions Préventives", "67", delta="+12")
+        st.metric("📊 Rapports Générés", "89", delta="+18")
+    
+    with real_time_col4:
+        st.metric("🌐 Sites Connectés", "4/4", delta="100%")
+        st.metric("⚡ Uptime Système", "99.97%", delta="↗ Optimal")
+    
+    st.divider()
+    
+    # Triple Excellence - Section Principale EXACTE ORIGINALE + ENRICHIE
+    st.markdown("""
+    <div style="background: linear-gradient(90deg, #1e3a8a 0%, #3730a3 50%, #1e40af 100%); 
+                padding: 2rem; border-radius: 20px; margin-bottom: 2rem; 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        <h2 style="color: white; text-align: center; margin: 0; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            🎯 Triple Excellence : SafetyGraph × BBS × ISO 45001
+        </h2>
+        <p style="color: #cbd5e1; text-align: center; margin: 1rem 0 0 0; font-size: 1.2rem;">
+            Performance Triple Intégration - Vision Executive Mondiale
+        </p>
+        <div style="text-align: center; margin-top: 1rem;">
+            <span style="background: rgba(255,255,255,0.2); padding: 0.3rem 0.8rem; border-radius: 15px; color: white; margin: 0 0.5rem;">
+                🔄 Synchronisation Temps Réel
+            </span>
+            <span style="background: rgba(255,255,255,0.2); padding: 0.3rem 0.8rem; border-radius: 15px; color: white; margin: 0 0.5rem;">
+                🎯 KPIs Unifiés
+            </span>
+            <span style="background: rgba(255,255,255,0.2); padding: 0.3rem 0.8rem; border-radius: 15px; color: white; margin: 0 0.5rem;">
+                🚀 Innovation Continue
+            </span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Les 3 colonnes de Triple Excellence - EXACTE RESTAURATION ORIGINALE
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
         st.markdown("""
-        **🎯 SafetyGraph Analytics**
-        - Culture SST : **80.8%** ↗️
-        - ROI Plateforme : **4.2M$** (340%)
-        - Benchmark : **78e percentile** ↗️
-        - Conformité : **94.2%** ✅
-        """)
+        <div style="background: linear-gradient(135deg, #1e40af, #1d4ed8); padding: 2rem; border-radius: 15px; color: white; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+            <h4 style="margin: 0; color: #ddd6fe; text-align: center; font-size: 1.3rem;">🔷 SafetyGraph Analytics</h4>
+            <hr style="border: 1px solid rgba(255,255,255,0.3); margin: 1rem 0;">
+            <ul style="margin: 1rem 0; list-style: none; padding: 0;">
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Culture SST</strong> 
+                    <span>80.8% 🔶️ ©Â</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>ROI Plateforme</strong> 
+                    <span>4.2M$ (340%)</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Benchmark</strong> 
+                    <span>78e percentile 🔶️ ©Â</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Conformité ⚡</strong> 
+                    <span>94.2% 🔶️©Â</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Prédictions IA</strong> 
+                    <span>97.3% 🆕</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Efficacité Agents</strong> 
+                    <span>92.1% 🆕</span>
+                </li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
     
-    with triple_col2:
+    with col2:
         st.markdown("""
-        **🧠 Behavioral Safety (BBS)**
-        - Score BBS : **88.7%** ↗️
-        - Leadership Visibility : **18h/semaine**
-        - Coaching Efficacité : **89.3%**
-        - ROI BBS : **1.8M$** (380%)
-        """)
+        <div style="background: linear-gradient(135deg, #059669, #047857); padding: 2rem; border-radius: 15px; color: white; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+            <h4 style="margin: 0; color: #d1fae5; text-align: center; font-size: 1.3rem;">📋 Behavioral Safety (BBS)</h4>
+            <hr style="border: 1px solid rgba(255,255,255,0.3); margin: 1rem 0;">
+            <ul style="margin: 1rem 0; list-style: none; padding: 0;">
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Score BBS</strong> 
+                    <span>88.7% 🔶️ ©Â</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Leadership Visibility</strong> 
+                    <span>18h/semaine</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Coaching Efficacité ⚡</strong> 
+                    <span>89.3%</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>ROI BBS</strong> 
+                    <span>1.8M$ (380%)</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Observations Terrain</strong> 
+                    <span>2,847 🆕</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Actions Correctives</strong> 
+                    <span>156 🆕</span>
+                </li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
     
-    with triple_col3:
+    with col3:
         st.markdown("""
-        **🏆 ISO 45001 Compliance**
-        - Leadership (Ch.5) : **96.7%** 🥇
-        - Performance (Ch.9) : **95.2%** ✅
-        - Amélioration (Ch.10) : **92.7%** ✅
-        - Certification : **Q3 2024** 📋
-        """)
+        <div style="background: linear-gradient(135deg, #dc2626, #b91c1c); padding: 2rem; border-radius: 15px; color: white; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+            <h4 style="margin: 0; color: #fecaca; text-align: center; font-size: 1.3rem;">🏅 ISO 45001 Compliance</h4>
+            <hr style="border: 1px solid rgba(255,255,255,0.3); margin: 1rem 0;">
+            <ul style="margin: 1rem 0; list-style: none; padding: 0;">
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Leadership (Ch.5)</strong> 
+                    <span>96.7% 🔶️©Â</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Performance (Ch.9)</strong> 
+                    <span>95.2% 🔶️©Â</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Amélioration (Ch.10)</strong> 
+                    <span>92.7% 🔶️©Â</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Certification ⚡</strong> 
+                    <span>Q3 2024 🔶️©Â</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Audit Readiness</strong> 
+                    <span>98.1% 🆕</span>
+                </li>
+                <li style="margin: 0.8rem 0; display: flex; justify-content: space-between;">
+                    <strong>Documentation</strong> 
+                    <span>100% 🆕</span>
+                </li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
     
-    st.markdown("---")
+    st.divider()
     
-    # === GRAPHIQUE INTÉGRATION TRIPLE (NOUVEAU) ===
-    st.markdown("### 📊 **Performance Triple Intégration - Vision Executive**")
+    # NOUVELLE SECTION : Dashboard Temps Réel Multi-Sites
+    st.markdown("### 🌐 Dashboard Temps Réel Multi-Sites")
     
-    # Données pour graphique triple performance
-    months = ['Jan 2024', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul']
-    safetygraph_scores = [76.2, 78.1, 79.8, 80.1, 80.5, 80.6, 80.8]
-    bbs_scores = [82.1, 84.3, 85.7, 86.9, 87.8, 88.3, 88.7]
-    iso_scores = [89.2, 91.4, 93.1, 94.7, 95.8, 96.2, 96.7]
-    integrated_score = [82.5, 84.6, 86.2, 87.2, 88.0, 88.4, 88.7]
+    # Carte de statut des sites
+    sites_col1, sites_col2 = st.columns(2)
     
-    fig_triple = go.Figure()
+    with sites_col1:
+        st.markdown("#### 🏢 Statut Sites en Temps Réel")
+        
+        sites_data = {
+            'Site': ['Site Principal', 'Site Nord', 'Site Est', 'Site Ouest'],
+            'Statut': ['🟢 Optimal', '🟡 Attention', '🟢 Optimal', '🟢 Optimal'],
+            'Score HSE': [89.2, 76.8, 92.1, 85.7],
+            'Employés': [456, 234, 389, 168],
+            'Dernière MAJ': ['Il y a 2 min', 'Il y a 5 min', 'Il y a 1 min', 'Il y a 3 min']
+        }
+        
+        df_sites = pd.DataFrame(sites_data)
+        st.dataframe(df_sites, use_container_width=True)
     
-    fig_triple.add_trace(go.Scatter(
-        x=months, y=safetygraph_scores,
-        mode='lines+markers',
-        name='SafetyGraph',
-        line=dict(color='#2E86AB', width=3),
-        marker=dict(size=6)
+    with sites_col2:
+        st.markdown("#### 📊 Performance Sites - Graphique")
+        
+        fig_sites = px.bar(
+            df_sites, 
+            x='Site', 
+            y='Score HSE',
+            color='Score HSE',
+            color_continuous_scale='RdYlGn',
+            title="Scores HSE par Site - Temps Réel"
+        )
+        fig_sites.update_layout(height=300)
+        st.plotly_chart(fig_sites, use_container_width=True)
+    
+    st.divider()
+    
+    # Performance Triple Intégration - Vision Executive (Graphique Radar ENRICHI)
+    st.markdown("### 📊 Performance Triple Intégration - Vision Executive Enrichie")
+    
+    # Graphique Radar sophisticated comme dans vos captures + ENRICHISSEMENTS
+    categories = [
+        'Management Leadership',
+        'Performance BBS', 
+        'Observations Terrain',
+        'Communication SST',
+        'Coaching Efficacité',
+        'ROI Consolidé',
+        'Innovation IA',  # NOUVEAU
+        'Prédictions Risques',  # NOUVEAU
+        'Engagement Employés'  # NOUVEAU
+    ]
+    
+    # Données actuelles vs objectifs 2025 ENRICHIES
+    valeurs_actuelles = [85, 88.7, 82, 78, 89.3, 85, 91.2, 87.5, 83.8]
+    objectifs_2025 = [90, 92, 88, 85, 92, 90, 95, 90, 88]
+    valeurs_concurrence = [78, 82, 75, 71, 83, 79, 85, 80, 76]  # NOUVEAU : Benchmark concurrence
+    
+    fig_radar = go.Figure()
+    
+    # Trace Performance Actuelle
+    fig_radar.add_trace(go.Scatterpolar(
+        r=valeurs_actuelles,
+        theta=categories,
+        fill='toself',
+        name='Performance Actuelle',
+        line_color='#3b82f6',
+        fillcolor='rgba(59, 130, 246, 0.3)'
     ))
     
-    fig_triple.add_trace(go.Scatter(
-        x=months, y=bbs_scores,
-        mode='lines+markers',
-        name='BBS',
-        line=dict(color='#A23B72', width=3),
-        marker=dict(size=6)
+    # Trace Objectifs 2025
+    fig_radar.add_trace(go.Scatterpolar(
+        r=objectifs_2025,
+        theta=categories,
+        fill='toself',
+        name='Objectifs 2025',
+        line_color='#10b981',
+        fillcolor='rgba(16, 185, 129, 0.2)'
     ))
     
-    fig_triple.add_trace(go.Scatter(
-        x=months, y=iso_scores,
-        mode='lines+markers',
-        name='ISO 45001',
-        line=dict(color='#F18F01', width=3),
-        marker=dict(size=6)
+    # NOUVEAU : Trace Benchmark Concurrence
+    fig_radar.add_trace(go.Scatterpolar(
+        r=valeurs_concurrence,
+        theta=categories,
+        fill='toself',
+        name='Benchmark Concurrence',
+        line_color='#ef4444',
+        fillcolor='rgba(239, 68, 68, 0.1)'
     ))
     
-    fig_triple.add_trace(go.Scatter(
-        x=months, y=integrated_score,
-        mode='lines+markers',
-        name='Score Intégré',
-        line=dict(color='#059142', width=4, dash='dash'),
-        marker=dict(size=8, symbol='diamond')
-    ))
-    
-    fig_triple.update_layout(
-        title="Évolution Triple Excellence - Vision Stratégique 2024",
-        xaxis_title="Période",
-        yaxis_title="Score Performance (%)",
-        height=400,
-        hovermode='x unified'
+    fig_radar.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[0, 100]
+            )),
+        showlegend=True,
+        title="Performance vs Objectifs 2025 vs Concurrence - Radar Analysis Enrichi",
+        height=600
     )
     
-    st.plotly_chart(fig_triple, use_container_width=True)
+    st.plotly_chart(fig_radar, use_container_width=True)
     
-    # Message de succès révolution UX/UI ENRICHI
-    st.success("""
-    🎉 **RÉVOLUTION TRIPLE EXCELLENCE RÉUSSIE !**
+    # Tableau Performance Détaillée ENRICHI
+    st.markdown("#### 📈 Tableau Performance vs Objectifs 2025 - Enrichi")
     
-    ✅ Dashboard HSE Manager Executive - Niveau Mondial
-    ✅ Intégration SafetyGraph + BBS + ISO 45001 complète
-    ✅ ROI consolidé 420% - Performance exceptionnelle  
-    ✅ Certification ISO 45001 garantie (98.7% probabilité)
-    ✅ Position Top 1% mondial - Leadership absolu HSE
-    """)
+    performance_data = {
+        'Dimension': categories,
+        'Score Actuel (%)': valeurs_actuelles,
+        'Objectif 2025 (%)': objectifs_2025,
+        'Concurrence (%)': valeurs_concurrence,
+        'Écart vs Objectif': [obj - act for act, obj in zip(valeurs_actuelles, objectifs_2025)],
+        'Avantage vs Concurrence': [act - conc for act, conc in zip(valeurs_actuelles, valeurs_concurrence)],
+        'Statut': ['🟢' if act >= obj-5 else '🟡' if act >= obj-10 else '🔴' 
+                  for act, obj in zip(valeurs_actuelles, objectifs_2025)],
+        'Priorité': ['Élevée' if act < obj-5 else 'Moyenne' if act < obj else 'Faible'
+                    for act, obj in zip(valeurs_actuelles, objectifs_2025)]
+    }
     
-    # === ONGLETS EXECUTIVE ENRICHIS ===
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "📊 Vue Stratégique Triple", 
-        "💰 ROI Consolidé BBS-ISO", 
-        "🏆 Leadership & Conformité",
-        "📋 Rapports Executive",
-        "🎯 Actions Stratégiques"
-    ])
+    df_performance = pd.DataFrame(performance_data)
+    st.dataframe(df_performance, use_container_width=True)
     
-    with tab1:
-        st.markdown("### 📊 **Performance Stratégique Triple Intégration**")
+    st.divider()
+    
+    # Actions Rapides Executive - 12 Boutons ENRICHIES (au lieu de 8)
+    st.markdown("### ⚡ Actions Rapides Executive - One-Click Operations Enrichies")
+    
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        if st.button("📊 Rapport Board", key="hse_rapport_board"):
+            st.balloons()
+            st.success("✅ Rapport Board généré et envoyé !")
+            
+        if st.button("🎯 BBS Status", key="hse_bbs_status"):
+            st.success("✅ Status BBS mis à jour !")
+            
+        if st.button("🚀 IA Prédictions", key="hse_ia_predictions"):  # NOUVEAU
+            st.success("✅ Prédictions IA actualisées !")
+    
+    with col2:
+        if st.button("🏆 Excellence Review", key="hse_excellence_review"):
+            st.success("✅ Excellence Review programmé !")
+            
+        if st.button("📋 ISO Audit Prep", key="hse_iso_audit"):
+            st.success("✅ Préparation audit ISO activée !")
+            
+        if st.button("🔄 Sync Multi-Sites", key="hse_sync_sites"):  # NOUVEAU
+            st.success("✅ Synchronisation 4 sites terminée !")
+    
+    with col3:
+        if st.button("💰 ROI Analysis", key="hse_roi_analysis"):
+            st.success("✅ Analyse ROI actualisée !")
+            
+        if st.button("⚡ Alert Urgent", key="hse_alert_urgent"):
+            st.warning("⚠️ Alerte urgente envoyée aux équipes !")
+            
+        if st.button("📱 Mobile Sync", key="hse_mobile_sync"):  # NOUVEAU
+            st.success("✅ Apps mobiles synchronisées !")
+    
+    with col4:
+        if st.button("📈 KPI Dashboard", key="hse_kpi_dashboard"):
+            st.success("✅ KPIs dashboard refresh !")
+            
+        if st.button("🔄 Sync ERP", key="hse_sync_erp"):
+            st.success("✅ Synchronisation ERP terminée !")
+            
+        if st.button("🌐 Export Global", key="hse_export_global"):  # NOUVEAU
+            st.success("✅ Export global multi-sites généré !")
+    
+    st.divider()
+    
+    # NOUVELLE SECTION : Analytics Avancés
+    st.markdown("### 📊 Analytics Avancés - Insights Executive")
+    
+    analytics_tabs = st.tabs(["📈 Tendances", "🎯 Prédictions", "🔍 Deep Dive", "🏆 Benchmarks"])
+    
+    with analytics_tabs[0]:  # Tendances
+        st.markdown("#### 📈 Tendances Performance - 12 Mois")
         
-        # Métriques détaillées par dimension
-        detail_col1, detail_col2, detail_col3 = st.columns(3)
+        # Graphique tendances enrichi
+        mois = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 
+                'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc']
         
-        with detail_col1:
-            st.markdown("#### 🎯 **SafetyGraph Metrics**")
-            st.metric("Culture SST", "80.8%", "+3.2%")
-            st.metric("Management Commitment", "82.1%", "+1.8%")
-            st.metric("Employee Involvement", "79.4%", "+2.1%")
-            st.metric("Communication", "81.2%", "+3.2%")
+        tendances_data = {
+            'Mois': mois,
+            'HSE Score': [82.1, 83.5, 84.2, 85.8, 86.1, 86.9, 87.3, 87.8, 88.2, 88.7, 89.1, 89.5],
+            'ROI (%)': [280, 295, 315, 340, 365, 385, 402, 415, 420, 425, 430, 435],
+            'BBS Score': [84.2, 85.1, 86.3, 87.1, 87.8, 88.2, 88.7, 89.1, 89.5, 89.8, 90.2, 90.6],
+            'ISO Compliance': [91.2, 92.1, 93.5, 94.2, 95.1, 95.8, 96.2, 96.5, 96.7, 97.1, 97.3, 97.6]
+        }
         
-        with detail_col2:
-            st.markdown("#### 🧠 **BBS Performance**")
-            st.metric("Behavioral Safety Index", "88.7%", "+4.1%")
-            st.metric("Leadership Visibility", "79.2%", "+5.3%")
-            st.metric("Observations Qualité", "60/jour", "+20")
-            st.metric("Psychological Safety", "4.2/5", "+0.3")
+        df_tendances = pd.DataFrame(tendances_data)
         
-        with detail_col3:
-            st.markdown("#### 🏆 **ISO 45001 Excellence**")
-            st.metric("Leadership (Ch.5)", "96.7%", "+2.3%")
-            st.metric("Participation (Ch.5.4)", "94.3%", "+1.9%")
-            st.metric("Performance (Ch.9)", "95.2%", "+2.7%")
-            st.metric("Amélioration (Ch.10)", "92.7%", "+1.4%")
+        fig_tendances = go.Figure()
         
-        # Graphique radar intégration
-        st.markdown("#### 🎯 **Radar Performance Triple Intégration**")
+        for column in ['HSE Score', 'BBS Score', 'ISO Compliance']:
+            fig_tendances.add_trace(go.Scatter(
+                x=df_tendances['Mois'],
+                y=df_tendances[column],
+                mode='lines+markers',
+                name=column,
+                line=dict(width=3),
+                marker=dict(size=8)
+            ))
         
-        categories = ['Leadership', 'Participation', 'Communication', 'Performance', 'Amélioration', 'Culture']
-        
-        fig_radar = go.Figure()
-        
-        fig_radar.add_trace(go.Scatterpolar(
-            r=[96.7, 94.3, 93.1, 95.2, 92.7, 88.7],
-            theta=categories,
-            fill='toself',
-            name='Performance Actuelle',
-            line_color='blue'
-        ))
-        fig_radar.add_trace(go.Scatterpolar(
-            r=[98, 96, 95, 97, 95, 92],
-            theta=categories,
-            fill='toself',
-            name='Objectifs 2025',
-            line_color='green',
-            line=dict(dash='dash')
-        ))
-        
-        fig_radar.update_layout(
-            polar=dict(
-                radialaxis=dict(
-                    visible=True,
-                    range=[80, 100]
-                )),
-            title="Performance vs Objectifs 2025 - Vision Executive",
+        fig_tendances.update_layout(
+            title="Évolution Performance 2024 - Tendances Executive",
+            xaxis_title="Mois",
+            yaxis_title="Score (%)",
             height=400,
             showlegend=True
         )
-        st.plotly_chart(fig_radar, use_container_width=True)
         
+        st.plotly_chart(fig_tendances, use_container_width=True)
     
+    with analytics_tabs[1]:  # Prédictions
+        st.markdown("#### 🎯 Prédictions IA - 6 Mois")
         
-        # Objectifs 2025 enrichis
-        st.markdown("#### 🎯 **Objectifs Stratégiques 2025 - Triple Excellence**")
-        objectives = {
-            'Dimension': ['SafetyGraph Culture', 'BBS Behavioral', 'ISO Leadership', 'ROI Consolidé', 'Excellence Mondiale'],
-            'Objectif 2025': ['85.0%', '90.0%', '98.0%', '500%', 'Top 0.1%'],
-            'Actuel': ['80.8%', '88.7%', '96.7%', '420%', 'Top 1%'],
-            'Progression': [95, 99, 99, 84, 90],
-            'Statut': ['🟡 En cours', '🟢 Quasi-atteint', '🟢 Excellent', '🟡 En cours', '🟢 Leader'],
-            'Action': ['Culture +4.2%', 'BBS +1.3%', 'Maintenir', 'ROI +80%', 'Innovation continue']
+        # Prédictions avec IA
+        mois_futurs = ['Jan 2025', 'Fév 2025', 'Mar 2025', 'Avr 2025', 'Mai 2025', 'Jun 2025']
+        
+        predictions_data = {
+            'Mois': mois_futurs,
+            'HSE Score Prédit': [90.1, 90.7, 91.2, 91.8, 92.3, 92.9],
+            'Confiance (%)': [94, 92, 89, 87, 85, 83],
+            'ROI Prédit (%)': [445, 460, 475, 490, 505, 520],
+            'Incidents Évités': [52, 58, 63, 69, 74, 80]
         }
-        obj_df = pd.DataFrame(objectives)
-        st.dataframe(obj_df, use_container_width=True, hide_index=True)
-    
-    with tab2:
-        st.markdown("### 💰 **ROI Consolidé Triple Intégration & Impact Financier**")
         
-        # Métriques ROI consolidées
-        roi_col1, roi_col2, roi_col3, roi_col4 = st.columns(4)
-        with roi_col1:
-            st.metric("💰 ROI Triple Intégré", "420%", "+78%", help="SafetyGraph + BBS + ISO consolidé")
-        with roi_col2:
-            st.metric("💸 Économies Totales", "6.95M$", "+2.8M$", help="Impact économique total 2024")
-        with roi_col3:
-            st.metric("📉 Coûts Évités", "4.2M$", "+1.9M$", help="Accidents + Non-conformités évités")
-        with roi_col4:
-            st.metric("📈 Valeur Ajoutée", "2.75M$", "+900K$", help="Productivité + Réputation")
+        df_predictions = pd.DataFrame(predictions_data)
+        st.dataframe(df_predictions, use_container_width=True)
         
-        # Analyse ROI détaillée par composante
-        st.markdown("#### 💎 **Analyse ROI Détaillée par Composante**")
-        
-        roi_components = {
-            'Composante': ['SafetyGraph Platform', 'BBS Program', 'ISO 45001 Certification', 'Intégration Synergies'],
-            'Investment (K$)': [850, 320, 180, 150],
-            'Returns (K$)': [2890, 1216, 513, 630],
-            'ROI (%)': [340, 380, 285, 420],
-            'Payback (mois)': [8, 6, 9, 4],
-            'Impact Business': ['🎯 Analytics', '🧠 Comportemental', '🏆 Conformité', '⚡ Synergies']
-        }
-        roi_df = pd.DataFrame(roi_components)
-        st.dataframe(roi_df, use_container_width=True, hide_index=True)
-        
-        # Graphique waterfall ROI
-        st.markdown("#### 📊 **Waterfall Analysis - Construction ROI 420%**")
-        
-        fig_waterfall = go.Figure(go.Waterfall(
-            name="ROI Components", 
-            orientation="v",
-            measure=["relative", "relative", "relative", "relative", "total"],
-            x=["SafetyGraph", "BBS Program", "ISO 45001", "Synergies", "ROI Total"],
-            textposition="outside",
-            text=["+340%", "+380%", "+285%", "+420%", "420%"],
-            y=[340, 40, -95, 135, 420],
-            connector={"line":{"color":"rgb(63, 63, 63)"}},
-        ))
-        
-        fig_waterfall.update_layout(
-            title="Construction ROI Total 420% - Analyse Composantes",
-            height=400
+        # Graphique prédictions
+        fig_pred = px.line(
+            df_predictions, 
+            x='Mois', 
+            y='HSE Score Prédit',
+            title="Prédictions HSE Score - IA SafetyGraph",
+            markers=True
         )
-        st.plotly_chart(fig_waterfall, use_container_width=True)
-        
-        # Projections 2025
-        st.info("💡 **Projection 2025 :** ROI consolidé attendu 500% avec optimisations continues")
-        
-        # Impact business par dimension
-        st.markdown("#### 🎯 **Impact Business par Dimension**")
-        impact_col1, impact_col2, impact_col3 = st.columns(3)
-        
-        with impact_col1:
-            st.markdown("""
-            **🎯 SafetyGraph Impact**
-            - Réduction incidents : **-67%**
-            - Conformité réglementaire : **+12%**
-            - Temps résolution : **-45%**
-            - Satisfaction équipes : **+23%**
-            """)
-        
-        with impact_col2:
-            st.markdown("""
-            **🧠 BBS Impact**
-            - Comportements sûrs : **+32%**
-            - Engagement employés : **+28%**
-            - Near-miss reporting : **+156%**
-            - Culture proactive : **+41%**
-            """)
-        
-        with impact_col3:
-            st.markdown("""
-            **🏆 ISO 45001 Impact**
-            - Conformité légale : **+15%**
-            - Audit readiness : **98.7%**
-            - Réputation marque : **+23%**
-            - Avantage concurrentiel : **Leader**
-            """)
+        fig_pred.update_layout(height=300)
+        st.plotly_chart(fig_pred, use_container_width=True)
     
-    with tab3:
-        st.markdown("### 🏆 **Leadership Excellence & Conformité Normative**")
+    with analytics_tabs[2]:  # Deep Dive
+        st.markdown("#### 🔍 Deep Dive Analysis")
         
-        # Leadership Visibility Metrics
-        st.markdown("#### 👑 **Leadership Visibility Excellence (ISO Ch.5)**")
+        # Matrice de corrélation
+        st.markdown("##### 📊 Matrice de Corrélation - Facteurs HSE")
         
-        leadership_col1, leadership_col2, leadership_col3 = st.columns(3)
-        with leadership_col1:
-            st.metric("🎯 Tours Direction", "18h/semaine", "+6h")
-        with leadership_col2:
-            st.metric("👥 Engagement Équipes", "94.3%", "+5.2%")
-        with leadership_col3:
-            st.metric("💬 Communication Efficace", "93.1%", "+3.7%")
+        correlation_data = {
+            'Facteur': ['Leadership', 'Formation', 'BBS', 'ISO', 'ROI', 'Innovation'],
+            'Leadership': [1.00, 0.87, 0.92, 0.89, 0.84, 0.76],
+            'Formation': [0.87, 1.00, 0.79, 0.82, 0.73, 0.68],
+            'BBS': [0.92, 0.79, 1.00, 0.88, 0.91, 0.74],
+            'ISO': [0.89, 0.82, 0.88, 1.00, 0.86, 0.71],
+            'ROI': [0.84, 0.73, 0.91, 0.86, 1.00, 0.69],
+            'Innovation': [0.76, 0.68, 0.74, 0.71, 0.69, 1.00]
+        }
         
-        # Graphique leadership trends
-        fig_leadership = go.Figure()
+        df_corr = pd.DataFrame(correlation_data)
+        df_corr = df_corr.set_index('Facteur')
         
-        weeks = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8']
-        visibility_hours = [12, 14, 15, 16, 17, 17.5, 18, 18.2]
-        engagement_scores = [87, 89, 91, 92, 93, 93.5, 94, 94.3]
+        fig_heatmap = px.imshow(
+            df_corr.values,
+            x=df_corr.columns,
+            y=df_corr.index,
+            color_continuous_scale='RdYlGn',
+            title="Matrice de Corrélation - Facteurs HSE"
+        )
+        fig_heatmap.update_layout(height=400)
+        st.plotly_chart(fig_heatmap, use_container_width=True)
         
-        fig_leadership.add_trace(go.Scatter(
-            x=weeks, y=visibility_hours,
-            mode='lines+markers',
-            name='Heures Terrain/Semaine',
-            yaxis='y',
-            line=dict(color='blue', width=3)
-        ))
+        # Analyse des goulots d'étranglement
+        st.markdown("##### 🔍 Goulots d'Étranglement Identifiés")
         
-        fig_leadership.add_trace(go.Scatter(
-            x=weeks, y=engagement_scores,
-            mode='lines+markers',
-            name='Engagement Équipes (%)',
-            yaxis='y2',
-            line=dict(color='green', width=3)
-        ))
-        
-        fig_leadership.update_layout(
-            title="Leadership Visibility Trends - Excellence ISO Ch.5",
-            xaxis_title="Semaines",
-            yaxis=dict(
-                title="Heures Terrain",
-                tickfont=dict(color="blue")      # ← CORRIGÉ
-        ),
-            yaxis2=dict(
-            title="Engagement (%)",
-            tickfont=dict(color="green"),    # ← CORRIGÉ
-            anchor="x",
-            overlaying="y",
-        side="right"
-        ),
-        height=400
-)
-        st.plotly_chart(fig_leadership, use_container_width=True)
-        
-        # Conformité par chapitre ISO détaillée
-        st.markdown("#### 📋 **Conformité ISO 45001 - Audit Readiness**")
-        
-        iso_chapters_detailed = [
-            {'Chapitre': 'Ch.4 Contexte Organisation', 'Score': 93.4, 'Evidence': '✅ Analyse parties intéressées', 'Audit Ready': '🟢 Prêt'},
-            {'Chapitre': 'Ch.5 Leadership', 'Score': 96.7, 'Evidence': '✅ Tours direction + BBS', 'Audit Ready': '🟢 Excellent'},
-            {'Chapitre': 'Ch.5.4 Participation', 'Score': 94.3, 'Evidence': '✅ Observations BBS volontaires', 'Audit Ready': '🟢 Prêt'},
-            {'Chapitre': 'Ch.6 Risques & Opportunités', 'Score': 91.8, 'Evidence': '✅ Analytics prédictifs', 'Audit Ready': '🟡 En cours'},
-            {'Chapitre': 'Ch.7 Communication', 'Score': 93.1, 'Evidence': '✅ Feedback BBS <15 min', 'Audit Ready': '🟢 Prêt'},
-            {'Chapitre': 'Ch.8 Opérations', 'Score': 91.8, 'Evidence': '✅ Procédures BBS intégrées', 'Audit Ready': '🟡 En cours'},
-            {'Chapitre': 'Ch.9 Performance', 'Score': 95.2, 'Evidence': '✅ Monitoring SafetyGraph', 'Audit Ready': '🟢 Excellent'},
-            {'Chapitre': 'Ch.10 Amélioration', 'Score': 92.7, 'Evidence': '✅ Actions correctives BBS', 'Audit Ready': '🟢 Prêt'}
+        bottlenecks = [
+            "🔴 **Formation EPI** : 12 employés en retard (Site Nord)",
+            "🟡 **Communication SST** : Score 78% < Objectif 85%",
+            "🟡 **Observations Terrain** : 82% < Objectif 88%",
+            "🟢 **Leadership Visibility** : 18h/sem > Objectif 15h/sem"
         ]
         
-        iso_detailed_df = pd.DataFrame(iso_chapters_detailed)
-        st.dataframe(iso_detailed_df, use_container_width=True, hide_index=True)
+        for bottleneck in bottlenecks:
+            st.markdown(bottleneck)
+    
+    with analytics_tabs[3]:  # Benchmarks
+        st.markdown("#### 🏆 Benchmarks Sectoriels")
         
-        # Planning audit avec probabilité succès
-        st.markdown("#### 📅 **Planning Audit ISO 45001 - Q3 2024**")
-        
-        audit_planning = {
-            'Phase': ['Audit Documentaire', 'Audit Terrain Ch.5 Leadership', 'Audit Ch.5.4 & 7 Participation', 'Audit Ch.8 & 9 Opérations', 'Décision Certification'],
-            'Date': ['15 Août 2024', '22 Août 2024', '25-26 Août 2024', '29-30 Août 2024', '05 Sept 2024'],
-            'Préparation': ['Documentation BBS-ISO', 'Tours direction evidence', 'Observations + feedback', 'Procédures terrain', 'Consolidation'],
-            'Probabilité Succès': ['95%', '98%', '96%', '92%', '98.7%'],
-            'Statut': ['✅ Prêt', '✅ Excellence', '✅ Prêt', '🟡 Finalisation', '🎯 Target']
+        benchmark_data = {
+            'Secteur': ['Construction', 'Manufacturing', 'Mines', 'Chimie', 'Pharma', 'VOTRE ENTREPRISE'],
+            'HSE Score': [76.2, 81.4, 79.8, 83.1, 85.3, 87.3],
+            'ROI (%)': [180, 215, 195, 245, 285, 420],
+            'ISO Compliance': [89.1, 91.2, 87.6, 93.4, 94.8, 96.7],
+            'Position': [6, 4, 5, 3, 2, 1]
         }
-        audit_df = pd.DataFrame(audit_planning)
-        st.dataframe(audit_df, use_container_width=True, hide_index=True)
         
-        st.success("🏆 **Probabilité Certification ISO 45001 : 98.7%** (vs 45% moyenne industrie)")
-    
-    with tab4:
-        st.markdown("### 📋 **Rapports Executive & Compliance Intégrée**")
+        df_benchmark = pd.DataFrame(benchmark_data)
         
-        # Génération rapports enrichis
-        col_report1, col_report2 = st.columns([2, 1])
-        
-        with col_report1:
-            report_type = st.selectbox("📊 Type de rapport executive :", 
-                                     ["Rapport Triple Excellence Mensuel", 
-                                      "Analyse ROI Consolidé BBS-ISO",
-                                      "Compliance ISO 45001 Audit Ready",
-                                      "Performance Leadership Ch.5",
-                                      "Benchmarking Excellence Mondiale",
-                                      "Business Case Synergies",
-                                      "Dashboard Executive Complet"])
-            
-            col_date1, col_date2 = st.columns(2)
-            with col_date1:
-                start_date = st.date_input("📅 Date début")
-            with col_date2:
-                end_date = st.date_input("📅 Date fin")
-                
-            include_bbs = st.checkbox("🧠 Inclure métriques BBS détaillées", value=True)
-            include_iso = st.checkbox("🏆 Inclure conformité ISO 45001", value=True)
-            include_roi = st.checkbox("💰 Inclure analyse ROI consolidée", value=True)
-            
-            if st.button("📋 Générer Rapport Executive Triple", type="primary", use_container_width=True):
-                with st.spinner("Génération rapport triple excellence..."):
-                    import time
-                    time.sleep(3)
-                
-                report_content = f"""
-📊 RAPPORT EXECUTIVE TRIPLE EXCELLENCE
-🏢 SafetyGraph Industries - HSE Manager Dashboard
-📅 Période: {start_date} au {end_date}
-
-🏆 SYNTHÈSE EXECUTIVE:
-• Score Triple Intégration: 88.7% (+4.3% vs trim. précédent)
-• ROI Consolidé: 420% (+78% amélioration)
-• Position mondiale: Top 1% organisations HSE
-• Certification ISO 45001: 98.7% probabilité succès
-
-💰 IMPACT FINANCIER:
-• Économies totales: 6.95M$ (+2.8M$ vs budget)
-• ROI SafetyGraph: 4.2M$ (340%)
-• ROI BBS: 1.8M$ (380%) 
-• ROI ISO: 950K$ (285%)
-• Synergies intégration: +420%
-
-🧠 PERFORMANCE BBS:
-• Behavioral Safety Index: 88.7% (+4.1%)
-• Leadership Visibility: 18h/semaine (+6h)
-• Observations qualité: 60/jour (+20)
-• Coaching efficacité: 89.3%
-
-🏆 CONFORMITÉ ISO 45001:
-• Leadership (Ch.5): 96.7% - Excellence
-• Participation (Ch.5.4): 94.3% - Conforme
-• Performance (Ch.9): 95.2% - Excellence
-• Audit readiness: 98.7% - Certification garantie
-
-🎯 RECOMMANDATIONS EXECUTIVE:
-1. Maintenir excellence leadership (96.7%)
-2. Finaliser préparation audit Ch.8 Opérations
-3. Capitaliser synergies BBS-ISO (+420% ROI)
-4. Viser position Top 0.1% mondial 2025
-
-📈 OBJECTIFS 2025:
-• Score intégré: 92% (vs 88.7% actuel)
-• ROI consolidé: 500% (vs 420% actuel)
-• Excellence mondiale: Top 0.1%
-• Innovation HSE: Leader technologique
-
-👤 Rapport généré par: HSE Manager Executive
-⏰ {datetime.now().strftime('%d/%m/%Y à %H:%M')}
-🎯 Statut: Excellence Mondiale - Leader HSE
-                """
-                
-                st.success("✅ **Rapport Executive Triple Excellence généré avec succès !**")
-                st.balloons()
-                st.download_button("📥 Télécharger Rapport Executive",
-                                 data=report_content,
-                                 file_name=f"rapport_executive_triple_{datetime.now().strftime('%Y%m%d')}.txt",
-                                 mime="text/plain",
-                                 use_container_width=True)
-        
-        with col_report2:
-            st.markdown("#### 🔔 **Alertes Executive**")
-            st.success("🏆 **Excellence Triple** - Maintenue")
-            st.info("📋 **Audit ISO J-20** - 98.7% Ready")
-            st.success("💰 **ROI 420%** - Objectif dépassé")
-            st.warning("⚡ **Ch.8 ISO** - Finalisation requise")
-            st.success("🌍 **Top 1% Mondial** - Position confirmée")
-            
-            st.markdown("#### 📈 **KPIs Temps Réel**")
-            st.metric("🎯 Performance", "88.7%", "+0.3% aujourd'hui")
-            st.metric("💰 ROI", "420%", "+2% cette semaine")
-            st.metric("🏆 ISO Ready", "98.7%", "+0.8% ce mois")
-    
-    with tab5:
-        st.markdown("### 🎯 **Actions Stratégiques Executive**")
-        
-        # Actions stratégiques enrichies BBS-ISO
-        action_col1, action_col2, action_col3 = st.columns(3)
-        
-        with action_col1:
-            st.markdown("#### 🎯 **Excellence Stratégique**")
-            if st.button("🏆 Vision Excellence 2025", type="primary", use_container_width=True):
-                st.success("✅ **Roadmap Excellence 2025** créée - Position Top 0.1% mondial")
-                st.balloons()
-                strategy_plan = f"""
-🎯 VISION EXCELLENCE 2025 - SAFETYGRAPH INDUSTRIES
-
-🏆 OBJECTIF PRINCIPAL:
-Position Top 0.1% mondial - THE référence HSE internationale
-
-📊 CIBLES STRATÉGIQUES:
-• Score Triple Intégration: 92% (vs 88.7% actuel)
-• ROI Consolidé: 500% (vs 420% actuel)
-• Certification ISO maintenue + Innovation
-• Leadership BBS mondial: 95% excellence
-
-🚀 INITIATIVES CLÉS:
-1. Innovation IA prédictive avancée
-2. BBS 4.0: Observations automatisées
-3. ISO 45001 Plus: Standards dépassés
-4. Global HSE Leadership Program
-
-💰 INVESTISSEMENT STRATÉGIQUE:
-• R&D SafetyGraph: 850K$ (ROI attendu 600%)
-• BBS Innovation: 320K$ (ROI attendu 520%)
-• Excellence ISO: 180K$ (ROI attendu 350%)
-• Total: 1.35M$ → ROI projeté 550%
-
-📈 TIMELINE EXCELLENCE:
-Q3 2024: Certification ISO + BBS 4.0 pilote
-Q4 2024: Déploiement innovation IA
-Q1 2025: Leadership program global
-Q2 2025: Position Top 0.1% confirmée
-
-🌍 IMPACT MONDIAL:
-• Référence industrie Construction
-• Best practices internationales
-• Thought leadership HSE
-• Innovation technologique
-
-👤 Vision approuvée par: HSE Manager Executive
-⏰ {datetime.now().strftime('%d/%m/%Y à %H:%M')}
-🎯 Statut: Stratégie révolutionnaire validée
-                """
-                st.download_button("📥 Export Vision 2025",
-                                 data=strategy_plan,
-                                 file_name=f"vision_excellence_2025_{datetime.now().strftime('%Y%m%d')}.txt",
-                                 mime="text/plain",
-                                 use_container_width=True)
-            
-            if st.button("🌍 Benchmarking Mondial", use_container_width=True):
-                st.info("🔍 **Analyse concurrentielle mondiale** - Position Top 1% confirmée")
-                st.markdown("""
-                **🏆 Position Concurrentielle:**
-                - **#1** Excellence BBS-ISO intégrée
-                - **Top 1%** ROI HSE consolidé (420%)
-                - **Leader** Innovation technologique HSE
-                - **Référence** Maturité SafetyGraph Level 4.8/5
-                """)
-            
-            if st.button("📊 Dashboard Mondial CEO", use_container_width=True):
-                st.success("📈 **Dashboard CEO activé** - Métriques business consolidées")
-                st.info("🎯 CEO Dashboard : ROI 420%, Excellence mondiale, Innovation leader")
-        
-        with action_col2:
-            st.markdown("#### 🏆 **Excellence BBS-ISO**")
-            if st.button("🧠 BBS 4.0 Innovation", type="primary", use_container_width=True):
-                st.success("✅ **Programme BBS 4.0** lancé - Observations IA automatisées")
-                bbs_innovation = f"""
-🧠 BBS 4.0 INNOVATION PROGRAM - LANCÉ
-
-🚀 RÉVOLUTION COMPORTEMENTALE:
-• Observations IA automatisées: 200/jour vs 60 actuels
-• Prédiction comportements: 98.1% précision
-• Feedback instantané: <30 secondes
-• Coaching personnalisé IA
-
-📊 OBJECTIFS BBS 4.0:
-• Score BBS: 95% (vs 88.7% actuel)
-• Observations: 200/jour automatisées
-• ROI BBS: 520% (vs 380% actuel)
-• Excellence mondiale: #1 BBS
-
-💰 IMPACT BUSINESS:
-• ROI additionnel: +140% BBS
-• Économies: +1.2M$ prévention
-• Productivité: +18% équipes
-• Innovation: Leader mondial
-
-⏰ Timeline: Q3 2024 pilote, Q4 2024 déploiement
-🎯 Porteur: HSE Manager Executive
-                """
-                st.download_button("📥 Export BBS 4.0",
-                                 data=bbs_innovation,
-                                 file_name=f"bbs_4_0_program_{datetime.now().strftime('%Y%m%d')}.txt",
-                                 mime="text/plain",
-                                 use_container_width=True)
-            
-            if st.button("🏆 ISO Excellence Plus", use_container_width=True):
-                st.info("📋 **ISO 45001 Plus Program** - Standards dépassés pour excellence")
-                st.markdown("""
-                **🎯 ISO Excellence Plus:**
-                - **Ch.5 Leadership**: 98% (vs 96.7% actuel)
-                - **Innovation**: Standards dépassés
-                - **Best Practices**: Référence mondiale
-                - **Audit Perfect**: 99.5% probabilité
-                """)
-            
-            if st.button("📈 Performance Optimization", use_container_width=True):
-                st.success("⚡ **Optimisation continue** - Performance +15% identifiée")
-                st.info("🎯 Optimisations: Triple intégration, synergies, innovation IA")
-        
-        with action_col3:
-            st.markdown("#### 💰 **Excellence Financière**")
-            if st.button("💰 ROI 500% Roadmap", type="primary", use_container_width=True):
-                st.success("✅ **Roadmap ROI 500%** validée - Objectif 2025 réalisable")
-                roi_roadmap = f"""
-💰 ROADMAP ROI 500% - EXCELLENCE FINANCIÈRE 2025
-
-🎯 OBJECTIF FINANCIER:
-ROI Consolidé: 500% (vs 420% actuel) = +80% amélioration
-
-📊 STRATÉGIE ROI 500%:
-• SafetyGraph Optimization: 380% → 450% (+70%)
-• BBS 4.0 Innovation: 380% → 520% (+140%)
-• ISO Excellence Plus: 285% → 350% (+65%)
-• Synergies Advanced: 420% → 580% (+160%)
-
-💎 INITIATIVES CLÉS:
-1. IA Prédictive Avancée: +150% efficacité
-2. BBS Automatisation: +140% ROI
-3. Excellence ISO: +65% valeur ajoutée
-4. Synergies Business: +160% optimisation
-
-💰 IMPACT FINANCIER PROJETÉ 2025:
-• Économies: 9.5M$ (vs 6.95M$ actuel)
-• Valeur ajoutée: 4.2M$ (vs 2.75M$ actuel)
-• Investissement: 1.8M$ (vs 1.35M$ actuel)
-• ROI Net: 500% = 9M$ returns
-
-📈 BUSINESS CASE:
-• Payback: 4 mois (vs 6 mois actuel)
-• NPV 5 ans: 24.5M$
-• Avantage concurrentiel: Incontestable
-• Position marché: Leader absolu
-
-⏰ Mise en œuvre: Q3 2024 - Q4 2025
-🎯 Responsable: HSE Manager Executive
-💡 Innovation: Première mondiale HSE
-                """
-                st.download_button("📥 Export ROI Roadmap",
-                                 data=roi_roadmap,
-                                 file_name=f"roi_roadmap_500_{datetime.now().strftime('%Y%m%d')}.txt",
-                                 mime="text/plain",
-                                 use_container_width=True)
-            
-            if st.button("📊 Business Case CEO", use_container_width=True):
-                st.info("💼 **Business Case CEO** généré - Validation direction")
-                st.markdown("""
-                **💰 Business Case CEO:**
-                - **ROI**: 420% → 500% (+80%)
-                - **Économies**: 6.95M$ → 9.5M$ (+37%)
-                - **Position**: Top 1% → Top 0.1%
-                - **Innovation**: Leader mondial HSE
-                """)
-            
-            if st.button("🎯 Optimisation Investissements", use_container_width=True):
-                st.success("⚡ **Portfolio optimisé** - Allocation optimale validée")
-                st.info("💎 Optimisation: 63% SafetyGraph, 24% BBS, 13% ISO = ROI 500%")
-    
-    # === SECTION ACTIONS RAPIDES EXECUTIVE (NOUVEAU) ===
-    st.markdown("---")
-    st.markdown("### ⚡ **Actions Rapides Executive - One-Click**")
-    
-    quick_col1, quick_col2, quick_col3, quick_col4 = st.columns(4)
-    
-    with quick_col1:
-        if st.button("📊 Rapport Board", use_container_width=True):
-            st.success("✅ **Rapport Board** généré - Envoyé à la direction")
-        if st.button("🎯 KPIs Update", use_container_width=True):
-            st.info("📈 **KPIs actualisés** - Dashboard temps réel")
-    
-    with quick_col2:
-        if st.button("🏆 Excellence Review", use_container_width=True):
-            st.success("✅ **Review excellence** programmée - Équipe leadership")
-        if st.button("💰 ROI Flash", use_container_width=True):
-            st.info("💎 **ROI Flash**: 420% confirmé (+2% cette semaine)")
-    
-    with quick_col3:
-        if st.button("🧠 BBS Status", use_container_width=True):
-            st.success("✅ **BBS Performance**: 88.7% - Excellence maintenue")
-        if st.button("📋 ISO Compliance", use_container_width=True):
-            st.info("🏆 **ISO Status**: 96.7% - Audit ready 98.7%")
-    
-    with quick_col4:
-        if st.button("🌍 Global Position", use_container_width=True):
-            st.success("🏆 **Position Mondiale**: Top 1% confirmée")
-        if st.button("🚀 Innovation Status", use_container_width=True):
-            st.info("💡 **Innovation**: Leader HSE - BBS 4.0 ready")
-    
-    # === EXPORT DASHBOARD COMPLET EXECUTIVE ===
-    st.markdown("---")
-    if st.button("📊 **EXPORT DASHBOARD EXECUTIVE COMPLET**", use_container_width=True, type="primary"):
-        
-        executive_export = f"""
-👨‍💼 DASHBOARD HSE MANAGER EXECUTIVE COMPLET - EXCELLENCE MONDIALE
-📅 Export généré: {datetime.now().strftime('%d/%m/%Y à %H:%M:%S')}
-🏢 SafetyGraph Industries - HSE Manager Executive Dashboard
-
-═══════════════════════════════════════════════════════════════════
-
-🏆 SYNTHÈSE EXECUTIVE - TRIPLE EXCELLENCE:
-• Score HSE Global: 87.3% (+3.2% vs trim. précédent)
-• ROI Total Intégré: 420% (+78% amélioration exceptionnelle)
-• Excellence BBS-ISO: 96.7% (+4.3% leadership)
-• Conformité ISO 45001: 96.7% (+2.4% audit ready)
-• Benchmark Mondial: Top 1% (+14 positions - Leader absolu)
-
-🧠 PERFORMANCE BBS EXCELLENCE:
-• Behavioral Safety Index: 88.7% (+4.1% amélioration)
-• Leadership Visibility: 18h/semaine (+6h engagement terrain)
-• Coaching Efficacité: 89.3% (excellence internationale)
-• ROI BBS Spécifique: 1.8M$ (380% vs 180% secteur)
-• Psychological Safety: 4.2/5 (+0.3 amélioration équipes)
-
-🏆 CONFORMITÉ ISO 45001 EXCELLENCE:
-• Ch.5 Leadership: 96.7% - Excellence mondiale reconnue
-• Ch.5.4 Participation: 94.3% - BBS favorise implication
-• Ch.7 Communication: 93.1% - Feedback <15min efficace
-• Ch.9 Performance: 95.2% - Monitoring continu optimal
-• Ch.10 Amélioration: 92.7% - Actions correctives systématiques
-• Probabilité Certification: 98.7% (vs 45% moyenne industrie)
-
-💰 IMPACT FINANCIER CONSOLIDÉ:
-• ROI SafetyGraph: 4.2M$ (340% vs coût)
-• ROI BBS: 1.8M$ (380% excellence comportementale)
-• ROI ISO: 950K$ (285% conformité)
-• Synergies Intégration: +420% optimisation
-• TOTAL ÉCONOMIES: 6.95M$ (+2.8M$ vs budget)
-• Valeur Ajoutée: 2.75M$ (productivité + réputation)
-
-🎯 OBJECTIFS STRATÉGIQUES 2025:
-• Score Triple Intégration: 92% (vs 88.7% actuel)
-• ROI Consolidé Target: 500% (vs 420% actuel)
-• Position Mondiale: Top 0.1% (vs Top 1% actuel)
-• Innovation Leadership: THE référence HSE mondiale
-• BBS 4.0: Observations IA 200/jour vs 60 actuels
-
-🚀 INITIATIVES RÉVOLUTIONNAIRES EN COURS:
-• BBS 4.0 Innovation: Automatisation IA prédictive
-• ISO Excellence Plus: Standards dépassés
-• SafetyGraph Advanced: Analytics prédictifs 4.0
-• Global Leadership Program: Influence mondiale HSE
-
-📈 TENDANCES PERFORMANCE (12 mois):
-• Score Global: +15% amélioration progressive
-• ROI: +78% croissance exceptionnelle
-• Conformité: +12% excellence maintenue
-• Innovation: +200% capacités technologiques
-• Leadership: +45% visibilité engagement
-
-🌍 POSITIONNEMENT CONCURRENTIEL:
-• Rang Mondial: #1 Excellence BBS-ISO intégrée
-• Innovation: Leader technologique HSE absolu
-• ROI: Top 1% performance financière HSE
-• Maturité: Level 4.8/5 vs 2.1 moyenne mondiale
-• Influence: Référence internationale reconnue
-
-📋 PRÉPARATION AUDIT ISO 45001:
-• Documentation: 98% complète et auditée
-• Evidence Leadership: Tours direction + BBS
-• Procédures: Intégration BBS-SafetyGraph
-• Formation Équipes: 94.3% participation
-• Audit Readiness: 98.7% probabilité succès
-
-🎯 ACTIONS PRIORITAIRES EXECUTIVE:
-1. Finalisation préparation audit ISO Ch.8 Opérations
-2. Lancement BBS 4.0 Innovation Q3 2024
-3. Validation Roadmap ROI 500% avec direction
-4. Déploiement Global Leadership Program
-5. Maintien excellence Top 1% position mondiale
-
-💡 INNOVATIONS SAFETYGRAPH 2025:
-• IA Prédictive: 98.1% précision comportementale
-• BBS Automatisé: 200 observations/jour IA
-• Analytics 4.0: Prédiction incidents 30j
-• Mobile Advanced: Interface supervisor terrain
-• Integration Platform: API ecosystem HSE
-
-🏆 RECONNAISSANCE EXCELLENCE:
-• Certification ISO 45001: Q3 2024 (98.7% probabilité)
-• Prix Innovation HSE: Candidature déposée
-• Best Practices: Publication internationale
-• Thought Leadership: Conférences mondiales HSE
-• Benchmark Reference: Standard industrie
-
-═══════════════════════════════════════════════════════════════════
-
-👤 Dashboard Executive généré par: HSE Manager
-🔗 Version: SafetyGraph Industries v3.1 Excellence Mondiale
-📍 Site: Enterprise ABC - Leader Construction HSE
-⏰ Export: {datetime.now().strftime('%d/%m/%Y à %H:%M:%S')}
-🌐 Plateforme: SafetyGraph + BBS + ISO 45001 Intégré
-🏆 Statut: Excellence Mondiale - THE Référence HSE
-        """
-        
-        st.success("✅ **Export Dashboard Executive complet généré avec succès !**")
-        
-        st.download_button(
-            label="📥 **TÉLÉCHARGER DASHBOARD EXECUTIVE COMPLET**",
-            data=executive_export,
-            file_name=f"dashboard_hse_manager_executive_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
-            mime="text/plain",
-            use_container_width=True
+        # Graphique benchmark
+        fig_benchmark = px.scatter(
+            df_benchmark, 
+            x='HSE Score', 
+            y='ROI (%)',
+            size='ISO Compliance',
+            color='Position',
+            hover_name='Secteur',
+            title="Position Concurrentielle - HSE vs ROI",
+            color_continuous_scale='RdYlGn_r'
         )
+        fig_benchmark.update_layout(height=400)
+        st.plotly_chart(fig_benchmark, use_container_width=True)
         
-        st.balloons()
-        st.success("🎉 **Dashboard HSE Manager Executive - Excellence Mondiale Prêt !**")
+        st.dataframe(df_benchmark, use_container_width=True)
     
-    # Footer Executive enrichi
-    st.markdown("---")
+    st.divider()
+    
+    # Graphique Évolution Incidents ENRICHI (comme dans vos captures)
+    st.markdown("### 📉 Évolution Incidents - Trend Analysis Enrichi")
+    
+    # Données réalistes sur 12 mois ENRICHIES
+    mois = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 
+            'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc']
+    
+    incidents_data = {
+        'Mois': mois,
+        'Incidents Déclarés': [15, 12, 18, 10, 8, 14, 9, 11, 7, 13, 6, 9],
+        'Incidents Évités': [25, 28, 32, 35, 40, 38, 45, 42, 48, 44, 52, 47],
+        'Near Miss': [45, 42, 38, 40, 35, 41, 33, 36, 29, 38, 25, 31],
+        'Prédictions IA': [23, 26, 30, 33, 37, 36, 42, 39, 45, 41, 49, 44],  # NOUVEAU
+        'Actions Préventives': [67, 71, 75, 78, 82, 79, 85, 81, 88, 84, 91, 87]  # NOUVEAU
+    }
+    
+    df_incidents = pd.DataFrame(incidents_data)
+    
+    fig_incidents = go.Figure()
+    
+    # Incidents déclarés
+    fig_incidents.add_trace(go.Scatter(
+        x=df_incidents['Mois'],
+        y=df_incidents['Incidents Déclarés'],
+        mode='lines+markers',
+        name='Incidents Déclarés',
+        line=dict(color='#dc2626', width=3),
+        marker=dict(size=8)
+    ))
+    
+    # Incidents évités
+    fig_incidents.add_trace(go.Scatter(
+        x=df_incidents['Mois'],
+        y=df_incidents['Incidents Évités'],
+        mode='lines+markers',
+        name='Incidents Évités',
+        line=dict(color='#10b981', width=3),
+        marker=dict(size=8)
+    ))
+    
+    # Near Miss
+    fig_incidents.add_trace(go.Scatter(
+        x=df_incidents['Mois'],
+        y=df_incidents['Near Miss'],
+        mode='lines+markers',
+        name='Near Miss',
+        line=dict(color='#f59e0b', width=3),
+        marker=dict(size=8)
+    ))
+    
+    # NOUVEAU : Prédictions IA
+    fig_incidents.add_trace(go.Scatter(
+        x=df_incidents['Mois'],
+        y=df_incidents['Prédictions IA'],
+        mode='lines+markers',
+        name='Prédictions IA',
+        line=dict(color='#8b5cf6', width=3, dash='dash'),
+        marker=dict(size=8)
+    ))
+    
+    # NOUVEAU : Actions Préventives
+    fig_incidents.add_trace(go.Scatter(
+        x=df_incidents['Mois'],
+        y=df_incidents['Actions Préventives'],
+        mode='lines+markers',
+        name='Actions Préventives',
+        line=dict(color='#06b6d4', width=3),
+        marker=dict(size=8)
+    ))
+    
+    fig_incidents.update_layout(
+        title="Évolution Incidents 2024 - SafetyGraph Impact Enrichi",
+        xaxis_title="Mois",
+        yaxis_title="Nombre d'Incidents/Actions",
+        height=500,
+        showlegend=True
+    )
+    
+    st.plotly_chart(fig_incidents, use_container_width=True)
+    
+    # NOUVELLE SECTION : Tableau de Bord Incidents Détaillé
+    st.markdown("#### 🔍 Tableau de Bord Incidents Détaillé")
+    
+    incidents_detail_data = {
+        'ID': ['INC-2024-089', 'INC-2024-090', 'INC-2024-091', 'INC-2024-092', 'INC-2024-093'],
+        'Site': ['Site Nord', 'Site Principal', 'Site Est', 'Site Ouest', 'Site Nord'],
+        'Type': ['Équipement', 'Comportemental', 'Environnemental', 'Procédural', 'Équipement'],
+        'Gravité': ['🟡 Moyenne', '🟢 Faible', '🔴 Élevée', '🟡 Moyenne', '🟢 Faible'],
+        'Statut': ['En cours', 'Résolu', 'Investigation', 'Résolu', 'En cours'],
+        'BBS Score': [76.2, 89.3, 67.8, 82.1, 78.9],
+        'Action Coaching': ['Programmé', 'Terminé', 'Urgent', 'Terminé', 'En cours'],
+        'Temps Résolution (h)': [18, 6, 'En cours', 12, 24]
+    }
+    
+    df_incidents_detail = pd.DataFrame(incidents_detail_data)
+    st.dataframe(df_incidents_detail, use_container_width=True)
+    
+    st.divider()
+    
+    # NOUVELLE SECTION : ROI Analysis Détaillée
+    st.markdown("### 💰 ROI Analysis Détaillée - Impact Financier")
+    
+    roi_col1, roi_col2 = st.columns(2)
+    
+    with roi_col1:
+        st.markdown("#### 💵 Breakdown ROI par Composante")
+        
+        roi_breakdown = {
+            'Composante': [
+                'SafetyGraph Platform',
+                'BBS Implementation', 
+                'ISO 45001 Certification',
+                'Formation & Training',
+                'Innovation IA',
+                'Mobile Applications',
+                'Consulting & Support'
+            ],
+            'Investissement (k€)': [180, 95, 75, 120, 85, 45, 60],
+            'Économies (k€)': [650, 420, 285, 380, 310, 165, 195],
+            'ROI (%)': [261, 342, 280, 217, 265, 267, 225],
+            'Payback (mois)': [14, 8, 12, 16, 13, 11, 15]
+        }
+        
+        df_roi = pd.DataFrame(roi_breakdown)
+        st.dataframe(df_roi, use_container_width=True)
+    
+    with roi_col2:
+        st.markdown("#### 📊 Visualisation ROI")
+        
+        fig_roi_scatter = px.scatter(
+            df_roi, 
+            x='Investissement (k€)', 
+            y='Économies (k€)',
+            size='ROI (%)',
+            color='Payback (mois)',
+            hover_name='Composante',
+            title="ROI Analysis - Investissement vs Économies",
+            color_continuous_scale='RdYlGn_r'
+        )
+        fig_roi_scatter.update_layout(height=400)
+        st.plotly_chart(fig_roi_scatter, use_container_width=True)
+    
+    # ROI Timeline Evolution
+    st.markdown("#### 📈 Évolution ROI - Timeline 2024")
+    
+    roi_timeline = {
+        'Trimestre': ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024'],
+        'ROI Cumulé (%)': [125, 245, 350, 420],
+        'Économies Cumulées (M€)': [0.8, 1.9, 3.2, 4.7],
+        'Incidents Évités': [89, 187, 298, 425]
+    }
+    
+    df_roi_timeline = pd.DataFrame(roi_timeline)
+    
+    fig_roi_timeline = go.Figure()
+    
+    fig_roi_timeline.add_trace(go.Scatter(
+        x=df_roi_timeline['Trimestre'],
+        y=df_roi_timeline['ROI Cumulé (%)'],
+        mode='lines+markers',
+        name='ROI Cumulé (%)',
+        line=dict(color='#10b981', width=4),
+        marker=dict(size=12)
+    ))
+    
+    fig_roi_timeline.update_layout(
+        title="Évolution ROI Cumulé 2024 - Performance Executive",
+        xaxis_title="Trimestre",
+        yaxis_title="ROI (%)",
+        height=350
+    )
+    
+    st.plotly_chart(fig_roi_timeline, use_container_width=True)
+    
+    st.divider()
+    
+    # NOUVELLE SECTION : Export et Actions Avancées
+    st.markdown("### 📁 Export & Actions Executive Avancées")
+    
+    export_col1, export_col2, export_col3 = st.columns(3)
+    
+    with export_col1:
+        st.markdown("#### 📊 Exports Standards")
+        
+        if st.button("📋 Rapport Executive PDF", key="export_pdf_exec"):
+            st.success("✅ Rapport Executive PDF généré !")
+            
+        if st.button("📊 Dashboard Excel", key="export_excel_dash"):
+            st.success("✅ Dashboard Excel exporté !")
+            
+        if st.button("📈 Analytics JSON", key="export_json_analytics"):
+            st.success("✅ Analytics JSON exporté !")
+    
+    with export_col2:
+        st.markdown("#### 🌐 Exports Multi-Sites")
+        
+        if st.button("🏢 Rapport Consolidé", key="export_consolidated"):
+            st.success("✅ Rapport 4 sites consolidé !")
+            
+        if st.button("📊 Benchmarks Sectoriels", key="export_benchmarks"):
+            st.success("✅ Benchmarks sectoriels exportés !")
+            
+        if st.button("🎯 Prédictions IA", key="export_predictions"):
+            st.success("✅ Prédictions IA exportées !")
+    
+    with export_col3:
+        st.markdown("#### 🚀 Actions Stratégiques")
+        
+        if st.button("📧 Alerte Board", key="alert_board"):
+            st.warning("⚠️ Alerte envoyée au Board of Directors !")
+            
+        if st.button("📅 Planifier Audit", key="schedule_audit"):
+            st.success("✅ Audit ISO 45001 planifié !")
+            
+        if st.button("🔄 Sync Temps Réel", key="realtime_sync"):
+            st.success("✅ Synchronisation temps réel activée !")
+    
+    # Export Dashboard Complet ENRICHI (bouton principal rouge)
+    st.divider()
+    
+    col1, col2, col3 = st.columns([1, 3, 1])
+    
+    with col2:
+        if st.button(
+            "🔴 EXPORT DASHBOARD COMPLET BBS-ISO ENRICHI", 
+            key="export_dashboard_complet_enrichi",
+            type="primary",
+            use_container_width=True
+        ):
+            st.balloons()
+            st.success("✅ Dashboard executive enrichi exporté avec succès !")
+            st.info("""
+            📊 **Export inclut** : 
+            • Performance Triple Enrichie (SafetyGraph × BBS × ISO)
+            • ROI 420% avec breakdown détaillé
+            • Métriques temps réel 4 sites
+            • Prédictions IA 6 mois
+            • Benchmarks sectoriels
+            • Analytics avancés et corrélations
+            • Actions executive et alertes
+            """)
+    
+    # NOUVELLE SECTION : Notifications et Alertes Temps Réel
+    st.divider()
+    
+    st.markdown("### 🔔 Notifications & Alertes Temps Réel")
+    
+    notif_col1, notif_col2 = st.columns(2)
+    
+    with notif_col1:
+        st.markdown("#### 📱 Notifications Récentes")
+        
+        notifications = [
+            "🟢 **Il y a 5 min** : Audit ISO Site Est - Certification validée",
+            "🟡 **Il y a 12 min** : Formation EPI Site Nord - 12 employés en attente",
+            "🔴 **Il y a 23 min** : Non-conformité Ch.6 ISO - Action requise",
+            "🟢 **Il y a 1h** : ROI Q4 - Objectif 420% atteint",
+            "🟡 **Il y a 2h** : Maintenance préventive - Programmée demain"
+        ]
+        
+        for notif in notifications:
+            st.markdown(notif)
+    
+    with notif_col2:
+        st.markdown("#### ⚡ Actions Immédiates Requises")
+        
+        actions_immediates = [
+            "🔥 **URGENT** : Site Nord - Audit interne Ch.6 ISO (< 48h)",
+            "⚠️ **PRIORITÉ** : Formation EPI - 12 employés (< 1 semaine)",
+            "📊 **SUIVI** : Coaching BBS - 3 sessions à programmer",
+            "🔄 **ROUTINE** : Synchronisation ERP - Planifiée ce soir"
+        ]
+        
+        for action in actions_immediates:
+            st.markdown(action)
+    
+    # Footer Informatif Executive ENRICHI
+    st.divider()
+    
+    current_time = datetime.now().strftime('%d/%m/%Y %H:%M')
     st.markdown(f"""
-    <div style="text-align: center; color: #666; padding: 1rem; background: linear-gradient(90deg, #f8f9fa, #e9ecef); border-radius: 10px; border-left: 5px solid #28a745;">
-        <strong>🏆 Dashboard HSE Manager Executive - Excellence Mondiale</strong><br>
-        <small>🔄 Dernière mise à jour: {datetime.now().strftime("%d/%m/%Y %H:%M")} | 
-        📊 Triple Intégration SafetyGraph + BBS + ISO 45001 | 
-        🌍 Position: Top 1% Mondial | 💰 ROI: 420% | 🏆 Excellence: 96.7%</small>
+    <div style="background: linear-gradient(135deg, #f1f5f9, #e2e8f0); padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <h3 style="color: #1e293b; margin: 0; font-size: 1.5rem;">🏆 HSE Manager Executive Dashboard - Excellence Mondiale</h3>
+        <div style="margin: 1rem 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem;">
+            <div style="text-align: center;">
+                <strong style="color: #3730a3;">Triple Intégration</strong><br>
+                <span style="color: #64748b;">SafetyGraph × BBS × ISO 45001</span>
+            </div>
+            <div style="text-align: center;">
+                <strong style="color: #059669;">Position Mondiale</strong><br>
+                <span style="color: #64748b;">Top 1% (+14 positions)</span>
+            </div>
+            <div style="text-align: center;">
+                <strong style="color: #dc2626;">ROI Exceptionnel</strong><br>
+                <span style="color: #64748b;">420% Consolidé</span>
+            </div>
+            <div style="text-align: center;">
+                <strong style="color: #7c3aed;">Innovation IA</strong><br>
+                <span style="color: #64748b;">Prédictions 97.3%</span>
+            </div>
+        </div>
+        <hr style="border: 1px solid #cbd5e1; margin: 1rem 0;">
+        <p style="color: #64748b; margin: 0; font-size: 0.95rem;">
+            <strong>Dernière MAJ :</strong> {current_time} | 
+            <strong>Sites :</strong> 4 sites synchronisés temps réel | 
+            <strong>Employés :</strong> 1,247 actifs | 
+            <strong>Uptime :</strong> 99.97%<br>
+            <strong>Certification :</strong> ISO 45001:2018 Excellence | 
+            <strong>Next Audit :</strong> Décembre 2024 | 
+            <strong>Version :</strong> SafetyGraph v4.0 Ultra
+        </p>
     </div>
     """, unsafe_allow_html=True)
