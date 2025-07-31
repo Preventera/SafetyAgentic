@@ -687,7 +687,7 @@ def display_hse_manager_dashboard(config):
         'Statut': ['En cours', 'Résolu', 'Investigation', 'Résolu', 'En cours'],
         'BBS Score': [76.2, 89.3, 67.8, 82.1, 78.9],
         'Action Coaching': ['Programmé', 'Terminé', 'Urgent', 'Terminé', 'En cours'],
-        'Temps Résolution (h)': [18, 6, 'En cours', 12, 24]
+        'Temps Résolution (h)': [18, 6, None, 12, 24]
     }
     
     df_incidents_detail = pd.DataFrame(incidents_detail_data)
