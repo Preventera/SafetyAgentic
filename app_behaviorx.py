@@ -2,8 +2,8 @@
 SafetyGraph BehaviorX + Cartographie Culture SST - Interface Complète
 ====================================================================
 Interface Streamlit unifiée : BehaviorX + Cartographie LangGraph
-Safety Agentique - Mario Plourde - 28 juillet 2025
-Version 3.1 - Architecture Industries Unifiées + Expansion Sectorielle
+Safety Agentique - Mario Plourde - 1er août 2025
+Version 3.2 - Architecture Industries Unifiées + Extensions Multi-Sources + Oracle HSE
 """
 # =======================================================================
 # CORRECTIF ULTIMATE PYARROW - SOLUTION SYSTÈME DÉFINITIVE
@@ -14,6 +14,63 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 import pandas as pd
 import numpy as np
+
+# =====================================
+# NOUVEAU - Extensions Multi-Sources 
+# =====================================
+import sys
+import os
+
+# Ajouter paths pour extensions
+sys.path.append('src')
+sys.path.append('config') 
+sys.path.append('integration')
+
+try:
+    from integration.app_behaviorx_extensions import SafetyGraphExtensions
+    EXTENSIONS_AVAILABLE = True
+    print("✅ Extensions multi-sources chargées avec succès")
+except ImportError as e:
+    print(f"ℹ️ Extensions multi-sources non disponibles: {e}")
+    EXTENSIONS_AVAILABLE = False
+
+# =====================================
+# NOUVEAU - Oracle HSE Module 
+# =====================================
+try:
+    import predictions_multi_horizons
+    ORACLE_HSE_AVAILABLE = True
+    print("✅ Module Oracle HSE chargé avec succès")
+except ImportError as e:
+    print(f"ℹ️ Module Oracle HSE non disponible: {e}")
+    ORACLE_HSE_AVAILABLE = False
+    
+ # =====================================
+# NOUVEAU - Module XAI Oracle HSE
+# =====================================
+try:
+    import xai_oracle_hse
+    XAI_AVAILABLE = True
+    print("✅ Module XAI Oracle HSE chargé avec succès")
+except ImportError as e:
+    print(f"ℹ️ Module XAI Oracle HSE non disponible: {e}")
+    XAI_AVAILABLE = False   
+
+# ===================================================================
+# ANALYTICS SOPHISTIQUÉS - MODULES DU 22 JUILLET  
+# ===================================================================
+try:
+    import sys
+    from pathlib import Path
+    sys.path.append(str(Path(__file__).parent / "src" / "analytics"))
+    from predictive_models import display_predictive_analytics_interface, display_predictive_analytics_interface_v2
+    from pattern_recognition import display_pattern_recognition_interface
+    from anomaly_detection import display_anomaly_detection_interface
+    ANALYTICS_SOPHISTICATED = True
+    print("✅ Analytics sophistiqués chargés avec succès")
+except ImportError as e:
+    ANALYTICS_SOPHISTICATED = False
+    print(f"❌ Erreur import analytics sophistiqués: {e}")
 
 def clean_dataframe_for_arrow(df):
     """Nettoie automatiquement un DataFrame pour compatibilité Arrow"""
@@ -71,6 +128,7 @@ import sys
 import time
 from datetime import datetime
 from pathlib import Path
+
 # =======================================================================
 # CORRECTIF GLOBAL PYARROW - SOLUTION DÉFINITIVE
 # =======================================================================
@@ -122,8 +180,6 @@ if not hasattr(st, '_original_dataframe'):
     print("✅ Correctif PyArrow appliqué globalement")
 
 # =======================================================================
-
-# =======================================================================
 # IMPORT ORCHESTRATEUR BEHAVIORX (CONFIRMÉ ACCESSIBLE)
 # =======================================================================
 
@@ -136,6 +192,17 @@ try:
 except Exception as e:
     ORCHESTRATOR_AVAILABLE = False
     print(f"⚠️ Orchestrateur non disponible: {e}")
+
+# Import orchestrateur BehaviorX
+try:
+    sys.path.append('src')
+    from agents.collecte.orchestrateur_behaviorx_unified import BehaviorXSafetyOrchestrator
+    BEHAVIORX_AVAILABLE = True
+    print("✅ Orchestrateur BehaviorX chargé avec succès")
+except Exception as e:
+    BEHAVIORX_AVAILABLE = False
+    print(f"⚠️ Orchestrateur non disponible: {e}")
+
 # === OPTIMISATION PERFORMANCE ===
 import sys
 import os
@@ -150,33 +217,13 @@ except ImportError:
     OPTIMIZER_AVAILABLE = False
     print("⚠️ Optimiseur non disponible")
 
-# ===================================================================
-# CORRECTION PYARROW - GESTION POURCENTAGES DANS DATAFRAMES
-# ===================================================================
-
 # =======================================================================
 # NOUVELLES FONCTIONS ORCHESTRATEUR BEHAVIORX
 # =======================================================================
 
-# =======================================================================
-# CORRECTIF EXÉCUTION ORCHESTRATEUR - FONCTION MANQUANTE
-# À AJOUTER DANS app_behaviorx.py APRÈS LA FONCTION display_behaviorx_orchestrated()
-# =======================================================================
-
-# =======================================================================
-# CORRECTIF FINAL - BOUTON ORCHESTRATEUR QUI NE RÉPOND PAS
-# =======================================================================
-
-# PROBLÈME IDENTIFIÉ:
-# Le bouton "🚀 Lancer Orchestrateur BehaviorX" existe mais ne déclenche pas 
-# l'affichage complet avec la barre de progression et les résultats détaillés
-
-# SOLUTION: Forcer l'exécution dans display_behaviorx_orchestrated()
-
 def display_behaviorx_orchestrated():
     """
-    Interface BehaviorX avec orchestrateur intelligent - VERSION FORCÉE
-    Garantit l'affichage même si le bouton ne répond pas parfaitement
+    Interface BehaviorX avec orchestrateur intelligent - VERSION CORRIGÉE
     """
     
     import streamlit as st
@@ -192,7 +239,7 @@ def display_behaviorx_orchestrated():
     
     with col1:
         st.markdown("### 🏢 Enterprise")
-        enterprise_id = st.text_input("Enterprise ID", value="Enterprise ABC",key="orch_enterprise_workflow")
+        enterprise_id = st.text_input("Enterprise ID", value="Enterprise ABC", key="orch_enterprise_workflow")
     
     with col2:
         st.markdown("### ⚙️ Configuration")
@@ -263,16 +310,26 @@ def display_behaviorx_orchestrated():
                                use_container_width=True, 
                                key="force_execute")
     
-    # DÉCLENCHEMENT - Bouton OU exécution forcée
-    if button_clicked or auto_execute:
+    # DÉCLENCHEMENT - Version améliorée (CORRIGÉ - DANS LA FONCTION)
+    if button_clicked:
+        # Lancer le workflow complet
         execute_orchestrator_workflow()
-# =======================================================================
-# FONCTION MANQUANTE - execute_orchestrator_workflow
-# À AJOUTER APRÈS display_behaviorx_orchestrated()
-# =======================================================================
-
-
-            
+    elif auto_execute:
+        st.info("⚡ Exécution forcée - Mode test")
+        # Version simplifiée pour test
+        st.success("🚀 Orchestrateur lancé en mode test !")
+        
+        # Métriques de test
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("🎯 Score Intégration", "92.0%", delta="+4.2%")
+        with col2:
+            st.metric("🔍 Conformité VCS", "75.0%", delta="6 Forces")
+        with col3:
+            st.metric("🤖 Score A1 Enhanced", "79.0", delta="BON")
+        with col4:
+            st.metric("⚠️ Zones Aveugles", "0", delta="Aucune")
+        
 def execute_orchestrator_workflow():
     """Exécute le workflow orchestrateur avec affichage complet"""
     
@@ -454,203 +511,14 @@ def execute_orchestrator_workflow():
         status_text.text("❌ Échec de l'orchestration")
         progress_bar.progress(0)
 
-def display_orchestrator_results(results):
-    """Affichage des résultats de l'orchestrateur"""
-    
-    st.markdown("---")
-    st.markdown("### 📊 Résultats Orchestration BehaviorX")
-    
-    # Métriques principales orchestrateur
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        integration_score = results.get('integration_score', 0.85) * 100
-        st.metric(
-            "🎯 Score Intégration",
-            f"{integration_score:.1f}%",
-            delta=f"+{integration_score-70:.1f}%" if integration_score > 70 else None,
-            help="Cohérence entre agents A1/A2 et analyses VCS/ABC"
-        )
-    
-    with col2:
-        blind_zones = results.get('blind_zones_detected', 2)
-        st.metric(
-            "🔍 Zones Aveugles",
-            f"{blind_zones}",
-            delta=f"-{blind_zones}" if blind_zones > 0 else "Aucune",
-            help="Zones non couvertes par l'analyse comportementale"
-        )
-    
-    with col3:
-        vcs_score = results.get('vcs_results', {}).get('conformity_rate', 78.5)
-        st.metric(
-            "🔍 Conformité VCS", 
-            f"{vcs_score:.1f}%",
-            delta=f"+{vcs_score-75:.1f}%" if vcs_score > 75 else None,
-            help="Taux de conformité observations VCS"
-        )
-    
-    with col4:
-        abc_coherence = results.get('abc_analysis', {}).get('coherence_score', 0.82) * 100
-        st.metric(
-            "🧠 Cohérence ABC",
-            f"{abc_coherence:.1f}%",
-            delta=f"+{abc_coherence-75:.1f}%" if abc_coherence > 75 else None,
-            help="Cohérence analyse Antécédent-Comportement-Conséquence"
-        )
-    
-    # Tabs résultats détaillés
-    result_tabs = st.tabs([
-        "🔍 VCS Results", 
-        "🧠 ABC Analysis", 
-        "🎯 A1 Enhanced", 
-        "📊 Integration"
-    ])
-    
-    with result_tabs[0]:  # VCS Results
-        st.markdown("#### 🔍 Résultats VCS Observation")
-        
-        # Données simulées réalistes pour démonstration
-        vcs_demo_data = {
-            'Type Observation': ['Comportement Sécuritaire', 'Non-Conformité EPI', 'Pratique à Risque', 'Excellence Observée'],
-            'Fréquence': [45, 12, 8, 23],
-            'Score Conformité (%)': [92, 67, 43, 98],
-            'Action Requise': ['Félicitation', 'Formation', 'Correction immédiate', 'Partage best practice']
-        }
-        
-        import pandas as pd
-        df_vcs = pd.DataFrame(vcs_demo_data)
-        st.dataframe(df_vcs, use_container_width=True)
-        
-        # Graphique VCS
-        import plotly.express as px
-        fig_vcs = px.bar(df_vcs, x='Type Observation', y='Fréquence', 
-                        title="Distribution Observations VCS")
-        st.plotly_chart(fig_vcs, use_container_width=True)
-    
-    with result_tabs[1]:  # ABC Analysis
-        st.markdown("#### 🧠 Analyse ABC (Antécédent-Comportement-Conséquence)")
-        
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            st.markdown("##### 📋 Antécédents")
-            antecedents = [
-                "Pression temporelle",
-                "Équipement défaillant", 
-                "Formation insuffisante",
-                "Procédure unclear",
-                "Environnement stressant"
-            ]
-            for i, ant in enumerate(antecedents, 1):
-                st.write(f"{i}. {ant}")
-        
-        with col2:
-            st.markdown("##### 👤 Comportements")
-            behaviors = [
-                "Omission EPI",
-                "Raccourci procédural",
-                "Communication insuffisante",
-                "Négligence vérification",
-                "Improvisation"
-            ]
-            for i, beh in enumerate(behaviors, 1):
-                st.write(f"{i}. {beh}")
-        
-        with col3:
-            st.markdown("##### 🎯 Conséquences")
-            consequences = [
-                "Gain temps apparent",
-                "Évitement effort",
-                "Pression sociale",
-                "Facilité immédiate",
-                "Habitude renforcée"
-            ]
-            for i, cons in enumerate(consequences, 1):
-                st.write(f"{i}. {cons}")
-    
-    with result_tabs[2]:  # A1 Enhanced
-        st.markdown("#### 🎯 Agent A1 Enhanced - Safe Self Analysis")
-        
-        # Données self-assessment simulées
-        self_assessment_data = {
-            'Dimension': ['Conscience Risques', 'Conformité EPI', 'Communication Équipe', 'Signalement Incidents', 'Formation Continue'],
-            'Score Auto-Évaluation': [85, 78, 92, 67, 88],
-            'Score Observé': [82, 74, 89, 71, 85],
-            'Écart': [3, 4, 3, -4, 3]
-        }
-        
-        df_self = pd.DataFrame(self_assessment_data)
-        st.dataframe(df_self, use_container_width=True)
-        
-        # Graphique radar A1
-        import plotly.graph_objects as go
-        
-        fig_radar = go.Figure()
-        
-        fig_radar.add_trace(go.Scatterpolar(
-            r=df_self['Score Auto-Évaluation'],
-            theta=df_self['Dimension'],
-            fill='toself',
-            name='Auto-Évaluation',
-            line_color='#3b82f6'
-        ))
-        
-        fig_radar.add_trace(go.Scatterpolar(
-            r=df_self['Score Observé'],
-            theta=df_self['Dimension'],
-            fill='toself',
-            name='Score Observé',
-            line_color='#ef4444'
-        ))
-        
-        fig_radar.update_layout(
-            polar=dict(
-                radialaxis=dict(
-                    visible=True,
-                    range=[0, 100]
-                )),
-            title="Comparaison Auto-Évaluation vs Observation",
-            height=400
-        )
-        
-        st.plotly_chart(fig_radar, use_container_width=True)
-    
-    with result_tabs[3]:  # Integration
-        st.markdown("#### 📊 Analyse d'Intégration Multi-Agents")
-        
-        # Matrice de cohérence simulée
-        agents = ['A1_Enhanced', 'A2_VCS', 'ABC_Analyzer', 'Integration_Engine']
-        coherence_data = [
-            [100, 85, 78, 82],
-            [85, 100, 92, 88],
-            [78, 92, 100, 79],
-            [82, 88, 79, 100]
-        ]
-        
-        import plotly.express as px
-        fig_matrix = px.imshow(
-            coherence_data,
-            x=agents,
-            y=agents,
-            color_continuous_scale='RdYlGn',
-            title="Matrice Cohérence Inter-Agents (%)"
-        )
-        
-        st.plotly_chart(fig_matrix, use_container_width=True)
-        
-        # Actions prioritaires
-        st.markdown("##### 🎯 Actions Prioritaires Identifiées")
-        
-        actions = [
-            "🔴 **Formation EPI urgente** - 12 employés identifiés",
-            "🟡 **Amélioration communication** - Procédure Zone B",
-            "🟢 **Reconnaissance excellence** - Équipe Site Est",
-            "🔵 **Optimisation workflow** - Réduction zones aveugles"
-        ]
-        
-        for action in actions:
-            st.markdown(action)
+def display_orchestrated_workflow_results():
+    """Affiche les résultats du workflow orchestré"""
+    if st.session_state.get('orchestrator_executed'):
+        st.success("✅ Dernière exécution orchestrateur réussie")
+        timestamp = st.session_state.get('orchestrator_timestamp')
+        if timestamp:
+            st.info(f"🕐 Exécuté le: {timestamp.strftime('%Y-%m-%d %H:%M:%S')}")
+
 def fix_dataframe_for_streamlit(df):
     """
     Corrige les DataFrames pour compatibilité PyArrow/Streamlit
@@ -802,16 +670,6 @@ try:
     CARTOGRAPHY_AVAILABLE = True
 except ImportError:
     CARTOGRAPHY_AVAILABLE = False
-
-# Imports agents BehaviorX existants + ORCHESTRATEUR
-try:
-    sys.path.append(str(Path(__file__).parent / "src" / "agents" / "collecte"))
-    from orchestrateur_behaviorx_unified import BehaviorXSafetyOrchestrator
-    BEHAVIORX_AVAILABLE = True
-    print("✅ Orchestrateur BehaviorX chargé avec succès")
-except ImportError:
-    BEHAVIORX_AVAILABLE = False
-    print("⚠️ Orchestrateur BehaviorX non disponible")
 
 # ===================================================================
 # INITIALISATION SESSION STATE
@@ -1019,11 +877,21 @@ def setup_sidebar():
         st.success(f"⛏️ Mines: {'✅ Disponible' if MINES_AVAILABLE else '❌ Indisponible'}")
         st.success(f"📊 Analytics: {'✅ Disponible' if ANALYTICS_AVAILABLE else '❌ Indisponible'}")
         
+        # Oracle HSE Status - NOUVEAU
+        st.markdown("---")
+        st.markdown("### 🔮 Oracle HSE")
+        if ORACLE_HSE_AVAILABLE:
+            st.success("✅ Prédictions Multi-Horizons Actives")
+            st.info("8 modèles IA • 7 horizons • Scénarios What-If")
+        else:
+            st.error("❌ Oracle HSE Non Disponible")
+            st.info("💡 Vérifiez predictions_multi_horizons.py")
+        
         # À propos
         st.markdown("### ℹ️ À Propos")
         total_secteurs = sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())
         st.info(f"""
-        **SafetyGraph Industries v3.1**
+        **SafetyGraph Industries v3.2**
         
         🏭 **{len(SECTEURS_SCIAN_COMPLET)} Industries** - Multi-secteurs SCIAN
         
@@ -1036,6 +904,8 @@ def setup_sidebar():
         🧠 **LangGraph** - Orchestration multi-agent avancée
         
         🎼 **Orchestrateur BehaviorX** - Workflow VCS→ABC→A1→Intégration
+        
+        🔮 **Oracle HSE** - Prédictions Multi-Horizons Révolutionnaires
         """)
         
         return {
@@ -1185,7 +1055,6 @@ def display_industries_fallback(config):
 # WORKFLOWS BEHAVIORX AVEC ORCHESTRATEUR INTÉGRÉ
 # ===================================================================
 
-
 def execute_cartography_workflow_complete(config):
     """Exécute workflow cartographie culture SST complet"""
     
@@ -1212,447 +1081,349 @@ def execute_cartography_workflow_complete(config):
         }
     }
 
-def display_behaviorx_orchestrated_results(results):
-    """Affiche résultats BehaviorX orchestré dans onglets détaillés"""
+def display_culture_mapping_interface():
+    """Interface cartographie culture SST"""
+    st.markdown("## 🗺️ Cartographie Culture SST")
+    st.success("🎉 Cartographie Culture SST lancée avec succès !")
+    st.balloons()
     
-    if not results or not results['success']:
-        return
+    with st.spinner("🔄 Génération cartographie culture secteur..."):
+        time.sleep(1.5)
     
-    # Onglets BehaviorX Orchestré
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "🔍 VCS Observation",
-        "🔗 Analyse ABC", 
-        "🤖 A1 Enhanced",
-        "📊 Intégration",
-        "📄 Rapport Complet"
-    ])
+    st.markdown("### 📊 Résultats Cartographie Culture")
     
-    with tab1:
-        st.markdown("### 🔍 VCS Observation - SafetyGraph Module BehaviorX Orchestré")
-        
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("📊 Items Observés", "12", delta="Complet")
-        with col2:
-            vcs_score = results['metrics']['vcs_conformity']
-            st.metric("✅ Conformité", f"{vcs_score:.1f}%", delta="6 Forces")
-        with col3:
-            st.metric("⚠️ Préoccupations", "2", delta="À surveiller")
-        
-        # Détails VCS si disponibles
-        vcs_results = results['results'].get('vcs_results', {})
-        if vcs_results:
-            st.markdown("#### 📋 Détails VCS")
-            st.json(vcs_results)
+    # Données de démonstration
+    culture_data = {
+        "Dimension": ['Leadership', 'Communication', 'Formation', 'Engagement', 'Amélioration'],
+        'Score Actuel': [3.8, 4.1, 3.2, 3.6, 3.9],
+        'Benchmark': [3.2, 3.8, 2.9, 3.1, 3.4],
+        'Objectif 6M': [4.2, 4.4, 3.8, 4.0, 4.3]
+    }
     
-    with tab2:
-        st.markdown("### 🔗 Analyse ABC - Comportements Observés")
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            st.success("✅ 6 Comportements Positifs")
-            st.markdown("""
-            - Port EPI systématique
-            - Communication sécurité active
-            - Respect procédures
-            - Signalement proactif
-            - Formation continue
-            - Leadership sécurité
-            """)
-        with col2:
-            st.warning("⚠️ 2 Comportements À Corriger")
-            st.markdown("""
-            - Raccourcis procéduraux occasionnels
-            - Négligence contrôles routine
-            """)
-        
-        # Analyse ABC si disponible
-        abc_analysis = results['results'].get('abc_analysis', {})
-        if abc_analysis:
-            st.markdown("#### 🔗 Analyse ABC Détaillée")
-            st.json(abc_analysis)
-    
-    with tab3:
-        st.markdown("### 🤖 Agent A1 Enhanced - Safe Self Orchestré")
-        
-        a1_score = results['metrics']['a1_score']
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.metric("Score Safe Self", f"{a1_score:.1f}", delta="BON")
-            st.metric("Cohérence Réponses", "94.2%", delta="Excellent")
-        
-        with col2:
-            st.metric("Temps Réponse", "1.8s", delta="Rapide")
-            st.metric("Confiance IA", "87%", delta="Élevée")
-        
-        # Résultats A1 Enhanced si disponibles
-        a1_results = results['results'].get('a1_enhanced_results', {})
-        if a1_results:
-            st.markdown("#### 🤖 Détails A1 Enhanced")
-            st.json(a1_results)
-    
-    with tab4:
-        st.markdown("### 📊 Analyse Intégration & Zones Aveugles")
-        
-        integration_score = results['metrics']['integration_score']
-        blind_spots_count = results['metrics']['blind_spots']
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.metric("🎯 Score Intégration Global", f"{integration_score:.1f}%", delta="Excellent")
-            
-            # Breakdown intégration
-            st.markdown("#### 📊 Breakdown Intégration")
-            breakdown_data = {
-                'Composant': ['VCS', 'ABC', 'A1 Enhanced', 'Cohérence'],
-                'Score (%)': [results['metrics']['vcs_conformity'], 85.0, results['metrics']['a1_score'], 92.0],
-                'Statut': ['✅ Bon', '✅ Très Bon', '✅ Bon', '✅ Excellent']
-            }
-            df_breakdown = pd.DataFrame(breakdown_data)
-            st.dataframe(fix_dataframe_for_streamlit(df_breakdown), use_container_width=True)
-        
-        with col2:
-            st.metric("🚨 Zones Aveugles Détectées", blind_spots_count, 
-                     delta="🔍 Identifiées" if blind_spots_count > 0 else "✅ Aucune")
-            
-            # Zones aveugles détails
-            blind_spots = results['results'].get('blind_spots', [])
-            if blind_spots:
-                st.markdown("#### 🚨 Détails Zones Aveugles")
-                for i, blind_spot in enumerate(blind_spots, 1):
-                    st.warning(f"{i}. {blind_spot}")
-            else:
-                st.success("✅ Aucune zone aveugle détectée - Couverture complète!")
-            
-            # Actions prioritaires
-            priority_actions = results['results'].get('priority_actions', [])
-            if priority_actions:
-                st.markdown("#### 📈 Actions Prioritaires")
-                for action in priority_actions:
-                    priority_color = "🔴" if action.get('priority') == 'high' else "🟡"
-                    st.info(f"{priority_color} {action.get('action', 'Action non définie')}")
-    
-    with tab5:
-        st.markdown("### 📄 Rapport Complet BehaviorX Orchestré")
-        
-        # Résumé exécutif
-        st.markdown("#### 📋 Résumé Exécutif")
-        st.success(f"""
-        **✅ Workflow BehaviorX Orchestré réussi**
-        
-        - **Score Global Intégration:** {integration_score:.1f}%
-        - **Conformité VCS:** {results['metrics']['vcs_conformity']:.1f}%
-        - **Performance A1 Enhanced:** {results['metrics']['a1_score']:.1f}/100
-        - **Zones Aveugles:** {blind_spots_count} détectée(s)
-        - **Recommandation:** Maintenir excellence opérationnelle
-        """)
-        
-        # Données complètes
-        st.markdown("#### 📊 Données Complètes")
-        if st.button("📥 Télécharger Rapport JSON"):
-            st.download_button(
-                label="📥 Télécharger",
-                data=json.dumps(results['results'], indent=2),
-                file_name=f"rapport_behaviorx_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-                mime="application/json"
-            )
-        
-        # Affichage JSON
-        with st.expander("🔍 Voir Données JSON Complètes"):
-            st.json(results['results'])
+    df_culture = pd.DataFrame(culture_data)
+    st.dataframe(fix_dataframe_for_streamlit(df_culture), use_container_width=True, hide_index=True)
+    st.success("✅ Cartographie générée avec STORM Research enrichi !")
 
 # ===================================================================
-# FONCTION PRINCIPALE MODIFIÉE AVEC ORCHESTRATEUR
+# FONCTION PRINCIPALE AVEC ORCHESTRATEUR
 # ===================================================================
-display_behaviorx_orchestrated()
-def main():
-    """Fonction principale SafetyGraph Industries avec Orchestrateur BehaviorX"""
+# ===============================================================
+# CONNECTEUR DATABASE INTERNATIONALE SAFETYGRAPH
+# ===============================================================
+# À ajouter dans app_behaviorx.py AVANT la fonction main()
+
+import sqlite3
+import pandas as pd
+from pathlib import Path
+
+class SafetyGraphInternationalConnector:
+    """Connecteur pour base données internationale SafetyGraph OSHA/BLS/NIOSH"""
     
-    # RÉVOLUTION UX/UI - Profils adaptatifs
+    def __init__(self):
+        self.db_path = "databases/safetygraph_international.db"
+        self.connection = None
+        self.is_available = self._check_database_availability()
+    
+    def _check_database_availability(self):
+        """Vérifie si la base internationale existe"""
+        try:
+            db_file = Path(self.db_path)
+            if not db_file.exists():
+                print(f"ℹ️ Base internationale non trouvée: {self.db_path}")
+                return False
+            
+            # Test connexion et tables
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            
+            required_tables = ['osha_incidents', 'bls_statistics', 'niosh_publications', 'sector_mappings']
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            existing_tables = [row[0] for row in cursor.fetchall()]
+            
+            for table in required_tables:
+                if table not in existing_tables:
+                    print(f"ℹ️ Table manquante: {table}")
+                    conn.close()
+                    return False
+            
+            conn.close()
+            print(f"✅ Base internationale détectée: {len(existing_tables)} tables")
+            return True
+            
+        except Exception as e:
+            print(f"ℹ️ Base internationale non accessible: {e}")
+            return False
+    
+    def get_connection(self):
+        """Obtient connexion à la base"""
+        if not self.is_available:
+            return None
+        try:
+            return sqlite3.connect(self.db_path)
+        except Exception as e:
+            print(f"❌ Erreur connexion: {e}")
+            return None
+    
+    def get_database_stats(self):
+        """Statistiques de la base internationale"""
+        if not self.is_available:
+            return {}
+        
+        try:
+            conn = self.get_connection()
+            if conn is None:
+                return {}
+            
+            cursor = conn.cursor()
+            stats = {}
+            
+            # Compter enregistrements par table
+            tables = ['osha_incidents', 'bls_statistics', 'niosh_publications', 'sector_mappings']
+            for table in tables:
+                cursor.execute(f"SELECT COUNT(*) FROM {table}")
+                count = cursor.fetchone()[0]
+                stats[table] = count
+            
+            # Secteurs couverts
+            cursor.execute("SELECT COUNT(DISTINCT sector_code) FROM osha_incidents")
+            stats['sectors_covered'] = cursor.fetchone()[0]
+            
+            # Dernière mise à jour
+            cursor.execute("SELECT MAX(created_at) FROM osha_incidents")
+            last_update = cursor.fetchone()[0]
+            stats['last_update'] = last_update
+            
+            conn.close()
+            return stats
+            
+        except Exception as e:
+            print(f"❌ Erreur stats database: {e}")
+            return {}
+
+# ===============================================================
+# FONCTION D'INITIALISATION
+# ===============================================================
+
+def initialize_international_connector():
+    """Initialise le connecteur international et stocke dans session state"""
+    if 'international_connector' not in st.session_state:
+        connector = SafetyGraphInternationalConnector()
+        st.session_state.international_connector = connector
+        
+        if connector.is_available:
+            stats = connector.get_database_stats()
+            st.session_state.international_stats = stats
+            print(f"✅ Connecteur international initialisé:")
+            print(f"   • OSHA: {stats.get('osha_incidents', 0)} incidents")
+            print(f"   • BLS: {stats.get('bls_statistics', 0)} statistiques")
+            print(f"   • NIOSH: {stats.get('niosh_publications', 0)} publications")
+            print(f"   • Secteurs: {stats.get('sectors_covered', 0)} couverts")
+        else:
+            print("ℹ️ Mode simulation activé - base internationale non disponible")
+    
+    return st.session_state.get('international_connector')
+
+def main():
+    """Fonction principale SafetyGraph Industries avec Orchestrateur BehaviorX + Oracle HSE"""
+    
+    # Configuration et initialisation
     current_profile = display_profile_selector()
     display_adaptive_header(current_profile)
     
-    # FORCER L'INITIALISATION DU PROFIL HSE MANAGER (Debug)
     init_user_profile()
     if 'user_profile' not in st.session_state:
         st.session_state.user_profile = 'hse_manager'
     
-    # Configuration sidebar
     config = setup_sidebar()
     
-    # Zone principale - Choix workflow
-    st.markdown("## 🚀 SafetyGraph Industries - Plateforme Multi-Sectorielle avec Orchestrateur")
+    # =====================================
+    # NOUVEAU - Extensions Multi-Sources
+    # =====================================
+    if EXTENSIONS_AVAILABLE:
+        try:
+            # Initialisation extensions
+            if 'extensions' not in st.session_state:
+                st.session_state.extensions = SafetyGraphExtensions()
+                st.session_state.extensions.initialize_extensions()
+            
+            # Ajout sélecteur multi-juridictions dans sidebar
+            st.session_state.user_context = st.session_state.extensions.add_multi_jurisdiction_selector()
+            
+        except Exception as e:
+            st.sidebar.error(f"Erreur extensions: {str(e)}")
+            st.session_state.user_context = None
+    else:
+        st.session_state.user_context = None
+    
+    # Zone principale
+    st.markdown("## 🚀 SafetyGraph Industries - Plateforme Multi-Sectorielle avec Orchestrateur + Oracle HSE")
     
     # ===================================================================
-    # ONGLETS PRINCIPAUX SAFETYGRAPH - INDUSTRIES UNIFIÉES + ORCHESTRATEUR
+    # ONGLETS PRINCIPAUX SAFETYGRAPH - VERSION ORACLE HSE INTÉGRÉE
     # ===================================================================
     main_tabs = st.tabs([
-        "🏭 Industries",              # TOUT-EN-UN avec sélecteur SCIAN
-        "🎼 BehaviorX Orchestré",     # NOUVEAU - Avec Orchestrateur
+        "🏭 Industries",              # Industries unifiées
+        "🎼 BehaviorX Orchestré",     # Avec Orchestrateur  
         "🗺️ Cartographie Culture",
         "📊 Analytics Prédictifs",
         "🔍 Pattern Recognition", 
-        "⚡ Analytics Optimisés"
+        "⚡ Analytics Optimisés",
+        "🌍 Multi-Sources OSHA/BLS",  # Extensions multi-sources
+        "🔮 Oracle HSE"               # NOUVEAU - Oracle HSE Multi-Horizons
     ])
 
     # ===================================================================
-    # CONTENU ONGLETS AVEC ORCHESTRATEUR INTÉGRÉ
+    # CONTENU ONGLETS - STRUCTURE AVEC ORACLE HSE
     # ===================================================================
 
-    with main_tabs[0]:  # Industries - MODULE PRINCIPAL
+    with main_tabs[0]:  # Industries
         display_industries_unified(config)
 
-    with main_tabs[1]:  # BehaviorX Orchestré - NOUVEAU
+    with main_tabs[1]:  # BehaviorX Orchestré - CORRIGÉ
         st.markdown("## 🎼 SafetyGraph BehaviorX Orchestré")
         st.markdown("### 🚀 Workflow Intelligent VCS→ABC→A1→Intégration avec Mémoire IA")
         
         if not BEHAVIORX_AVAILABLE:
             st.error("❌ Orchestrateur BehaviorX non disponible")
-            st.info("🔧 Vérifiez que le fichier src/agents/collecte/orchestrateur_behaviorx_unified.py existe")
-        else:
-            # Configuration orchestrateur
-            col1, col2, col3 = st.columns(3)
-            
-            with col1:
-                st.markdown("#### 🏢 Entreprise")
-                st.info(f"**{config['enterprise_name']}**")
-                st.code(f"Secteur: {config['sector_code']}")
-            
-            with col2:
-                st.markdown("#### 🎯 Configuration")
-                st.success(f"Mode: {config['workflow_mode']}")
-                st.success(f"Mémoire IA: {'✅' if config['memory_enabled'] else '❌'}")
-            
-            with col3:
-                st.markdown("#### 🎼 Orchestrateur")
-                st.success("✅ BehaviorX Unifié")
-                st.success("✅ Workflow VCS→ABC→A1")
-            
-            # Bouton lancement orchestrateur
-            col_center = st.columns([1, 2, 1])[1]
-            with col_center:
-                if st.button("🚀 Lancer Orchestrateur BehaviorX", type="primary", use_container_width=True):
-                    st.session_state.workflow_type = "behaviorx_orchestrated"
-                    st.session_state.workflow_results = None
+            return
+        
+        # APPEL UNIQUE À LA FONCTION (PLUS DE CODE DUPLIQUÉ)
+        display_behaviorx_orchestrated()
+        
+        # Affichage résultats orchestrateur
+        display_orchestrated_workflow_results()
 
     with main_tabs[2]:  # Cartographie Culture
-        st.markdown("## 🗺️ SafetyGraph BehaviorX + Cartographie Culture SST")
-        st.markdown("### 📊 Powered by Safety Agentique | 🌐 LangGraph Multi-Agent | 🌪️ STORM Research | 🧠 Mémoire IA Adaptative")
-        
-        col1, col2, col3 = st.columns([1, 2, 1])
-        
-        with col2:
-            if st.button("🗺️ Lancer Cartographie Culture SST", key="launch_cartographie_culture", type="primary"):
-                st.success("🎉 Cartographie Culture SST lancée avec succès !")
-                st.balloons()
-                
-                with st.spinner("🔄 Génération cartographie culture secteur..."):
-                    time.sleep(1.5)
-                
-                st.markdown("### 📊 Résultats Cartographie Culture")
-                
-                # Données adaptées selon secteur sélectionné
-                secteur_actuel = config['sector_name']
-                culture_data = {
-                    "Secteur SCIAN": [secteur_actuel, 'Benchmark National', 'Top 25%', 'Objectif 6 mois'],
-                    'Score Culture': [3.8, 3.2, 4.1, 4.5],
-                    'Niveau Maturité': ['Réactif', 'Émergent', 'Proactif', 'Prédictif'],
-                    'Risque Incident (%)': [15.2, 18.7, 9.3, 6.2],
-                    'Conformité (%)': [87.1, 82.3, 94.8, 97.5]
-                }
-                
-                df_culture = pd.DataFrame(culture_data)
-                st.dataframe(fix_dataframe_for_streamlit(df_culture), use_container_width=True, hide_index=True)
-                st.success("✅ Cartographie générée avec STORM Research enrichi !")
-        
-        if st.button("🗺️ Lancer Cartographie Complète", use_container_width=True):
-            st.session_state.workflow_type = "cartography_complete"
+        st.markdown("## 🗺️ Cartographie Culture SST")
+        if st.button("🚀 Lancer Cartographie", use_container_width=True):
+            st.session_state.workflow_type = "culture_mapping"
             st.session_state.workflow_results = None
+        
+        if hasattr(st.session_state, 'workflow_type') and st.session_state.workflow_type == "culture_mapping":
+            display_culture_mapping_interface()
 
     with main_tabs[3]:  # Analytics Prédictifs
-        if ANALYTICS_AVAILABLE:
-            display_predictive_analytics_interface()
+        if ANALYTICS_SOPHISTICATED:
+            display_predictive_analytics_interface_v2()
         else:
-            st.warning("⚠️ Module analytics prédictifs non disponible")
-            st.info("📊 Métriques secteur actuelles basées sur CNESST 793K incidents")
-            
-            # Version simplifiée analytics avec expansion sectorielle
-            analytics_col1, analytics_col2, analytics_col3 = st.columns(3)
-            
-            with analytics_col1:
-                st.metric("🎯 Précision ML", "92.4%", delta="+2.1%")
-                st.metric("📊 Prédictions Actives", "156", delta="+12")
-                
-            with analytics_col2:
-                st.metric("⚡ Temps Traitement", "0.3s", delta="-0.1s")
-                st.metric("🎯 Seuil Confiance", "85%", delta="Optimal")
-                
-            with analytics_col3:
-                st.metric("📈 Horizon Prédiction", "6 mois", delta="Configurable")
-                st.metric("🚨 Alertes Générées", "3", delta="Actives")
-            
-            # Spécialisation secteurs expansion
-            if "🆕" in config.get('sector_name', ''):
-                st.success("🆕 **ANALYTICS SECTEUR EXPANSION** - Métriques spécialisées disponibles!")
+            st.error("⚠️ Module analytics prédictifs sophistiqués non disponible")
 
     with main_tabs[4]:  # Pattern Recognition
         if ANALYTICS_AVAILABLE:
             display_pattern_recognition_interface()
         else:
-            st.warning("⚠️ Module pattern recognition non disponible")
-            st.info(f"🔍 Analyse patterns secteur {config['sector_name']}")
-            
-            # Version simplifiée pattern recognition
-            st.markdown("### 🔍 Clustering Comportemental")
-            
-            pattern_data = pd.DataFrame({
-                'Cluster': ['Leadership Fort', 'Formation Active', 'Communication Ouverte', 
-                           'Réactif Standard', 'Amélioration Requise', 'Intervention Urgente'],
-                'Entreprises (%)': [15, 25, 30, 20, 8, 2],
-                'Score Moyen': [4.2, 3.8, 3.9, 3.1, 2.4, 1.8],
-                'Votre Position': ['', '', '✅ ICI', '', '', '']
-            })
-            
-            st.dataframe(fix_dataframe_for_streamlit(pattern_data), use_container_width=True)
-            st.success("✅ Votre entreprise: Cluster 'Communication Ouverte' - Position favorable")
+            st.error("⚠️ Module pattern recognition non disponible")
 
     with main_tabs[5]:  # Analytics Optimisés
-        if OPTIMIZER_AVAILABLE:
-            optimizer.render_optimized_analytics()
+        if ANALYTICS_SOPHISTICATED:
+            display_anomaly_detection_interface()
         else:
-            st.warning("⚠️ Optimiseur non disponible - Analytics en mode standard")
-            st.info("🚀 Performance système SafetyGraph")
-            
-            # Métriques performance
-            perf_col1, perf_col2, perf_col3, perf_col4 = st.columns(4)
-            
-            with perf_col1:
-                st.metric("⚡ Temps Réponse", "1.2s", delta="Optimal")
-            with perf_col2:
-                st.metric("🔄 Cache Hit Rate", "89%", delta="+12%")
-            with perf_col3:
-                st.metric("💾 Mémoire Usage", "78%", delta="Normal")
-            with perf_col4:
-                st.metric("🌐 API Calls", "245", delta="Efficient")
+            st.error("⚠️ Module anomaly detection non disponible")
 
-    # ===================================================================
-    # WORKFLOW EXECUTION LOGIC AVEC ORCHESTRATEUR
-    # ===================================================================
-    
-    # Description workflows avec orchestrateur
-    if st.session_state.get('workflow_type'):
-        if st.session_state.workflow_type == "behaviorx_orchestrated":
-            st.info(f"""
-            **🎼 Workflow BehaviorX Orchestré - {config['sector_name']}**
-            
-            🔄 **Orchestration Intelligente:**
-            - ✅ Étape 1: VCS Observation avec analyse contextuelle
-            - ✅ Étape 2: Analyse ABC comportementale enrichie
-            - ✅ Étape 3: Agent A1 Enhanced avec mémoire IA
-            - ✅ Étape 4: Intégration + détection zones aveugles
-            - ✅ Étape 5: Recommandations prioritaires
-            
-            🎯 **Spécialisations Secteur SCIAN {config['sector_code']}**
-            - 📊 Métriques adaptées au secteur
-            - 🧠 Mémoire IA contextualisée
-            - 🔍 Benchmarks industrie
-            
-            ⚡ **Performance:** Exécution optimisée (~45 secondes)
-            """)
+    with main_tabs[6]:  # Multi-Sources OSHA/BLS - NOUVEAU
+        st.header("🌍 Multi-Sources OSHA/BLS/NIOSH")
         
-        elif st.session_state.workflow_type == "cartography_complete":
-            st.success(f"""
-            **🗺️ Cartographie Culture SST Complète - {config['industrie_principale']}**
-            - 🗺️ Cartographie 7 dimensions culture SST
-            - 🤖 Architecture LangGraph multi-agent (100+ agents)
-            - 🔍 Recherche STORM enrichissement scientifique
-            - 📋 Plans d'action personnalisés par dimension
-            - 📈 Framework monitoring et KPI évolution
-            - 🧩 Mémoire IA et apprentissage continu
-            - 🏭 Spécialisation {config['industrie_principale']}
-            - ⚡ Analyse approfondie (~2-3 minutes)
-            """)
-        
-        # Bouton exécution
-        if st.button("▶️ Lancer Workflow Sélectionné", type="primary", use_container_width=True):
-            if st.session_state.workflow_type == "behaviorx_orchestrated":
-                display_behaviorx_orchestrated()
-            elif st.session_state.workflow_type == "cartography_complete":
-                st.session_state.workflow_results = execute_cartography_workflow_complete(config)
-    
-    # Affichage résultats selon type workflow
-    if st.session_state.get('workflow_results'):
-        results = st.session_state.workflow_results
-        
-        if results['success']:
-            if results.get('type') == 'behaviorx_orchestrated':
-                display_behaviorx_orchestrated_results(results)
-            else:
-                # Pour cartographie complète, affichage enrichi
-                st.success("✅ Cartographie Culture SST terminée avec succès !")
-                
-                # Métriques cartographie
-                cartography_data = results.get('cartography', {}).get('executive_summary', {})
-                if cartography_data:
-                    col1, col2, col3 = st.columns(3)
-                    with col1:
-                        st.metric("🎯 Maturité Culture", f"{cartography_data.get('overall_culture_maturity', 3.8):.1f}/5")
-                    with col2:
-                        st.metric("📊 Benchmark Secteur", f"{cartography_data.get('sector_benchmark', 3.2):.1f}/5")
-                    with col3:
-                        st.metric("🏆 Top 25%", f"{cartography_data.get('top_25_percent', 4.1):.1f}/5")
-                
-                st.json(cartography_data)
-            
-            # Ajout à l'historique avec secteur
-            if results not in st.session_state.execution_history:
-                st.session_state.execution_history.append({
-                    'timestamp': datetime.now().isoformat(),
-                    'type': st.session_state.workflow_type,
-                    'enterprise': config['enterprise_name'],
-                    'sector': config['sector_name'],
-                    'industrie': config['industrie_principale'],
-                    'sector_code': config['sector_code'],
-                    'orchestrated': st.session_state.workflow_type == "behaviorx_orchestrated",
-                    'success': True
-                })
+        if EXTENSIONS_AVAILABLE and hasattr(st.session_state, 'extensions'):
+            try:
+                # Affichage interface extensions
+                if st.session_state.user_context:
+                    st.session_state.extensions.display_multi_source_predictions(
+                        st.session_state.user_context, 
+                        {}  # Données d'analyse (à implémenter)
+                    )
+                else:
+                    st.warning("⚠️ Context utilisateur non disponible")
+            except Exception as e:
+                st.error(f"Erreur module extensions: {str(e)}")
         else:
-            st.error("❌ Erreur lors de l'exécution du workflow")
-    
-    # Historique exécutions avec industries et orchestrateur
-    if st.session_state.execution_history:
-        with st.expander("📋 Historique Exécutions Multi-Industries + Orchestrateur"):
-            for i, execution in enumerate(reversed(st.session_state.execution_history[-10:]), 1):
-                industrie = execution.get('industrie', 'N/A')
-                sector_code = execution.get('sector_code', 'N/A')
-                orchestrated = execution.get('orchestrated', False)
-                orchestrator_badge = "🎼" if orchestrated else "📋"
+            st.error("⚠️ Module Extensions Multi-Sources non disponible")
+
+    # ONGLET 7 : Oracle HSE Prédictions Multi-Horizons - NOUVEAU
+    with main_tabs[7]:
+        st.header("🔮 Oracle HSE - Prédictions Multi-Horizons")
+        
+        if ORACLE_HSE_AVAILABLE:
+            try:
+                # Interface Oracle HSE complète
+                predictions_multi_horizons.display_oracle_hse_interface()
                 
-                st.text(f"{i}. {execution['timestamp'][:19]} - {orchestrator_badge} {execution['type']} - {execution['enterprise']} - {industrie} ({sector_code})")
-    
-    # Footer final avec expansion sectorielle
-    st.markdown("---")
-    total_secteurs = sum(len(secteurs) for secteurs in SECTEURS_SCIAN_COMPLET.values())
-    nouveaux_secteurs = sum(1 for secteurs in SECTEURS_SCIAN_COMPLET.values() for secteur in secteurs.keys() if "🆕" in secteur)
-    
-    st.markdown(f"""
-    <div style="text-align: center; padding: 1rem; background-color: #f0f2f6; border-radius: 10px; margin-top: 2rem;">
-        <p style="margin: 0; color: #666;">
-            🏭 <strong>SafetyGraph Industries v3.1</strong> | 
-            💼 Safety Agentique | 
-            🎯 {total_secteurs} Secteurs SCIAN (+{nouveaux_secteurs} nouveaux) | 
-            🎼 Orchestrateur BehaviorX Intégré |
-            🤖 Architecture Multi-Agents | 
-            🌪️ STORM Research Intégré
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+                # Interface XAI intégrée - NOUVEAU
+                if XAI_AVAILABLE:
+                    st.markdown("---")
+                    with st.expander("🔍 Explicabilité IA (XAI) - Transparence Totale", expanded=False):
+                        xai_oracle_hse.display_xai_oracle_interface()
+                else:
+                    st.markdown("---")
+                    st.info("🔍 Module XAI disponible après installation xai_oracle_hse.py")
+                
+            except Exception as e:
+                st.error(f"❌ Erreur Oracle HSE: {str(e)}")
+                st.info("🔧 Module en cours de configuration")
+                
+                # Fallback interface pour démonstration
+                st.markdown("### 🔮 Oracle HSE - Mode Démonstration")
+                st.info("**7 Horizons Temporels:** 1j → 2 ans simultanés")
+                st.info("**8 Modèles IA:** Random Forest, LSTM, Transformer, XGBoost...")
+                st.info("**Scénarios What-If:** Formation, Équipement, Supervision, IoT")
+                
+                # Métriques de démonstration
+                demo_col1, demo_col2, demo_col3, demo_col4 = st.columns(4)
+                with demo_col1:
+                    st.metric("Précision 1j", "99.2%", "+1.8%")
+                with demo_col2:
+                    st.metric("Précision 30j", "95.4%", "+2.1%")
+                with demo_col3:
+                    st.metric("Précision 365j", "86.3%", "+1.2%")
+                with demo_col4:
+                    st.metric("Modèles IA", "8/8", "Optimal")
+                
+        else:
+            st.error("❌ Module Oracle HSE non trouvé")
+            st.info("""
+            💡 **Pour activer Oracle HSE :**
+            1. Vérifiez que le fichier `predictions_multi_horizons.py` existe
+            2. Vérifiez qu'il est dans le même dossier que app_behaviorx.py
+            3. Redémarrez SafetyGraph avec `streamlit run app_behaviorx.py`
+            """)
+            
+            # Interface de démonstration Oracle HSE
+            st.markdown("### 🔮 Oracle HSE - Interface Démonstration")
+            
+            st.markdown("""
+            #### 🚀 Module Prédictions Multi-Horizons
+            
+            **7 Horizons Temporels Simultanés :**
+            - 🕐 **1 jour** → Alertes immédiates (99.2% précision)
+            - 📅 **7 jours** → Planification hebdomadaire (97.8%)
+            - 📊 **30 jours** → Stratégie mensuelle (95.4%)
+            - 📈 **90 jours** → Vision trimestrielle (92.1%)
+            - 📱 **180 jours** → Planification semestrielle (89.7%)
+            - 🎯 **365 jours** → Vision annuelle (86.3%)
+            - 🏆 **2 ans** → Stratégie long terme (82.8%)
+            
+            **8 Modèles IA Spécialisés :**
+            - 🌟 Random Forest Enhanced (96.4%) - Corrélations complexes
+            - 🚀 LSTM Deep Neural (94.8%) - Patterns cycliques
+            - ⚡ Transformer Network (92.1%) - Analyse textuelle
+            - 🎯 XGBoost Optimisé (95.7%) - Business/ROI
+            - 🔬 Prophet Time Series (91.3%) - Saisonnalité
+            - 🌊 Isolation Forest (97.2%) - Détection anomalies
+            - 🧬 Neural Network Ensemble (98.1%) - Consensus intelligent
+            - 🎪 Reinforcement Learning (93.6%) - Optimisation continue
+            
+            **Scénarios What-If Interactifs :**
+            - 📚 Formation intensive → ROI calculé
+            - 🔧 Équipement upgrade → Impact quantifié
+            - 👥 Supervision renforcée → Coût-bénéfice
+            - 🌐 Technologie IoT → Retour investissement
+            """)
+            
+            # Bouton factice pour démonstration
+            if st.button("🔮 Activer Oracle HSE (Démonstration)", type="primary"):
+                st.balloons()
+                st.success("🎉 Oracle HSE activé en mode démonstration !")
+                st.info("Module complet disponible après installation predictions_multi_horizons.py")
 
-# ===================================================================
-# POINT D'ENTRÉE APPLICATION
-# ===================================================================
-
+# Point d'entrée principal
 if __name__ == "__main__":
     main()
