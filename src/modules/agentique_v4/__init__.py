@@ -6,6 +6,7 @@ Capacités avancées : Multimodal, Temps réel, Claude Opus 4.1
 __version__ = "4.0.0"
 
 V4_CONFIG = {
+    "version": "4.0.0",  # Ajout de la clé version ici
     "enabled": True,
     "features": {
         "multimodal": True,
@@ -20,8 +21,12 @@ V4_CONFIG = {
     }
 }
 
-def initialize_v4_module(app, config=None):
+def initialize_v4_module(app=None, config=None):
     """Initialise le module V4 dans l'application SafetyGraph"""
     config = config or V4_CONFIG
-    print(" Safety Agentique 4 module initialized")
+    print(f"✅ Safety Agentique 4 module v{__version__} initialized")
+    print(f"   Features enabled: {list(config['features'].keys())}")
     return True
+
+# Export pour faciliter l'import
+__all__ = ['V4_CONFIG', '__version__', 'initialize_v4_module']
